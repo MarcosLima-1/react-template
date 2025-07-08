@@ -1,0 +1,23 @@
+.light {
+	--background: hsl(0, 0%, 95%);
+	--foreground: hsl(0, 0%, 10%);
+	--card: var(--background);
+	--card-foreground: var(--foreground);
+
+	--primary: hsl(43, 95.8%, 45%);
+	--primary-foreground: hsl(0, 0%, 10%);
+	--secondary: var(--muted);
+	--secondary-foreground: var(--foreground);
+	--muted: hsl(0, 0%, 85%);
+	--muted-foreground: hsl(0, 0%, 40%);
+	--accent: hsl(0, 0%, 90%);
+	--accent-foreground: hsl(0, 0%, 10%);
+
+	--destructive: hsl(0, 62.8%, 45%);
+	--success: hsl(142, 71%, 40%);
+	--warn: hsl(40, 95%, 55%);
+
+	--border: hsl(0, 0%, 90%);
+	--input: hsl(0, 0%, 95%);
+	--ring: hsl(35.5, 91.7%, 32.9%);
+}

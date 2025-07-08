@@ -1,0 +1,11 @@
+services:
+  site:
+    container_name: site
+    build:
+      context: .
+      dockerfile: dockerfile
+    environment:
+      NODE_ENV: production
+
+    ports:
+      - 3005:3000

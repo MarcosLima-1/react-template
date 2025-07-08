@@ -2,13 +2,13 @@ import { createContext, type ReactNode, use, useCallback, useEffect, useState } 
 import { allThemes, type ThemesClass, themeModuleLoaders } from "../constants/themes.ts";
 import { getStorageTheme, saveThemeInStorage } from "../storage/theme.ts";
 
-type ThemeProviderState = {
+type ThemeProviderContext = {
 	currentTheme: ThemesClass;
 	changeTheme: (newTheme: ThemesClass) => void;
 	isThemeLoading?: boolean;
 };
 
-const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
+export const ThemeProviderContext = createContext<ThemeProviderContext | undefined>(undefined);
 
 type ThemeProviderProps = {
 	children: ReactNode;
@@ -38,10 +38,6 @@ export function ThemeProvider({ children, defaultTheme = "dark" }: ThemeProvider
 		setIsThemeLoading(false);
 	}, [currentTheme, applyThemeClass]);
 
-	useEffect(() => {
-		importCssTheme();
-	}, [importCssTheme]);
-
 	const changeTheme = useCallback(
 		(newTheme: ThemesClass) => {
 			if (newTheme === currentTheme || isThemeLoading) return;
@@ -51,7 +47,11 @@ export function ThemeProvider({ children, defaultTheme = "dark" }: ThemeProvider
 		[currentTheme, isThemeLoading],
 	);
 
-	const value = {
+	useEffect(() => {
+		importCssTheme();
+	}, [importCssTheme]);
+
+	const value: ThemeProviderContext = {
 		currentTheme,
 		changeTheme,
 		isThemeLoading,

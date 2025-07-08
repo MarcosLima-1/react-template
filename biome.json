@@ -7,6 +7,12 @@
   },
   "files": {
     "ignoreUnknown": false,
+    "includes": [
+      "**",
+      "!dist",
+      "!node_modules",
+      "!routeTree.gen.ts"
+    ],
     "experimentalScannerIgnores": [
       "routeTree.gen.ts"
     ]
@@ -26,7 +32,6 @@
     "rules": {
       "recommended": true,
       "correctness": {
-        "noUndeclaredDependencies": "off",
         "useExhaustiveDependencies": "error",
         "noUnusedVariables": "error",
         "noUndeclaredVariables": "error",
@@ -47,7 +52,8 @@
       },
       "security": {
         "noDangerouslySetInnerHtml": "warn"
-      },"suspicious": {
+      },
+      "suspicious": {
         "noConsole": "warn"
       },
       "complexity": {
@@ -56,22 +62,19 @@
       },
       "style": {
         "noUselessElse": "warn",
-        "useComponentExportOnlyModules": "warn",
         "useSelfClosingElements": "error",
         "noParameterAssign": "error"
       }
     }
-
   },
   "javascript": {
     "formatter": {
       "quoteStyle": "double",
-      "jsxQuoteStyle":"double"
+      "jsxQuoteStyle": "double"
     }
   },
   "assist": {
     "enabled": true,
-
     "actions": {
       "source": {
         "organizeImports": "on",

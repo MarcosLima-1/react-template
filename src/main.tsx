@@ -1,18 +1,21 @@
-import { createRouter } from "@tanstack/react-router";
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "@/global.css";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { RouterProvider } from "@tanstack/react-router";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { queryClient } from "@/lib/tanstack-query";
 import "./global.css";
+import { scan } from "react-scan";
 import { ErrorDisplay } from "@/components/error-display";
 import { NotFound } from "@/components/not-found";
 import { SplashScreen } from "@/components/splash-screen";
 import { routeTree } from "@/routeTree.gen";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
+
+scan({
+	enabled: true,
+});
 
 declare module "@tanstack/react-router" {
 	interface Register {

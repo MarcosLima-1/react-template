@@ -42,7 +42,6 @@ export function Button({
 		<Comp
 			disabled={disabled}
 			data-disabled={disabled ? "true" : "false"}
-			role="button"
 			type={type}
 			className={cn(
 				"opacity] inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md font-bold text-sm transition-[colors duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",

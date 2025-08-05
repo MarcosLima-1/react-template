@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HomeIcon, RocketIcon } from "lucide-react";
+import { Image } from "@/components/misc/Image";
 import { ShadowBlur } from "@/components/misc/shadow-blur";
 
 export const Route = createFileRoute("/")({
@@ -30,6 +31,15 @@ function RouteComponent() {
 					Mais Informações
 				</Link>
 			</div>
+			<a
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="author"
+				href="https://github.com/MarcosLima-1"
+				className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full border border-purple-500/20 p-4"
+			>
+				<Image alt="author" height={30} width={30} src="/tk.webp" className="rounded-full" /> <p>by @markin</p>
+			</a>
 		</div>
 	);
 }

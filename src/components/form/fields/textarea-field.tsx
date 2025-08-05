@@ -23,7 +23,7 @@ export function TextareaField({ className, disableCharCounter, maxLength, ...pro
 				{...props}
 			/>
 			{!disableCharCounter && maxLength && (
-				<div className="text-xs text-muted-foreground mt-1 justify-self-end">
+				<div className="mt-1 flex w-full justify-end text-[0.625rem] text-muted-foreground">
 					{valueLength}/{maxLength}
 				</div>
 			)}

@@ -1,4 +1,4 @@
-import { Eye, EyeClosed } from "lucide-react";
+import { EyeClosedIcon, EyeIcon } from "lucide-react";
 import { type ComponentProps, useState } from "react";
 import { Button } from "@/components/ui/button.tsx";
 import { Input } from "@/components/ui/input.tsx";
@@ -13,7 +13,7 @@ export function PasswordField({ ...props }: ComponentProps<"input">) {
 	}
 
 	return (
-		<div className="flex">
+		<div className="flex rounded-md border focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
 			<Input
 				id={field.name}
 				onChange={(e) => field.handleChange(e.target.value)}
@@ -22,12 +22,12 @@ export function PasswordField({ ...props }: ComponentProps<"input">) {
 				name={field.name}
 				autoComplete="current-password"
 				type={isPasswordVisible ? "text" : "password"}
-				className="rounded-r-none"
+				className="rounded-r-none border-none focus-visible:ring-0"
 				placeholder="******"
 				{...props}
 			/>
-			<Button onClick={handleTogglePasswordVisibility} type="button" variant="outline" className="bg-input rounded-l-none">
-				{isPasswordVisible ? <Eye /> : <EyeClosed />}
+			<Button onClick={handleTogglePasswordVisibility} type="button" variant="outline" className="rounded-l-none bg-input">
+				{isPasswordVisible ? <EyeIcon /> : <EyeClosedIcon />}
 			</Button>
 		</div>
 	);

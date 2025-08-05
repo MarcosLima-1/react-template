@@ -5,8 +5,8 @@ export function NotFound() {
 	return (
 		<div className="flex h-svh w-full flex-col items-center justify-center gap-3 bg-gray-950 p-4 text-center text-white">
 			<GhostIcon className="size-24 text-purple-400" />
-			<h1 className="text-4xl font-bold">404 - Página Não Encontrada</h1>
-			<p className="max-w-md text-lg text-gray-400">
+			<h1 className="font-bold text-4xl">404 - Página Não Encontrada</h1>
+			<p className="max-w-md text-gray-400 text-lg">
 				A página que você está procurando não existe ou pode ter sido movida para outro universo.
 			</p>
 			<Link

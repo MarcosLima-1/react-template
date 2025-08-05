@@ -4,12 +4,9 @@ import { cn } from "@/utils/cn";
 
 const buttonVariants = {
 	default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-	destructive:
-		"bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-	outline:
-		"border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-	secondary:
-		"bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+	destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+	outline: "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+	secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
 	ghost: "hover:bg-accent hover:text-accent-foreground",
 	link: "text-primary underline-offset-4 hover:underline",
 };
@@ -48,7 +45,7 @@ export function Button({
 			role="button"
 			type={type}
 			className={cn(
-				"transition-[colors opacity] focus-visible:ring-ring inline-flex cursor-pointer items-center justify-center gap-2 rounded-md text-sm font-bold whitespace-nowrap duration-300 focus-visible:ring-1 focus-visible:outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+				"opacity] inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md font-bold text-sm transition-[colors duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
 				buttonVariants[variant],
 				buttonSizes[size],
 				className,

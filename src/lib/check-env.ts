@@ -8,10 +8,9 @@ export function checkEnv() {
 		VITE_DISCORD_ERROR_WEBHOOK: z.url(),
 	});
 
-	const { success, error } = envSchema.safeParse(import.meta.env);
+	const { success } = envSchema.safeParse(import.meta.env);
 
 	if (!success) {
-		console.log(error.issues);
 		throw new Error("❌ Invalid environment variables");
 	}
 }

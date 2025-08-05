@@ -66,25 +66,25 @@ function RouteComponent() {
 			<div className="relative my-16 w-11/12 max-w-4xl rounded-2xl border border-purple-500/20 bg-gray-900/60 p-8 shadow-2xl shadow-purple-500/10">
 				<ShadowBlur blur={400} spread={80} className="opacity-30" />
 
-				<div className="text-center mb-10">
-					<h1 className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-4xl md:text-5xl font-bold text-transparent">
+				<div className="mb-10 text-center">
+					<h1 className="bg-gradient-to-b from-white to-gray-400 bg-clip-text font-bold text-4xl text-transparent md:text-5xl">
 						Tech Stack
 					</h1>
-					<p className="mt-3 text-lg text-gray-400">As tecnologias que impulsionam este template.</p>
+					<p className="mt-3 text-gray-400 text-lg">As tecnologias que impulsionam este template.</p>
 				</div>
 
 				<div className="grid gap-8 md:grid-cols-2">
 					{technologies.map((techCategory) => (
 						<div key={techCategory.category} className="flex flex-col rounded-lg border border-gray-700/50 bg-gray-800/40 p-5">
-							<div className="flex items-center gap-3 mb-4">
+							<div className="mb-4 flex items-center gap-3">
 								{techCategory.icon}
-								<h2 className="text-xl font-semibold text-white">{techCategory.category}</h2>
+								<h2 className="font-semibold text-white text-xl">{techCategory.category}</h2>
 							</div>
 							<ul className="space-y-3">
 								{techCategory.items.map((item) => (
 									<li key={item.name}>
 										<h3 className="font-medium text-gray-200">{item.name}</h3>
-										<p className="text-sm text-gray-400">{item.description}</p>
+										<p className="text-gray-400 text-sm">{item.description}</p>
 									</li>
 								))}
 							</ul>

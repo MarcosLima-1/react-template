@@ -5,5 +5,5 @@
 		"source.removeUnusedImports": "always",
 		"source.organizeImports.biome": "always",
 		"source.fixAll.biome": "always"
-	},
+	}
 }

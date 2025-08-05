@@ -31,7 +31,7 @@
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
 	--spacing-svh-no-header: var(--svh-no-header);
-  --spacing-header-height: var(--header-height);
+	--spacing-header-height: var(--header-height);
 }
 
 :root,
@@ -65,7 +65,7 @@
 	--radix-collapsible-content-width: 545px;
 	--radius: 0.625rem;
 	--header-height: 3.5rem;
-  --svh-no-header: calc(100svh - var(--header-height))
+	--svh-no-header: calc(100svh - var(--header-height));
 }
 
 @layer base {
@@ -94,9 +94,9 @@
 		@apply pointer-events-none select-none;
 	}
 
-  .stop-scroll {
-    @apply overflow-hidden h-svh;
-  }
+	.stop-scroll {
+		@apply overflow-hidden h-svh;
+	}
 }
 
 @utility scroll-hidden {

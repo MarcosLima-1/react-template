@@ -16,11 +16,11 @@ function RouteComponent() {
 					<HomeIcon size={80} className="text-white" />
 				</div>
 
-				<h1 className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-center text-5xl font-bold text-transparent md:text-6xl">
+				<h1 className="bg-gradient-to-b from-white to-gray-400 bg-clip-text text-center font-bold text-5xl text-transparent md:text-6xl">
 					React Template
 				</h1>
 
-				<p className="mt-4 text-center text-lg text-gray-400">Seu ponto de partida para aplicações modernas.</p>
+				<p className="mt-4 text-center text-gray-400 text-lg">Seu ponto de partida para aplicações modernas.</p>
 
 				<Link
 					to="/info"

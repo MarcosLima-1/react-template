@@ -10,8 +10,7 @@ import { TagsField } from "./fields/tags-field.tsx";
 import { TextField } from "./fields/text-field.tsx";
 import { TextareaField } from "./fields/textarea-field.tsx";
 
-export const { fieldContext, formContext, useFieldContext, useFormContext } =
-	createFormHookContexts();
+export const { fieldContext, formContext, useFieldContext, useFormContext } = createFormHookContexts();
 
 export const { useAppForm } = createFormHook({
 	fieldComponents: {

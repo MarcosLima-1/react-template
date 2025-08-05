@@ -7,13 +7,7 @@ interface ShadowBlurProps extends HtmlHTMLAttributes<HTMLDivElement> {
 	spread?: number;
 }
 
-export function ShadowBlur({
-	className,
-	blur = 200,
-	spread = 40,
-	style,
-	...props
-}: ShadowBlurProps) {
+export function ShadowBlur({ className, blur = 200, spread = 40, style, ...props }: ShadowBlurProps) {
 	return (
 		<div
 			style={{

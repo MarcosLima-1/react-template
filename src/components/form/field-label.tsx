@@ -2,11 +2,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/utils/cn";
 import { useFieldContext } from "./app-form.tsx";
 
-export function FieldLabel({
-	children,
-	className,
-	...props
-}: ComponentProps<"label">) {
+export function FieldLabel({ children, className, ...props }: ComponentProps<"label">) {
 	const field = useFieldContext();
 
 	return (

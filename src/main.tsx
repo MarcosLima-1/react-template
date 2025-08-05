@@ -6,10 +6,13 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { queryClient } from "@/lib/tanstack-query";
 import "./global.css";
+import { isAxiosError } from "axios";
+import { LockKeyholeIcon, SearchXIcon } from "lucide-react";
 import { scan } from "react-scan";
-import { ErrorDisplay } from "@/components/error-display";
+import { GenericError } from "@/components/generic-error";
 import { NotFound } from "@/components/not-found";
 import { SplashScreen } from "@/components/splash-screen";
+import { UnavailableContent } from "@/components/unavailable-content";
 import { routeTree } from "@/routeTree.gen";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
 
@@ -26,7 +29,19 @@ declare module "@tanstack/react-router" {
 const router = createRouter({
 	routeTree,
 	defaultViewTransition: true,
-	defaultErrorComponent: ({ error }) => <ErrorDisplay error={error} />,
+	defaultErrorComponent: ({ error }) => {
+		if (isAxiosError(error)) {
+			if (error.response?.status === 404) {
+				return <UnavailableContent icon={SearchXIcon} title="Conteudo não encontrado" />;
+			}
+
+			if (error.response?.status === 403) {
+				return <UnavailableContent icon={LockKeyholeIcon} title="Você não tem permissão para acessar esse conteúdo" />;
+			}
+		}
+
+		return <GenericError error={error} />;
+	},
 	defaultNotFoundComponent: () => <NotFound />,
 	defaultPendingComponent: () => <SplashScreen />,
 	context: {

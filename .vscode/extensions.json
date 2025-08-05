@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+		"biomejs.biome",
+		"shd101wyy.markdown-preview-enhanced",
+		"csstools.postcss",
+		"ms-azuretools.vscode-containers",
+		"ahmadalli.vscode-nginx-conf",
+		"aaron-bond.better-comments",
+		"maptz.regionfolder",
+		"bradlc.vscode-tailwindcss",
+		"pomdtr.excalidraw-editor"
+	],
+	"unwantedRecommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+}

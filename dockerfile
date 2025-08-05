@@ -6,6 +6,8 @@ RUN corepack enable pnpm && corepack install -g pnpm@latest-10
 
 FROM base AS build
 
+ARG VITE_BUILD_MODE=prod
+
 WORKDIR /app
 
 COPY ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
@@ -14,7 +16,7 @@ RUN pnpm i --frozen-lockfile
 
 COPY . .
 
-RUN pnpm run build
+RUN pnpm run build --mode $VITE_BUILD_MODE
 
 FROM nginx:1.27.5-alpine AS production
 

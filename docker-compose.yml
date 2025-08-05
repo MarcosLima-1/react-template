@@ -4,8 +4,7 @@ services:
     build:
       context: .
       dockerfile: dockerfile
-    environment:
-      NODE_ENV: production
-
+      args:
+        VITE_BUILD_MODE: dev
     ports:
       - 3005:3000

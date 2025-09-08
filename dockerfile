@@ -2,7 +2,7 @@ FROM node:22-alpine3.22 AS base
 
 WORKDIR /app
 
-RUN corepack enable pnpm && corepack install -g pnpm@latest-10
+RUN npm install -g pnpm@latest
 
 FROM base AS build
 

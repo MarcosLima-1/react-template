@@ -28,7 +28,6 @@ declare module "@tanstack/react-router" {
 
 const router = createRouter({
 	routeTree,
-	defaultViewTransition: true,
 	defaultErrorComponent: ({ error }) => {
 		if (isAxiosError(error)) {
 			if (error.response?.status === 404) {
@@ -44,6 +43,8 @@ const router = createRouter({
 	},
 	defaultNotFoundComponent: () => <NotFound />,
 	defaultPendingComponent: () => <SplashScreen />,
+	defaultPreload: "intent",
+	defaultViewTransition: true,
 	context: {
 		queryClient,
 	},

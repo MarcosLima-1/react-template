@@ -1,0 +1,21 @@
+FROM node:22-alpine3.22 AS base
+
+RUN npm install -g pnpm@latest
+
+RUN adduser -D -H -S node || echo "Log: Usuário 'node' já existe, continuando..."
+USER node
+
+WORKDIR /app
+
+
+FROM base AS test
+
+ARG VITE_BUILD_MODE=dev
+
+COPY --chown=node:node ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
+
+RUN pnpm i --frozen-lockfile
+
+COPY . .
+
+ENTRYPOINT ["pnpm", "test"]

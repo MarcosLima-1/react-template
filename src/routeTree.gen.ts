@@ -8,40 +8,40 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as InfoIndexRouteImport } from './routes/info/index'
+import { Route as rootRouteImport } from "./routes/__root"
+import { Route as IndexRouteImport } from "./routes/index"
+import { Route as InfoIndexRouteImport } from "./routes/info/index"
 
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRouteImport,
 } as any)
 const InfoIndexRoute = InfoIndexRouteImport.update({
-  id: '/info/',
-  path: '/info/',
+  id: "/info/",
+  path: "/info/",
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/info': typeof InfoIndexRoute
+  "/": typeof IndexRoute
+  "/info": typeof InfoIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/info': typeof InfoIndexRoute
+  "/": typeof IndexRoute
+  "/info": typeof InfoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/info/': typeof InfoIndexRoute
+  "/": typeof IndexRoute
+  "/info/": typeof InfoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/info'
+  fullPaths: "/" | "/info"
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/info'
-  id: '__root__' | '/' | '/info/'
+  to: "/" | "/info"
+  id: "__root__" | "/" | "/info/"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -49,19 +49,19 @@ export interface RootRouteChildren {
   InfoIndexRoute: typeof InfoIndexRoute
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
+    "/": {
+      id: "/"
+      path: "/"
+      fullPath: "/"
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/info/': {
-      id: '/info/'
-      path: '/info'
-      fullPath: '/info'
+    "/info/": {
+      id: "/info/"
+      path: "/info"
+      fullPath: "/info"
       preLoaderRoute: typeof InfoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }

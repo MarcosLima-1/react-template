@@ -1,7 +1,7 @@
 import type { QueryClient } from "@tanstack/react-query";
 import { createRootRouteWithContext, HeadContent, Outlet } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
-import { checkEnv } from "@/lib/check-env";
+import { checkEnv } from "@/lib/envs";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
 	head: () => ({

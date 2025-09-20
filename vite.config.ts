@@ -4,19 +4,27 @@ import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
+import Inspect from "vite-plugin-inspect";
+
+
+const ReactCompilerConfig = {
+	target: "19",
+};
 
 export default defineConfig({
 	plugins: [
 		tanstackRouter({
 			target: "react",
 			autoCodeSplitting: true,
-		}),
-		react({
-			babel: {
-				plugins: [["babel-plugin-react-compiler", {}]],
-			},
+			quoteStyle: "double",
 		}),
 		tailwindcss(),
+		react({
+			babel: {
+				plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]],
+			},
+		}),
+		Inspect({}),
 		visualizer({
 			open: true,
 			filename: "bundle-analysis.html",
@@ -30,6 +38,8 @@ export default defineConfig({
 	},
 	build: {
 		sourcemap: true,
+		cssMinify: "lightningcss",
+		minify: "terser",
 	},
 	server: {
 		port: 3000,

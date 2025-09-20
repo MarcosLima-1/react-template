@@ -1,6 +1,10 @@
+volumes:
+  postgres-data:
+  sonnarqube-data:
+  sonnarqube-logs:
+
 services:
-  site:
-    container_name: site
+  app:
     build:
       context: .
       dockerfile: dockerfile
@@ -8,3 +12,19 @@ services:
         VITE_BUILD_MODE: dev
     ports:
       - 3005:3000
+    depends_on:
+      app-tests:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://0.0.0.0:3000/ || exit 1"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  app-tests:
+    build:
+      context: .
+      dockerfile: dockerfile.test
+      args:
+        VITE_BUILD_MODE: dev

@@ -1,11 +1,12 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { queryClient } from "@/lib/tanstack-query";
 import "./global.css";
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { isAxiosError } from "axios";
 import { LockKeyholeIcon, SearchXIcon } from "lucide-react";
 import { scan } from "react-scan";
@@ -13,6 +14,7 @@ import { GenericError } from "@/components/generic-error";
 import { NotFound } from "@/components/not-found";
 import { SplashScreen } from "@/components/splash-screen";
 import { UnavailableContent } from "@/components/unavailable-content";
+import { envs } from "@/lib/envs";
 import { routeTree } from "@/routeTree.gen";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
 
@@ -62,8 +64,20 @@ createRoot(rootContainer).render(
 			<ThemeProvider>
 				<RouterProvider router={router} />
 			</ThemeProvider>
-			<ReactQueryDevtools initialIsOpen={false} />
-			<TanStackRouterDevtools position="bottom-left" router={router} />
+			{envs.VITE_DEV_MODE && (
+				<TanStackDevtools
+					plugins={[
+						{
+							name: "Tanstack Query",
+							render: <ReactQueryDevtoolsPanel />,
+						},
+						{
+							name: "Tanstack Router",
+							render: <TanStackRouterDevtoolsPanel router={router} />,
+						},
+					]}
+				/>
+			)}
 		</QueryClientProvider>
 	</StrictMode>,
 );

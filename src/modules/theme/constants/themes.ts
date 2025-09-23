@@ -3,12 +3,12 @@ export const themeModuleLoaders = {
 	light: () => import("@/modules/theme/components/themes/light.css"),
 } as const;
 
-export type ThemesClass = keyof typeof themeModuleLoaders;
-export const allThemes = Object.keys(themeModuleLoaders) as ThemesClass[];
+export type ThemeKeys = keyof typeof themeModuleLoaders;
+export const themeKeys = Object.keys(themeModuleLoaders) as ThemeKeys[];
 
 export interface ThemeType {
 	displayName: string;
-	themeClass: ThemesClass;
+	themeClass: ThemeKeys;
 	backgroundColor: string;
 	primaryColor: string;
 	scheme: "dark" | "light";

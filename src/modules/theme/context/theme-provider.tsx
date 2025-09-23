@@ -1,10 +1,10 @@
 import { createContext, type ReactNode, use, useCallback, useEffect, useState } from "react";
-import { allThemes, type ThemesClass, themeModuleLoaders } from "../constants/themes.ts";
+import { type ThemeKeys, themeKeys, themeModuleLoaders, themes } from "@/modules/theme/constants/themes.ts";
 import { getStorageTheme, saveThemeInStorage } from "../storage/theme.ts";
 
 type ThemeProviderContext = {
-	currentTheme: ThemesClass;
-	changeTheme: (newTheme: ThemesClass) => void;
+	currentTheme: ThemeKeys;
+	changeTheme: (newTheme: ThemeKeys) => void;
 	isThemeLoading?: boolean;
 };
 
@@ -12,44 +12,51 @@ export const ThemeProviderContext = createContext<ThemeProviderContext | undefin
 
 type ThemeProviderProps = {
 	children: ReactNode;
-	defaultTheme?: ThemesClass;
+	defaultTheme?: ThemeKeys;
 };
 
-export function ThemeProvider({ children, defaultTheme = "dark" }: ThemeProviderProps) {
-	const [currentTheme, setCurrentTheme] = useState<ThemesClass>(() => {
+export function ThemeProvider({ children, defaultTheme = "light" }: ThemeProviderProps) {
+	const [currentTheme, setCurrentTheme] = useState<ThemeKeys>(() => {
 		return getStorageTheme() || defaultTheme;
 	});
 	const [isThemeLoading, setIsThemeLoading] = useState(false);
-	const root = window.document.documentElement;
+	const theme = themes.find((t) => t.themeClass === currentTheme);
 
-	const applyThemeClass = useCallback(() => {
-		allThemes.forEach((t) => root.classList.remove(t));
-		root.classList.add(currentTheme);
-	}, [currentTheme, root.classList]);
+	const applyTheme = useCallback(async () => {
+		if (!theme) {
+			saveThemeInStorage(defaultTheme);
+			setCurrentTheme(defaultTheme);
+			return;
+		}
 
-	const importCssTheme = useCallback(async () => {
 		setIsThemeLoading(true);
 
 		const importer = themeModuleLoaders[currentTheme];
+		const root = window.document.documentElement;
+
 		if (importer) {
 			await importer();
+			saveThemeInStorage(theme.themeClass);
 		}
-		applyThemeClass();
+
+		// Limpa todas as classes de tema antes de aplicar as novas
+		root.classList.remove(...themeKeys, "dark", "light");
+
+		root.classList.add(theme.themeClass, theme.scheme);
 		setIsThemeLoading(false);
-	}, [currentTheme, applyThemeClass]);
+	}, [currentTheme, theme, defaultTheme]);
+
+	useEffect(() => {
+		applyTheme();
+	}, [applyTheme]);
 
 	const changeTheme = useCallback(
-		(newTheme: ThemesClass) => {
+		(newTheme: ThemeKeys) => {
 			if (newTheme === currentTheme || isThemeLoading) return;
-			saveThemeInStorage(newTheme);
 			setCurrentTheme(newTheme);
 		},
 		[currentTheme, isThemeLoading],
 	);
-
-	useEffect(() => {
-		importCssTheme();
-	}, [importCssTheme]);
 
 	const value: ThemeProviderContext = {
 		currentTheme,

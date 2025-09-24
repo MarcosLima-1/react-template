@@ -1,6 +1,6 @@
 FROM node:22-alpine3.22 AS base
 
-RUN npm install -g pnpm@latest
+RUN npm install -g bun@latest
 
 RUN adduser -D -H -S node || echo "Log: Usuário 'node' já existe, continuando..."
 USER node
@@ -12,10 +12,10 @@ FROM base AS test
 
 ARG VITE_BUILD_MODE=dev
 
-COPY --chown=node:node ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
+COPY --chown=node:node ./package.json ./bun.lock ./
 
-RUN pnpm i --frozen-lockfile
+RUN bun i --frozen-lockfile
 
 COPY . .
 
-ENTRYPOINT ["pnpm", "test"]
+ENTRYPOINT ["bun", "run", "test"]

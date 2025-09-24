@@ -2,7 +2,7 @@ FROM node:22-alpine3.22 AS base
 
 WORKDIR /app
 
-RUN npm install -g pnpm@latest
+RUN npm install -g bun@latest
 
 FROM base AS build
 
@@ -10,13 +10,13 @@ ARG VITE_BUILD_MODE=prod
 
 WORKDIR /app
 
-COPY ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
+COPY ./package.json ./bun.lock ./
 
-RUN pnpm i --frozen-lockfile
+RUN bun i --frozen-lockfile
 
 COPY . .
 
-RUN pnpm run build --mode $VITE_BUILD_MODE
+RUN bun run build --mode $VITE_BUILD_MODE
 
 FROM nginx:1.27.5-alpine AS production
 

@@ -5,7 +5,7 @@ import { DEFAULT_GC_TIME, DEFAULT_STALE_TIME } from "@/core/cache";
 import type { TanstackMetaTags } from "@/types/tanstack-meta";
 
 const RETRY_DELAY = 5000;
-const NON_RETRYABLE_STATUSES = [403, 404, 429, 500];
+const NON_RETRYABLE_STATUSES = [403, 401, 400, 404, 429, 500];
 
 function queryRetryHandler(retryCount: number, error: unknown): boolean {
 	if (!isAxiosError(error)) return false;
@@ -22,9 +22,6 @@ function queryRetryHandler(retryCount: number, error: unknown): boolean {
 			location.replace("/error/server-error");
 			return false;
 		}
-		if (error.status === 401) {
-			return false;
-		}
 		return false;
 	}
 
@@ -33,7 +30,7 @@ function queryRetryHandler(retryCount: number, error: unknown): boolean {
 
 function handleGlobalError<T extends Query | Mutation>(error: Error, item: T) {
 	const meta = item.meta as TanstackMetaTags | undefined;
-	const userName =  "User not signed in";
+	const userName = "User not signed in";
 
 	handleToastError(error, meta);
 
@@ -42,15 +39,12 @@ function handleGlobalError<T extends Query | Mutation>(error: Error, item: T) {
 		user: userName,
 	};
 
-	// sendApplicationErrorToDiscord({
-	// 	error,
-	// 	webhookUrl: DISCORD_ERROR_WEBHOOK_URL,
-	// 	context,
-	// });
+	// biome-ignore lint/suspicious/noConsole: log do error
+	console.log(context);
 }
 
 function handleToastError(error: Error, meta?: TanstackMetaTags) {
-	let errorMessage = meta?.errorMessage ?? "Ocorreu um erro inesperado. Tente novamente.";
+	const errorMessage = meta?.errorMessage ?? "Ocorreu um erro inesperado. Tente novamente.";
 
 	if (isAxiosError(error) && error.response) {
 		const isNotRetryableStatus = NON_RETRYABLE_STATUSES.includes(error.response.status);

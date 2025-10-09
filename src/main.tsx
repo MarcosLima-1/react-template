@@ -4,6 +4,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { queryClient } from "@/lib/tanstack-query";
 import "./global.css";
+import "@/lib/envs";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
@@ -15,6 +17,7 @@ import { NotFound } from "@/components/not-found";
 import { SplashScreen } from "@/components/splash-screen";
 import { UnavailableContent } from "@/components/unavailable-content";
 import { envs } from "@/lib/envs";
+import { setupAuthRequestInterceptor } from "@/modules/auth/middlewares/auth-interceptors";
 import { routeTree } from "@/routeTree.gen";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
 
@@ -35,9 +38,11 @@ const router = createRouter({
 			if (error.response?.status === 404) {
 				return <UnavailableContent icon={SearchXIcon} title="Conteudo não encontrado" />;
 			}
-
 			if (error.response?.status === 403) {
 				return <UnavailableContent icon={LockKeyholeIcon} title="Você não tem permissão para acessar esse conteúdo" />;
+			}
+			if (error.response?.status === 400) {
+				return <UnavailableContent icon={SearchXIcon} title="Parametros inválidos!" />;
 			}
 		}
 
@@ -45,7 +50,7 @@ const router = createRouter({
 	},
 	defaultNotFoundComponent: () => <NotFound />,
 	defaultPendingComponent: () => <SplashScreen />,
-	defaultPreload: "intent",
+	defaultPreload: false,
 	defaultViewTransition: true,
 	context: {
 		queryClient,
@@ -62,7 +67,9 @@ createRoot(rootContainer).render(
 	<StrictMode>
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider>
-				<RouterProvider router={router} />
+				<GoogleOAuthProvider clientId={envs.VITE_GOOGLE_CLIENT_ID}>
+					<RouterProvider router={router} />
+				</GoogleOAuthProvider>
 			</ThemeProvider>
 			{envs.VITE_DEV_MODE && (
 				<TanStackDevtools
@@ -81,3 +88,4 @@ createRoot(rootContainer).render(
 		</QueryClientProvider>
 	</StrictMode>,
 );
+setupAuthRequestInterceptor();

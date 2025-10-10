@@ -8,7 +8,5 @@ const envSchema = z.object({
 	VITE_GOOGLE_CLIENT_ID: z.string().min(1),
 });
 
-envSchema.parse(import.meta.env);
-
 export const envs = envSchema.parse(import.meta.env);
 export type Envs = z.infer<typeof envSchema>;

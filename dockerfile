@@ -1,14 +1,28 @@
 FROM node:22-alpine3.22 AS base
 
-WORKDIR /app
 
 RUN npm install -g bun@latest
+
+RUN adduser -D -H -S node || echo "Log: Usuário já existe, continuando..."
+USER node
+
+WORKDIR /app
+
+FROM base AS test
+
+COPY ./package.json ./bun.lock ./
+
+RUN bun i --frozen-lockfile
+
+COPY . .
+
+ENTRYPOINT ["bun", "run", "test"]
+
+
 
 FROM base AS build
 
 ARG VITE_BUILD_MODE=prod
-
-WORKDIR /app
 
 COPY ./package.json ./bun.lock ./
 

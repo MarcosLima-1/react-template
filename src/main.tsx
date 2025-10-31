@@ -4,7 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { queryClient } from "@/lib/tanstack-query";
 import "./global.css";
-import "@/lib/envs";
+import "@/lib/env";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
@@ -16,7 +16,7 @@ import { GenericError } from "@/components/generic-error";
 import { NotFound } from "@/components/not-found";
 import { SplashScreen } from "@/components/splash-screen";
 import { UnavailableContent } from "@/components/unavailable-content";
-import { envs } from "@/lib/envs";
+import { env } from "@/lib/env";
 import { setupAuthRequestInterceptor } from "@/modules/auth/middlewares/auth-interceptors";
 import { routeTree } from "@/routeTree.gen";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
@@ -66,11 +66,11 @@ createRoot(rootContainer).render(
 	<StrictMode>
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider>
-				<GoogleOAuthProvider clientId={envs.VITE_GOOGLE_CLIENT_ID}>
+				<GoogleOAuthProvider clientId={env.VITE_GOOGLE_CLIENT_ID}>
 					<RouterProvider router={router} />
 				</GoogleOAuthProvider>
 			</ThemeProvider>
-			{envs.VITE_DEV_MODE && (
+			{env.VITE_DEV_MODE && (
 				<TanStackDevtools
 					plugins={[
 						{

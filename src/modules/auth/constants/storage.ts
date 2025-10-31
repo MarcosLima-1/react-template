@@ -1,7 +1,7 @@
 import type { CookieAttributes } from "node_modules/@types/js-cookie";
-import { envs } from "@/lib/envs";
+import { env } from "@/lib/envs";
 
-const isDevelopment = envs.VITE_IS_DEVELOPMENT;
+const isDevelopment = env.VITE_DEV_MODE;
 
 export const SESSION_KEY = "session";
 export const TOKEN_KEY = "accessToken";

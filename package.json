@@ -12,7 +12,7 @@
     "lint": "biome lint",
     "check": "biome check",
     "create-images-type": "bun ./scripts/create-images-type.ts",
-    "optimize-images": "bun ./scripts/optimize-images.ts"
+    "optimize-images": "bun ./scripts/optimize-images.ts && bun run create-images-type"
   },
   "dependencies": {
     "@faker-js/faker": "^10.1.0",

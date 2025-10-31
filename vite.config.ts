@@ -1,11 +1,11 @@
 import { resolve } from "node:path";
 import tailwindcss from "@tailwindcss/vite";
+import { devtools } from "@tanstack/devtools-vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
 import Inspect from "vite-plugin-inspect";
-
 
 const ReactCompilerConfig = {
 	target: "19",
@@ -13,6 +13,9 @@ const ReactCompilerConfig = {
 
 export default defineConfig({
 	plugins: [
+		devtools({
+			removeDevtoolsOnBuild: false,
+		}),
 		tanstackRouter({
 			target: "react",
 			autoCodeSplitting: true,

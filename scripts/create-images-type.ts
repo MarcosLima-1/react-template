@@ -1,4 +1,5 @@
 /** biome-ignore-all lint/suspicious/noConsole: Used on development only */
+
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -7,10 +8,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const projectRoot = path.resolve(__dirname, "..");
-const publicDir = path.join(projectRoot, "public", "images");
-const outputTypeFile = path.join(projectRoot, "src", "public-paths.d.ts");
+const publicImagesDir = path.join(projectRoot, "public", "images");
+const outputTypeFile = path.join(projectRoot, "src", "types", "public-paths.d.ts");
 
-async function getAllFiles(dirPath, arrayOfFiles = [], baseDir = dirPath) {
+async function getAllFiles(dirPath: string, arrayOfFiles: string[] = [], baseDir = dirPath) {
 	const files = await fs.readdir(dirPath);
 
 	for (const file of files) {
@@ -34,9 +35,9 @@ async function getAllFiles(dirPath, arrayOfFiles = [], baseDir = dirPath) {
 
 async function generateTypeDefinition() {
 	try {
-		console.log(`Scanning directory: ${publicDir}`);
+		console.log(`Scanning directory: ${publicImagesDir}`);
 
-		const filePaths = await getAllFiles(publicDir);
+		const filePaths = await getAllFiles(publicImagesDir);
 
 		console.log(`Found ${filePaths.length} files.`);
 

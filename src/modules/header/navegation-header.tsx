@@ -5,15 +5,7 @@ import { LogOutIcon, User2Icon, UserIcon } from "lucide-react";
 import { AppLogo } from "@/components/misc/app-logo";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-	DialogCloseButton,
-	DialogFooter,
-	DialogHeader,
-	DialogProvider,
-	DialogSimple,
-	DialogTitle,
-	DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog } from "@/components/ui/dialog";
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { getUserSessionOptions } from "@/modules/auth/api/get-session-user";
 import { signOut } from "@/modules/auth/utils/auth";
@@ -41,7 +33,7 @@ export function NavigationHeader() {
 						</>
 					)}
 					{session?.user && (
-						<DialogProvider>
+						<Dialog.provider>
 							<DropdownMenu>
 								<DropdownMenuTrigger asChild>
 									<Button variant="ghost">
@@ -56,29 +48,29 @@ export function NavigationHeader() {
 											Perfil
 										</Link>
 									</DropdownMenuItem>
-									<DialogTrigger asChild>
+									<Dialog.trigger asChild>
 										<DropdownMenuItem variant="destructive">
 											<LogOutIcon /> Sair
 										</DropdownMenuItem>
-									</DialogTrigger>
+									</Dialog.trigger>
 								</DropdownMenuContent>
 							</DropdownMenu>
-							<DialogSimple className="h-[200px] max-w-xl">
-								<DialogHeader>
-									<DialogTitle>Tem certeza que deseja sair?</DialogTitle>
-								</DialogHeader>
-								<DialogFooter>
-									<DialogCloseButton asChild>
+							<Dialog.presets.basic className="h-[200px] max-w-xl">
+								<Dialog.header>
+									<Dialog.title>Tem certeza que deseja sair?</Dialog.title>
+								</Dialog.header>
+								<Dialog.footer>
+									<Dialog.trigger asChild>
 										<Button variant="outline">Cancelar</Button>
-									</DialogCloseButton>
-									<DialogCloseButton asChild>
+									</Dialog.trigger>
+									<Dialog.trigger asChild>
 										<Button variant="destructive" onClick={signOut}>
 											Sair
 										</Button>
-									</DialogCloseButton>
-								</DialogFooter>
-							</DialogSimple>
-						</DialogProvider>
+									</Dialog.trigger>
+								</Dialog.footer>
+							</Dialog.presets.basic>
+						</Dialog.provider>
 					)}
 					<ThemeToggle />
 				</div>

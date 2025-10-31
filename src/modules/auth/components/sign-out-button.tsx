@@ -1,14 +1,6 @@
 import { LogOutIcon } from "lucide-react";
 import { Button, type ButtonProps } from "@/components/ui/button";
-import {
-	DialogCloseButton,
-	DialogFooter,
-	DialogHeader,
-	DialogProvider,
-	DialogSimple,
-	DialogTitle,
-	DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog } from "@/components/ui/dialog";
 import { signOut } from "@/modules/auth/utils/auth";
 import { cn } from "@/utils/cn";
 
@@ -22,30 +14,30 @@ export function SignOutButton({ className, ...props }: SignOutButtonProps) {
 	}
 
 	return (
-		<DialogProvider>
-			<DialogTrigger asChild>
+		<Dialog.provider>
+			<Dialog.trigger asChild>
 				<Button
 					className={cn("relative h-10 w-full justify-start overflow-hidden text-left [&.active]:border-primary", className)}
 					{...props}
 				>
 					<LogOutIcon className="size-4" /> Sair
 				</Button>
-			</DialogTrigger>
-			<DialogSimple className="h-[200px] max-w-xl">
-				<DialogHeader>
-					<DialogTitle>Tem certeza que deseja sair?</DialogTitle>
-				</DialogHeader>
-				<DialogFooter>
-					<DialogCloseButton asChild>
+			</Dialog.trigger>
+			<Dialog.presets.basic className="h-[200px] max-w-xl">
+				<Dialog.header>
+					<Dialog.title>Tem certeza que deseja sair?</Dialog.title>
+				</Dialog.header>
+				<Dialog.footer>
+					<Dialog.close asChild>
 						<Button variant="outline">Cancelar</Button>
-					</DialogCloseButton>
-					<DialogCloseButton asChild>
+					</Dialog.close>
+					<Dialog.close asChild>
 						<Button variant="destructive" onClick={handleLogout}>
 							Sair
 						</Button>
-					</DialogCloseButton>
-				</DialogFooter>
-			</DialogSimple>
-		</DialogProvider>
+					</Dialog.close>
+				</Dialog.footer>
+			</Dialog.presets.basic>
+		</Dialog.provider>
 	);
 }

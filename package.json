@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "bun run generate-images-types && vite dev --mode dev",
+    "dev": "bun run create-images-type && vite dev --mode dev",
     "build": "vite build",
     "serve": "vite preview",
     "test": "tsc && vitest run",

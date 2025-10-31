@@ -1,3 +1,5 @@
+import { isAxiosError } from "axios";
+import { useEffect } from "react";
 import { toast } from "sonner";
 import { z } from "zod/v4";
 import { useMutationLogin } from "@/modules/auth/api/login";
@@ -18,7 +20,15 @@ export type LoginSchema = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
 	const { nextStep } = useFormStepContext();
-	const { mutateAsync: login } = useMutationLogin();
+	const { mutateAsync: login, isError, error } = useMutationLogin();
+
+	useEffect(() => {
+		if (!isAxiosError(error)) return;
+
+		if (isError && error.response?.status !== 500) {
+			toast.error("Credenciais inválidas!");
+		}
+	}, [error, isError]);
 
 	const Form = useAppForm({
 		validators: {

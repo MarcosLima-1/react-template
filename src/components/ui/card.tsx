@@ -5,10 +5,8 @@ interface CardProps extends React.ComponentProps<"div"> {
 }
 
 export function Card({ className, isSection, ...props }: CardProps) {
-	const Element = isSection ? "section" : "div";
-
 	return (
-		<Element
+		<div
 			data-slot="card"
 			className={cn("flex flex-col gap-6 rounded-md border bg-card p-4 text-card-foreground shadow-sm", className)}
 			{...props}

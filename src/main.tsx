@@ -45,7 +45,6 @@ const router = createRouter({
 				return <UnavailableContent icon={SearchXIcon} title="Parametros inválidos!" />;
 			}
 		}
-
 		return <GenericError error={error} />;
 	},
 	defaultNotFoundComponent: () => <NotFound />,

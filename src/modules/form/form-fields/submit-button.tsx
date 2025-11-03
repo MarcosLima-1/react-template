@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@/components/ui/button";
+import { useFormContext } from "@/modules/form/app-form";
 import { cn } from "@/utils/cn";
-import { useFormContext } from "../app-form.tsx";
 
 interface SubmitButtonProps extends ComponentProps<typeof Button> {
 	disableOnDefaultValue?: boolean;

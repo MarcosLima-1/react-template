@@ -2,15 +2,14 @@ import { z } from "zod/v4";
 import { useMutationCheckEmailAvailability } from "@/modules/auth/api/check-email-availability";
 import { useMutationRegister } from "@/modules/auth/api/register";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
-import { saveTempMailInStorage } from "@/modules/auth/storage/temp-mail/temp-mail";
-import { validatePassword, valideateEmail } from "@/modules/auth/types/register";
+import { saveTempMailInStorage } from "@/modules/auth/storage/temp-mail";
 import { useAppForm } from "@/modules/form/app-form";
-import { FieldErros } from "@/modules/form/field-erros";
-import { FieldLabel } from "@/modules/form/field-label";
-import { FieldWrapper } from "@/modules/form/field-wrapper";
+import { Field } from "@/modules/form/field";
+import { validateEmail } from "@/utils/regex/validate-email";
+import { validatePassword } from "@/utils/regex/validate-password";
 
 export const registerSchema = z.object({
-	email: valideateEmail,
+	email: validateEmail,
 	password: validatePassword,
 });
 
@@ -61,25 +60,25 @@ export function RegisterForm() {
 						return !isAvailable ? [new Error("Este e-mail já está cadastrado.")] : undefined;
 					},
 				}}
-				children={(Field) => {
+				children={(AppFields) => {
 					return (
-						<FieldWrapper>
-							<FieldLabel>Email: </FieldLabel>
-							<Field.TextField placeholder="markin@example.com" maxLength={255} />
-						</FieldWrapper>
+						<Field.Wrapper>
+							<Field.Label>Email: </Field.Label>
+							<AppFields.TextField placeholder="markin@example.com" maxLength={255} />
+						</Field.Wrapper>
 					);
 				}}
 			/>
 
 			<Form.AppField
 				name="password"
-				children={(Field) => {
+				children={(AppFields) => {
 					return (
-						<FieldWrapper>
-							<FieldLabel>Senha: </FieldLabel>
-							<Field.PasswordField maxLength={100} />
-							<FieldErros />
-						</FieldWrapper>
+						<Field.Wrapper>
+							<Field.Label>Senha: </Field.Label>
+							<AppFields.PasswordField maxLength={100} />
+							<Field.Error />
+						</Field.Wrapper>
 					);
 				}}
 			/>

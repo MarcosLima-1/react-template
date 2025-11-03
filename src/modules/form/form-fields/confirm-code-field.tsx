@@ -1,6 +1,6 @@
 import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp.tsx";
-import { useFieldContext } from "../app-form.tsx";
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp";
+import { useFieldContext } from "@/modules/form/app-form";
 
 interface ConfirmCodeFieldProps {
 	className?: string;
@@ -12,14 +12,14 @@ export function ConfirmCodeField({ className, ...props }: ConfirmCodeFieldProps)
 
 	return (
 		<InputOTP
-			className={className}
 			autoFocus
-			pattern={REGEXP_ONLY_DIGITS}
-			name={fieldName}
+			className={className}
 			id={fieldName}
 			maxLength={6}
-			value={field.state.value}
+			name={fieldName}
 			onChange={(value) => field.handleChange(value)}
+			pattern={REGEXP_ONLY_DIGITS}
+			value={field.state.value}
 			{...props}
 		>
 			<InputOTPGroup>

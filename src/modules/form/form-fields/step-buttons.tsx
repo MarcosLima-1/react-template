@@ -1,7 +1,7 @@
 import type { AnyFieldMeta } from "@tanstack/react-form";
-import { Button } from "@/components/ui/button.tsx";
+import { Button } from "@/components/ui/button";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
-import { useFieldContext, useFormContext } from "../app-form.tsx";
+import { useFieldContext, useFormContext } from "@/modules/form/app-form";
 
 interface StepButtonsProps {
 	lastButtonText?: string;
@@ -14,7 +14,7 @@ export function StepButtons({ lastButtonText = "Entrar" }: StepButtonsProps) {
 
 	return (
 		<div className="mt-4 flex items-center justify-center gap-2">
-			<Button variant="outline" onClick={backStep} disabled={isFirstStep}>
+			<Button disabled={isFirstStep} onClick={backStep} variant="outline">
 				Voltar
 			</Button>
 			<Form.Subscribe
@@ -30,7 +30,7 @@ export function StepButtons({ lastButtonText = "Entrar" }: StepButtonsProps) {
 					const isDisabled = !isValid || isValidating || isSubmitting;
 
 					return (
-						<Button type="submit" disabled={isDisabled}>
+						<Button disabled={isDisabled} type="submit">
 							{!isLastVisualStep ? "Próximo" : lastButtonText}
 						</Button>
 					);

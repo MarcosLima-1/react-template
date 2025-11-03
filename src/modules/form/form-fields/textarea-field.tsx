@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
-import { Textarea } from "@/components/ui/textarea.tsx";
+import { Textarea } from "@/components/ui/textarea";
+import { useFieldContext } from "@/modules/form/app-form";
 import { cn } from "@/utils/cn";
-import { useFieldContext } from "../app-form.tsx";
 
 interface TextareaFieldProps extends ComponentProps<typeof Textarea> {
 	disableCharCounter?: boolean;
@@ -14,12 +14,12 @@ export function TextareaField({ className, disableCharCounter, maxLength, ...pro
 	return (
 		<div className="relative">
 			<Textarea
+				className={cn("h-[200px] resize-none", className)}
 				id={field.name}
 				maxLength={maxLength}
 				name={field.name}
 				onChange={(e) => field.handleChange(e.target.value)}
 				value={field.state.value}
-				className={cn("h-[200px] resize-none", className)}
 				{...props}
 			/>
 			{!disableCharCounter && maxLength && (

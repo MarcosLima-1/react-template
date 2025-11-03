@@ -5,12 +5,10 @@ import z from "zod/v4";
 import { Button } from "@/components/ui/button";
 import { type SecurityCodePurpose, useMutationRequestSecurityCode } from "@/modules/auth/api/request-security-code";
 import { useMutationVerifyUserEmail } from "@/modules/auth/api/verify-user-email";
-import { deleteStorageTempMail } from "@/modules/auth/storage/temp-mail/temp-mail";
+import { deleteStorageTempMail } from "@/modules/auth/storage/temp-mail";
 import { signIn } from "@/modules/auth/utils/auth";
 import { useAppForm } from "@/modules/form/app-form";
-import { FieldDescription } from "@/modules/form/field-description";
-import { FieldLabel } from "@/modules/form/field-label";
-import { FieldWrapper } from "@/modules/form/field-wrapper";
+import { Field } from "@/modules/form/field";
 import { cn } from "@/utils/cn";
 
 const emailVerificationCodeSchema = z.object({
@@ -85,14 +83,14 @@ export function EmailVerificationForm({ email, purpose, className }: EmailVerifi
 		>
 			<Form.AppField
 				name="code"
-				children={(Field) => (
-					<FieldWrapper className="items-center">
-						<FieldLabel>
+				children={(AppFields) => (
+					<Field.Wrapper className="items-center">
+						<Field.Label>
 							<MailCheckIcon /> Só mais uma coisinha!
-						</FieldLabel>
-						<Field.ConfirmCodeField />
-						<FieldDescription>Enviamos um codigo de 6 digitos para o seu email!</FieldDescription>
-						<FieldDescription>
+						</Field.Label>
+						<AppFields.ConfirmCodeField />
+						<Field.Description>Enviamos um codigo de 6 digitos para o seu email!</Field.Description>
+						<Field.Description>
 							Não recebeu?
 							<span>
 								<Button
@@ -105,8 +103,8 @@ export function EmailVerificationForm({ email, purpose, className }: EmailVerifi
 									clique aqui!
 								</Button>
 							</span>
-						</FieldDescription>
-					</FieldWrapper>
+						</Field.Description>
+					</Field.Wrapper>
 				)}
 			/>
 			<Form.AppForm>

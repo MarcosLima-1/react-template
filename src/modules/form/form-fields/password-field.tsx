@@ -1,8 +1,8 @@
 import { EyeClosedIcon, EyeIcon } from "lucide-react";
 import { type ComponentProps, useState } from "react";
-import { Button } from "@/components/ui/button.tsx";
-import { Input } from "@/components/ui/input.tsx";
-import { useFieldContext } from "../app-form.tsx";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useFieldContext } from "@/modules/form/app-form";
 
 export function PasswordField({ ...props }: ComponentProps<"input">) {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -15,18 +15,18 @@ export function PasswordField({ ...props }: ComponentProps<"input">) {
 	return (
 		<div className="flex rounded-md border focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50">
 			<Input
-				id={field.name}
-				onChange={(e) => field.handleChange(e.target.value)}
-				value={field.state.value}
-				onBlur={field.handleBlur}
-				name={field.name}
 				autoComplete="current-password"
-				type={isPasswordVisible ? "text" : "password"}
 				className="rounded-r-none border-none focus-visible:ring-0"
+				id={field.name}
+				name={field.name}
+				onBlur={field.handleBlur}
+				onChange={(e) => field.handleChange(e.target.value)}
 				placeholder="******"
+				type={isPasswordVisible ? "text" : "password"}
+				value={field.state.value}
 				{...props}
 			/>
-			<Button onClick={handleTogglePasswordVisibility} type="button" variant="outline" className="rounded-l-none bg-input">
+			<Button className="rounded-l-none bg-input" onClick={handleTogglePasswordVisibility} type="button" variant="outline">
 				{isPasswordVisible ? <EyeIcon /> : <EyeClosedIcon />}
 			</Button>
 		</div>

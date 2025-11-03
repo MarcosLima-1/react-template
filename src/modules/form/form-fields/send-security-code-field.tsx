@@ -1,12 +1,11 @@
 import type { ComponentProps } from "react";
 import { z } from "zod/v4";
-import type { Input } from "@/components/ui/input.tsx";
+import type { Input } from "@/components/ui/input";
 import { type SecurityCodePurpose, useMutationRequestSecurityCode } from "@/modules/auth/api/request-security-code.ts";
-import { FieldErros } from "@/modules/form/field-erros.tsx";
-import { FieldWrapper } from "@/modules/form/field-wrapper.tsx";
+import { useAppForm } from "@/modules/form/app-form";
+import { Field } from "@/modules/form/field/index";
 import { cn } from "@/utils/cn.ts";
 import { ALLOWED_DOMAINS } from "@/utils/regex/validate-email.ts";
-import { useAppForm } from "../app-form.tsx";
 
 interface SendSecurityCodeFieldProps extends ComponentProps<typeof Input> {
 	disableCharCounter?: boolean;
@@ -59,22 +58,22 @@ export function SendSecurityCodeField({
 
 	return (
 		<form
+			className={cn(className, "relative w-full space-y-4")}
 			onSubmit={(e) => {
 				e.preventDefault();
 				Form.handleSubmit();
 			}}
-			className={cn(className, "relative w-full space-y-4")}
 		>
 			<Form.AppField
-				name="email"
-				children={(Field) => {
+				children={(AppFields) => {
 					return (
-						<FieldWrapper>
-							<Field.TextField autoComplete="email" disableCharCounter={disableCharCounter} maxLength={maxLength} {...props} />
-							<FieldErros />
-						</FieldWrapper>
+						<Field.Wrapper>
+							<AppFields.TextField autoComplete="email" disableCharCounter={disableCharCounter} maxLength={maxLength} {...props} />
+							<Field.Error />
+						</Field.Wrapper>
 					);
 				}}
+				name="email"
 			/>
 			<Form.AppForm>
 				<Form.SubmitButton className="w-full">Enviar codigo</Form.SubmitButton>

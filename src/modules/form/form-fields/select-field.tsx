@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.tsx";
-import { useFieldContext } from "../app-form.tsx";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useFieldContext } from "@/modules/form/app-form";
 
 export interface SelectOption {
 	value: string;
@@ -19,7 +19,7 @@ export function SelectField({ options, placeholder, defaultValue }: SelectFieldP
 
 	return (
 		<Select defaultValue={defaultValue} onValueChange={field.handleChange}>
-			<SelectTrigger id={field.name} className="w-[180px]">
+			<SelectTrigger className="w-[180px]" id={field.name}>
 				<SelectValue placeholder={placeholder} />
 			</SelectTrigger>
 			<SelectContent>

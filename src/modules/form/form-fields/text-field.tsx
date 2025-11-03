@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
-import { Input } from "@/components/ui/input.tsx";
+import { Input } from "@/components/ui/input";
+import { useFieldContext } from "@/modules/form/app-form";
 import { cn } from "@/utils/cn.ts";
-import { useFieldContext } from "../app-form.tsx";
 
 interface TextFieldProps extends ComponentProps<typeof Input> {
 	disableCharCounter?: boolean;
@@ -16,12 +16,12 @@ export function TextField({ maxLength, disableCharCounter, className, ...props }
 		<div className={cn(className, "relative")}>
 			<Input
 				id={fieldName}
-				name={fieldName}
 				maxLength={maxLength}
-				value={field.state.value}
+				name={fieldName}
 				onBlur={field.handleBlur}
 				onChange={(e) => field.handleChange(e.target.value)}
 				type="text"
+				value={field.state.value}
 				{...props}
 			/>
 			{!disableCharCounter && maxLength && (

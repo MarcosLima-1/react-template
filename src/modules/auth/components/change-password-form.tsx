@@ -2,14 +2,11 @@ import { MailCheckIcon } from "lucide-react";
 import { z } from "zod/v4";
 import { useMutationChangePassword } from "@/modules/auth/api/change-password";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
-import { validatePassword } from "@/modules/auth/types/register";
 import { signOut } from "@/modules/auth/utils/auth";
 import { useAppForm } from "@/modules/form/app-form";
-import { FieldDescription } from "@/modules/form/field-description";
-import { FieldErros } from "@/modules/form/field-erros";
-import { FieldLabel } from "@/modules/form/field-label";
-import { FieldWrapper } from "@/modules/form/field-wrapper";
-import { SendSecurityCodeField } from "@/modules/form/fields/send-security-code-field";
+import { Field } from "@/modules/form/field";
+import { SendSecurityCodeField } from "@/modules/form/form-fields/send-security-code-field";
+import { validatePassword } from "@/utils/regex/validate-password";
 
 export const changePasswordSchema = z.object({
 	securityCode: z.string().max(6).min(6),
@@ -55,18 +52,18 @@ export function ChangePasswordForm() {
 				<form onSubmit={nextStep}>
 					<Form.AppField
 						name="securityCode"
-						children={(Field) => {
+						children={(AppFields) => {
 							return (
-								<FieldWrapper className="items-center">
-									<FieldLabel>
+								<Field.Wrapper className="items-center">
+									<Field.Label>
 										<MailCheckIcon /> Só mais uma coisinha!
-									</FieldLabel>
-									<Field.ConfirmCodeField />
-									<FieldDescription>Enviamos um codigo de 6 digitos para o seu email!</FieldDescription>
+									</Field.Label>
+									<AppFields.ConfirmCodeField />
+									<Field.Description>Enviamos um codigo de 6 digitos para o seu email!</Field.Description>
 									<Form.AppForm>
-										<Field.StepButtons />
+										<AppFields.StepButtons />
 									</Form.AppForm>
-								</FieldWrapper>
+								</Field.Wrapper>
 							);
 						}}
 					/>
@@ -82,13 +79,13 @@ export function ChangePasswordForm() {
 				>
 					<Form.AppField
 						name="newPassword"
-						children={(Field) => {
+						children={(AppFields) => {
 							return (
-								<FieldWrapper>
-									<FieldLabel>Senha: </FieldLabel>
-									<Field.PasswordField maxLength={100} />
-									<FieldErros />
-								</FieldWrapper>
+								<Field.Wrapper>
+									<Field.Label>Senha: </Field.Label>
+									<AppFields.PasswordField maxLength={100} />
+									<Field.Error />
+								</Field.Wrapper>
 							);
 						}}
 					/>
@@ -103,16 +100,16 @@ export function ChangePasswordForm() {
 								return undefined;
 							},
 						}}
-						children={(Field) => {
+						children={(AppFields) => {
 							return (
-								<FieldWrapper>
-									<FieldLabel>Confirme a senha: </FieldLabel>
-									<Field.PasswordField maxLength={100} />
-									<FieldErros />
+								<Field.Wrapper>
+									<Field.Label>Confirme a senha: </Field.Label>
+									<AppFields.PasswordField maxLength={100} />
+									<Field.Error />
 									<Form.AppForm>
-										<Field.StepButtons lastButtonText="Alterar senha" />
+										<AppFields.StepButtons lastButtonText="Alterar senha" />
 									</Form.AppForm>
-								</FieldWrapper>
+								</Field.Wrapper>
 							);
 						}}
 					/>

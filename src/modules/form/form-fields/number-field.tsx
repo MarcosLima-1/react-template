@@ -1,6 +1,6 @@
 import type { ComponentProps, KeyboardEvent, WheelEvent } from "react";
-import { Input } from "@/components/ui/input.tsx";
-import { useFieldContext } from "../app-form.tsx";
+import { Input } from "@/components/ui/input";
+import { useFieldContext } from "@/modules/form/app-form";
 
 interface NumberFieldProps extends ComponentProps<typeof Input> {
 	disableCharCounter?: boolean;
@@ -65,14 +65,14 @@ export function NumberField({ min = 0, disableCharCounter, ...props }: NumberFie
 	return (
 		<Input
 			id={fieldName}
-			name={fieldName}
 			min={min}
-			onWheel={handleWheel}
-			onKeyDown={handleKey}
-			value={field.state.value?.toString() || ""}
+			name={fieldName}
 			onBlur={field.handleBlur}
 			onChange={(e) => handleChange(e.target.value)}
+			onKeyDown={handleKey}
+			onWheel={handleWheel}
 			type="text"
+			value={field.state.value?.toString() || ""}
 			{...props}
 		/>
 	);

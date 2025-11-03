@@ -1,5 +1,5 @@
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/cn.ts";
 
 export function FormProgressBar() {
 	const { currentStep, steps, totalVisualSteps } = useFormStepContext();
@@ -11,7 +11,7 @@ export function FormProgressBar() {
 				.map(({ icon: Icon, label }, index) => {
 					const currentStepBall = index + 1;
 					return (
-						<div key={label} className="z-10 flex flex-1 flex-col items-center gap-2">
+						<div className="z-10 flex flex-1 flex-col items-center gap-2" key={label}>
 							<div
 								className={cn(
 									"flex size-8 items-center justify-center rounded-full border-2 border-accent bg-background text-foreground transition-colors",
@@ -27,7 +27,7 @@ export function FormProgressBar() {
 					);
 				})}
 			<div className="-translate-y-1/2 absolute top-4 left-0 h-1 w-full rounded-full bg-accent">
-				<div style={{ width: `${progressPercentage}%` }} className="h-full max-w-full rounded-full bg-primary transition-all" />
+				<div className="h-full max-w-full rounded-full bg-primary transition-all" style={{ width: `${progressPercentage}%` }} />
 			</div>
 		</div>
 	);

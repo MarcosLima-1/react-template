@@ -1,7 +1,7 @@
 import type { ComponentProps, KeyboardEvent, WheelEvent } from "react";
-import { Input } from "@/components/ui/input.tsx";
+import { Input } from "@/components/ui/input";
+import { useFieldContext } from "@/modules/form/app-form";
 import { beautifyCents } from "@/utils/formatters/beautify-cents.ts";
-import { useFieldContext } from "../app-form.tsx";
 
 interface CentsFieldProps extends ComponentProps<typeof Input> {
 	disableCharCounter?: boolean;
@@ -13,6 +13,7 @@ export function CentsField({ min = 0, disableCharCounter, ...props }: CentsField
 	const field = useFieldContext<number | null>();
 	const fieldName = field.name;
 	const value = field.state.value;
+
 	function handleChange(inputValue: string) {
 		let value: number = Number(inputValue);
 
@@ -67,14 +68,14 @@ export function CentsField({ min = 0, disableCharCounter, ...props }: CentsField
 		<div className="flex items-center gap-2">
 			<Input
 				id={fieldName}
-				name={fieldName}
 				min={min}
-				onWheel={handleWheel}
-				onKeyDown={handleKey}
-				value={field.state.value?.toString() || ""}
+				name={fieldName}
 				onBlur={field.handleBlur}
 				onChange={(e) => handleChange(e.target.value)}
+				onKeyDown={handleKey}
+				onWheel={handleWheel}
 				type="text"
+				value={field.state.value?.toString() || ""}
 				{...props}
 			/>
 			<p>{value ? beautifyCents(value) : 0}</p>

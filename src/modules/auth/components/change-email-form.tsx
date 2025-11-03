@@ -3,19 +3,16 @@ import { z } from "zod/v4";
 import { useMutationChangeEmail } from "@/modules/auth/api/change-email";
 import { useMutationCheckEmailAvailability } from "@/modules/auth/api/check-email-availability";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
-import { valideateEmail } from "@/modules/auth/types/register";
 import { signOut } from "@/modules/auth/utils/auth";
 import { useAppForm } from "@/modules/form/app-form";
-import { FieldDescription } from "@/modules/form/field-description";
-import { FieldErros } from "@/modules/form/field-erros";
-import { FieldLabel } from "@/modules/form/field-label";
-import { FieldWrapper } from "@/modules/form/field-wrapper";
-import { SendSecurityCodeField } from "@/modules/form/fields/send-security-code-field";
+import { Field } from "@/modules/form/field";
+import { SendSecurityCodeField } from "@/modules/form/form-fields/send-security-code-field";
+import { validateEmail } from "@/utils/regex/validate-email";
 
 export const changeEmailSchema = z.object({
 	securityCode: z.string().max(6).min(6),
-	newEmail: valideateEmail,
-	confirmEmail: valideateEmail,
+	newEmail: validateEmail,
+	confirmEmail: validateEmail,
 });
 
 export type ChangeEmailSchema = z.infer<typeof changeEmailSchema>;
@@ -52,37 +49,45 @@ export function ChangeEmailForm() {
 
 	return (
 		<div className="flex w-full flex-col items-center justify-center gap-6">
-			{currentStep === 1 && <SendSecurityCodeField placeholder="markin@example.com" purpose="EMAIL_CHANGE" onSendCode={nextStep} />}
+			{currentStep === 1 && <SendSecurityCodeField onSendCode={nextStep} placeholder="markin@example.com" purpose="EMAIL_CHANGE" />}
 			{currentStep === 2 && (
 				<form onSubmit={nextStep}>
 					<Form.AppField
-						name="securityCode"
-						children={(Field) => {
+						children={(AppFields) => {
 							return (
-								<FieldWrapper className="items-center">
-									<FieldLabel>
+								<Field.Wrapper className="items-center">
+									<Field.Label>
 										<MailCheckIcon /> Só mais uma coisinha!
-									</FieldLabel>
-									<Field.ConfirmCodeField />
-									<FieldDescription>Enviamos um codigo de 6 digitos para o seu email!</FieldDescription>
+									</Field.Label>
+									<AppFields.ConfirmCodeField />
+									<Field.Description>Enviamos um codigo de 6 digitos para o seu email!</Field.Description>
 									<Form.AppForm>
-										<Field.StepButtons />
+										<AppFields.StepButtons />
 									</Form.AppForm>
-								</FieldWrapper>
+								</Field.Wrapper>
 							);
 						}}
+						name="securityCode"
 					/>
 				</form>
 			)}
 			{currentStep === 3 && (
 				<form
+					className="w-full space-y-2"
 					onSubmit={(e) => {
 						e.preventDefault();
 						Form.handleSubmit();
 					}}
-					className="w-full space-y-2"
 				>
 					<Form.AppField
+						children={(AppFields) => {
+							return (
+								<Field.Wrapper>
+									<Field.Label>Novo email: </Field.Label>
+									<AppFields.TextField autoComplete="email" maxLength={255} />
+								</Field.Wrapper>
+							);
+						}}
 						name="newEmail"
 						validators={{
 							onChangeAsyncDebounceMs: 500,
@@ -95,16 +100,20 @@ export function ChangeEmailForm() {
 								return !isAvailable ? [new Error("Este e-mail já está cadastrado.")] : undefined;
 							},
 						}}
-						children={(Field) => {
-							return (
-								<FieldWrapper>
-									<FieldLabel>Novo email: </FieldLabel>
-									<Field.TextField autoComplete="email" maxLength={255} />
-								</FieldWrapper>
-							);
-						}}
 					/>
 					<Form.AppField
+						children={(AppFields) => {
+							return (
+								<Field.Wrapper>
+									<Field.Label>Confirme o email: </Field.Label>
+									<AppFields.TextField autoComplete="email" maxLength={255} />
+									<Field.Error />
+									<Form.AppForm>
+										<AppFields.StepButtons lastButtonText="Alterar senha" />
+									</Form.AppForm>
+								</Field.Wrapper>
+							);
+						}}
 						name="confirmEmail"
 						validators={{
 							onChangeListenTo: ["newEmail"],
@@ -114,18 +123,6 @@ export function ChangeEmailForm() {
 								}
 								return undefined;
 							},
-						}}
-						children={(Field) => {
-							return (
-								<FieldWrapper>
-									<FieldLabel>Confirme o email: </FieldLabel>
-									<Field.TextField autoComplete="email" maxLength={255} />
-									<FieldErros />
-									<Form.AppForm>
-										<Field.StepButtons lastButtonText="Alterar senha" />
-									</Form.AppForm>
-								</FieldWrapper>
-							);
 						}}
 					/>
 				</form>

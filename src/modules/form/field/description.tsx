@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 
 export function FieldDescription({ children, className, ...props }: ComponentProps<"p">) {
 	return (
-		<p className={cn("text-muted-foreground mt-2 text-xs", className)} {...props}>
+		<p className={cn("mt-2 text-muted-foreground text-xs", className)} {...props}>
 			{children}
 		</p>
 	);

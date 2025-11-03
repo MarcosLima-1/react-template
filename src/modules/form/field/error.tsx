@@ -2,7 +2,7 @@ import type { ComponentProps } from "react";
 import { useFieldContext } from "@/modules/form/app-form";
 import { cn } from "@/utils/cn";
 
-export function FieldErros({ className, ...props }: ComponentProps<"p">) {
+export function FieldError({ className, ...props }: ComponentProps<"p">) {
 	const field = useFieldContext();
 	const erro = field.state.meta.errorMap.onChange as Error[] | undefined;
 	const isTouched = field.state.meta.isTouched;

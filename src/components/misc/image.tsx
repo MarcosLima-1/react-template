@@ -1,9 +1,9 @@
 import type { ImgHTMLAttributes } from "react";
-import type { PublicPath } from "@/public-paths";
+import type { ImageTypes } from "@/types/images-types.generated";
 
 interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 	alt: string;
-	src: PublicPath | (string & {});
+	src: ImageTypes | (string & {});
 	width: number;
 	height: number;
 	priority?: boolean;

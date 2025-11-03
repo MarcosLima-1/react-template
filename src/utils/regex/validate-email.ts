@@ -1,3 +1,13 @@
+import z from "zod/v4";
+
+export const validateEmail = z
+	.email("E-mail inválido.")
+	.trim()
+	.toLowerCase()
+	.refine((email) => {
+		return ALLOWED_DOMAINS.some((domain) => email.endsWith(`@${domain}`));
+	}, "Este domínio de email não é permitido.");
+
 export const ALLOWED_DOMAINS = [
 	"hotmail.com",
 	"gmail.com",
@@ -25,20 +35,11 @@ export const ALLOWED_DOMAINS = [
 	"terra.com.br",
 	"tutanota.com",
 	"mailfence.com",
-	"fastmail.com",
 	"ufms.br",
 	"deltacontab.com.br",
-	"8shield.net",
-	"firemail.com.b",
-	"keemail.me",
-	"calmpros.com",
 	"sapo.pt",
-	"framitag.com",
 	"aluno.iecj.com.br",
-	"mozej.com",
-	"viencel.com",
 	"teliy.co",
 	"estudante.edusenaipa.com.br",
-	"gmail10p.com",
 	"pulliginfluencers.com.br",
 ];

@@ -17,13 +17,9 @@ import { NotFound } from "@/components/not-found";
 import { SplashScreen } from "@/components/splash-screen";
 import { UnavailableContent } from "@/components/unavailable-content";
 import { env } from "@/lib/env";
-import { setupAuthRequestInterceptor } from "@/modules/auth/middlewares/auth-interceptors";
+import { setupAuthRequestInterceptor, setupAuthResponseInterceptor } from "@/modules/auth/middlewares/auth-interceptors";
 import { routeTree } from "@/routeTree.gen";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
-
-scan({
-	enabled: true,
-});
 
 declare module "@tanstack/react-router" {
 	interface Register {
@@ -87,4 +83,12 @@ createRoot(rootContainer).render(
 		</QueryClientProvider>
 	</StrictMode>,
 );
+
 setupAuthRequestInterceptor();
+setupAuthResponseInterceptor();
+
+if (env.VITE_DEV_MODE) {
+	scan({
+		enabled: true,
+	});
+}

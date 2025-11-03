@@ -14,7 +14,7 @@ const ReactCompilerConfig = {
 export default defineConfig({
 	plugins: [
 		devtools({
-			removeDevtoolsOnBuild: false,
+			removeDevtoolsOnBuild: true,
 		}),
 		tanstackRouter({
 			target: "react",

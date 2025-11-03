@@ -1,8 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import type { AuthResponse } from "@/modules/auth/types/auth";
-import type { ApiResponse } from "@/types/response";
-import type { TanstackMetaTags } from "@/types/tanstack-meta";
+import type { ApiResponse } from "@/schemas/response";
 
 interface VerifyUserEmailRequest {
 	securityCode: string;
@@ -13,16 +12,15 @@ async function verifyUserEmail(props: VerifyUserEmailRequest) {
 	return data;
 }
 
-const meta = {
-	method: ["POST"],
-	desc: "Verifica o e-mail do usuário usando um código de segurança.",
-	errorMessage: "Falha ao verificar o e-mail. Código inválido ou expirado.",
-} satisfies TanstackMetaTags;
-
 export function useMutationVerifyUserEmail() {
 	return useMutation({
 		mutationKey: ["verifyUserEmail"],
-		meta,
+		meta: {
+			method: ["POST"],
+			title: "Verificar E-mail",
+			desc: "Verifica o e-mail do usuário usando um código de segurança.",
+			errorMessage: "Falha ao verificar o e-mail. Código inválido ou expirado.",
+		},
 		mutationFn: verifyUserEmail,
 	});
 }

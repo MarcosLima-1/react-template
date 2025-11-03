@@ -1,5 +1,5 @@
 import axios from "axios";
-import { env } from "@/lib/envs";
+import { env } from "@/lib/env";
 
 const userAgent = navigator.userAgent;
 export const api = axios.create({

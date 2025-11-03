@@ -2,7 +2,7 @@ import { type Mutation, MutationCache, type Query, QueryCache, QueryClient } fro
 import { isAxiosError } from "axios";
 import { toast } from "sonner";
 import { DEFAULT_GC_TIME, DEFAULT_STALE_TIME } from "@/core/cache";
-import type { TanstackMetaTags } from "@/types/tanstack-meta";
+import type { TanstackMetaTags } from "@/types/react-query";
 
 const RETRY_DELAY = 5000;
 const NON_RETRYABLE_STATUSES = [403, 401, 400, 404, 429, 500];
@@ -29,7 +29,7 @@ function queryRetryHandler(retryCount: number, error: unknown): boolean {
 }
 
 function handleGlobalError<T extends Query | Mutation>(error: Error, item: T) {
-	const meta = item.meta as TanstackMetaTags | undefined;
+	const meta = item.meta;
 	const userName = "User not signed in";
 
 	handleToastError(error, meta);
@@ -39,7 +39,6 @@ function handleGlobalError<T extends Query | Mutation>(error: Error, item: T) {
 		user: userName,
 	};
 
-	// biome-ignore lint/suspicious/noConsole: log do error
 	console.log(context);
 }
 
@@ -63,7 +62,7 @@ function handleToastError(error: Error, meta?: TanstackMetaTags) {
 }
 
 function handleGlobalSuccess<T extends Query | Mutation>(item: T) {
-	const meta = item.meta as TanstackMetaTags | undefined;
+	const meta = item.meta;
 	if (meta?.successMessage) {
 		toast.success(meta.successMessage);
 	}

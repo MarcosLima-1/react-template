@@ -1,17 +1,16 @@
-import Cookies from "js-cookie";
-import { defaultCookiesConfig, SESSION_KEY } from "@/modules/auth/constants/storage";
 import type { SessionProps } from "@/modules/auth/types/auth";
+import { STORAGE_KEYS } from "../core/storage";
 
 export function saveSessionInStorage(session: SessionProps) {
-	Cookies.set(SESSION_KEY, JSON.stringify(session), { ...defaultCookiesConfig, expires: 30 });
+	localStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(session));
 }
 
 export function getStorageSession(): SessionProps | null {
-	const token = Cookies.get(SESSION_KEY);
+	const token = localStorage.getItem(STORAGE_KEYS.SESSION);
 	if (!token) return null;
 	return JSON.parse(token);
 }
 
 export function deleteStorageSession() {
-	Cookies.remove(SESSION_KEY);
+	localStorage.removeItem(STORAGE_KEYS.SESSION);
 }

@@ -11,5 +11,5 @@ function RouteComponent() {
 		<StepFormProvider steps={changePasswordSteps}>
 			<Outlet />
 		</StepFormProvider>
-	)
+	);
 }

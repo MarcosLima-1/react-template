@@ -1,5 +1,5 @@
-import { GenericError } from "@/components/generic-error";
 import { Component, type ErrorInfo, type ReactNode } from "react";
+import { GenericError } from "@/components/generic-error";
 
 interface Props {
 	children: ReactNode;
@@ -22,19 +22,12 @@ export class ErrorBoundary extends Component<Props, State> {
 	}
 
 	componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-		// biome-ignore lint/suspicious/noConsole: Console log for errors
 		console.error("ErrorBoundary caught an error:", error, errorInfo);
 	}
 
 	render() {
 		if (this.state.hasError && this.state.error) {
-			return (
-				this.props.fallback || (
-					<GenericError
-						error={this.state.error}
-					/>
-				)
-			);
+			return this.props.fallback || <GenericError error={this.state.error} />;
 		}
 
 		return this.props.children;

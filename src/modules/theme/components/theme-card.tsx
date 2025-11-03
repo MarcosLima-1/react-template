@@ -1,9 +1,9 @@
 import { CheckIcon } from "lucide-react";
 import type { CSSProperties } from "react";
-import { SimpleLoader } from "@/components/misc/simple-loader.tsx";
+import { SimpleLoader } from "@/components/misc/simple-loader";
 import { cn } from "@/utils/cn.ts";
 import type { ThemeType } from "../constants/themes.ts";
-import { useThemeContext } from "../context/theme-provider.tsx";
+import { useThemeContext } from "../context/theme-provider";
 
 interface ThemeCardProps {
 	theme: ThemeType;
@@ -17,24 +17,24 @@ export function ThemeCard({ theme }: ThemeCardProps) {
 
 	return (
 		<button
-			type="button"
-			onClick={() => changeTheme(themeClass)}
 			className={cn(
 				"group/theme-card relative flex cursor-pointer flex-col items-center gap-2 rounded-md border border-transparent p-2 hover:bg-accent",
 				{
 					"border-amber-500": isCurrentTheme,
 				},
 			)}
+			onClick={() => changeTheme(themeClass)}
+			type="button"
 		>
 			<div className="flex aspect-square size-14 overflow-hidden rounded-md border-2">
 				<div
+					className="size-full bg-linear-to-br from-50% from-primary to-50% to-background"
 					style={
 						{
 							"--background": backgroundColor,
 							"--primary": primaryColor,
 						} as CSSProperties
 					}
-					className="size-full bg-gradient-to-br from-50% from-primary to-50% to-background"
 				/>
 			</div>
 			<p className="motion-preset-fade -top-1 -translate-y-full absolute hidden text-nowrap rounded-md border bg-background p-2 font-bold text-sm group-hover/theme-card:flex">

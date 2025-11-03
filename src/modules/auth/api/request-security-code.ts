@@ -1,6 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
-import type { TanstackMetaTags } from "@/types/tanstack-meta";
 
 export type SecurityCodePurpose = "EMAIL_VERIFICATION" | "ACCOUNT_DELETION" | "EMAIL_CHANGE" | "PASSWORD_CHANGE";
 
@@ -13,17 +12,16 @@ async function requestSecurityCode(props: RequestSecurityCodeRequest) {
 	await api.post(`/auth/security-code`, props);
 }
 
-const meta = {
-	method: ["POST"],
-	desc: "Envia um código de confirmação para o endereço de e-mail informado.",
-	errorMessage: "Falha ao enviar o código de confirmação. Por favor, tente novamente.",
-	successMessage: "Código de confirmação enviado com sucesso!",
-} satisfies TanstackMetaTags;
-
 export function useMutationRequestSecurityCode() {
 	return useMutation({
 		mutationKey: ["requestSecurityCode"],
-		meta,
+		meta: {
+			method: ["POST"],
+			title: "Request Security Code",
+			desc: "Envia um código de confirmação para o endereço de e-mail informado.",
+			errorMessage: "Falha ao enviar o código de confirmação. Por favor, tente novamente.",
+			successMessage: "Código de confirmação enviado com sucesso!",
+		},
 		mutationFn: requestSecurityCode,
 	});
 }

@@ -1,5 +1,5 @@
-import { deleteStorageSession, saveSessionInStorage } from "@/modules/auth/storage/session/session";
-import { deleteStorageToken, saveTokenInStorage } from "@/modules/auth/storage/token/token";
+import { deleteStorageSession, saveSessionInStorage } from "@/modules/auth/storage/session";
+import { deleteStorageToken, saveTokenInStorage } from "@/modules/auth/storage/token";
 import type { SaveSessionDataProps } from "@/modules/auth/types/auth";
 
 export function saveSessionData({ accessToken, session }: SaveSessionDataProps) {

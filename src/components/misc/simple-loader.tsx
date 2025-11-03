@@ -6,5 +6,5 @@ interface SimpleLoaderProps {
 }
 
 export function SimpleLoader({ className }: SimpleLoaderProps) {
-	return <Loader2 className={cn("text-primary animate-spin", className)} />;
+	return <Loader2 className={cn("animate-spin text-primary", className)} />;
 }

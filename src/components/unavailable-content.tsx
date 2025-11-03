@@ -30,7 +30,7 @@ export function UnavailableContent({
 			)}
 		>
 			<div className="flex flex-col items-center justify-center space-y-2 text-center">
-				<div className="aspect-square size-fit rounded-full bg-gradient-to-br from-primary/20 to-primary/10 p-3 transition-all duration-300">
+				<div className="aspect-square size-fit rounded-full bg-linear-to-br from-primary/20 to-primary/10 p-3 transition-all duration-300">
 					<Icon
 						style={{
 							width: iconSize,

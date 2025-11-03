@@ -4,7 +4,7 @@ import { EmailVerificationForm } from "@/modules/auth/components/email-verificat
 import { LoginForm } from "@/modules/auth/components/login-form";
 import { OauthProviders } from "@/modules/auth/components/oauth-providers";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
-import { getStorageTempMail } from "@/modules/auth/storage/temp-mail/temp-mail";
+import { getStorageTempMail } from "@/modules/auth/storage/temp-mail";
 
 export const Route = createFileRoute("/auth/_redirect/login/")({
 	component: RouteComponent,
@@ -25,7 +25,7 @@ function RouteComponent() {
 						Ainda não tem uma conta? <span className="text-primary">Cadastre-se</span>
 					</Link>
 				</Button>
-				<div className="h-[2px] w-[90%] bg-accent" />
+				<div className="h-0.5 w-[90%] bg-accent" />
 				<OauthProviders />
 				<Button variant="link" className="text-xs" asChild>
 					<Link to="/auth/change-password">
@@ -35,5 +35,5 @@ function RouteComponent() {
 			</div>
 			<div className="max-md:hidden" />
 		</div>
-	)
+	);
 }

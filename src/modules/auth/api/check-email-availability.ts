@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { publicApi } from "@/lib/axios";
-import type { ApiResponse } from "@/types/response";
-import type { TanstackMetaTags } from "@/types/tanstack-meta";
+import type { ApiResponse } from "@/schemas/response";
 
 interface CheckEmailAvailabilityRequest {
 	email: string;
@@ -16,16 +15,15 @@ async function checkEmailAvailability({ email }: CheckEmailAvailabilityRequest) 
 	return data;
 }
 
-const meta = {
-	method: ["GET"],
-	desc: "Verifica se um endereço de e-mail está disponível para uso.",
-	errorMessage: "Falha ao verificar a disponibilidade do e-mail. Por favor, tente novamente.",
-} satisfies TanstackMetaTags;
-
 export function useMutationCheckEmailAvailability() {
 	return useMutation({
 		mutationKey: ["checkEmailAvailability"],
-		meta,
 		mutationFn: checkEmailAvailability,
+		meta: {
+			method: ["GET"],
+			title: "Verificar Disponibilidade de E-mail",
+			desc: "Verifica se um endereço de e-mail está disponível para uso.",
+			errorMessage: "Falha ao verificar a disponibilidade do e-mail. Por favor, tente novamente.",
+		},
 	});
 }

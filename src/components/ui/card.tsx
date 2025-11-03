@@ -14,22 +14,28 @@ export function Card({ className, isSection, ...props }: CardProps) {
 	);
 }
 
-export function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+function Header({ className, ...props }: React.ComponentProps<"div">) {
 	return <div data-slot="card-header" className={cn("flex h-fit flex-col items-start gap-1.5 [.border-b]:pb-6", className)} {...props} />;
 }
 
-export function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function Title({ className, ...props }: React.ComponentProps<"div">) {
 	return <div data-slot="card-title" className={cn("font-semibold leading-none", className)} {...props} />;
 }
 
-export function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+function Description({ className, ...props }: React.ComponentProps<"div">) {
 	return <div data-slot="card-description" className={cn("text-muted-foreground text-sm", className)} {...props} />;
 }
 
-export function CardContent({ className, ...props }: React.ComponentProps<"div">) {
+function Content({ className, ...props }: React.ComponentProps<"div">) {
 	return <div data-slot="card-content" className={className} {...props} />;
 }
 
-export function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
+function Footer({ className, ...props }: React.ComponentProps<"div">) {
 	return <div data-slot="card-footer" className={cn("flex items-center [.border-t]:pt-6", className)} {...props} />;
 }
+
+Card.Header = Header;
+Card.Title = Title;
+Card.Description = Description;
+Card.Content = Content;
+Card.Footer = Footer;

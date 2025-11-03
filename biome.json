@@ -1,0 +1,129 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.3/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "dev"
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "**",
+      "!!**/dist",
+      "!!**/nginx",
+      "!!**/public",
+      "!**/*.generated.ts",
+      "!**/*.gen.ts"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "attributePosition": "auto",
+    "indentStyle": "tab",
+    "indentWidth": 2,
+    "lineWidth": 140,
+    "lineEnding": "lf",
+    "bracketSpacing": true,
+    "expand": "auto"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedImports": {
+          "level": "warn",
+          "fix": "safe",
+          "options": {}
+        },
+        "useImportExtensions": "off",
+        "noChildrenProp": "off"
+      },
+      "style": {
+        "useComponentExportOnlyModules": "off"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "level": "info",
+          "options": {
+            "attributes": [
+              "classList"
+            ],
+            "functions": [
+              "clsx",
+              "cva",
+              "tw",
+              "tw.*",
+              "cn"
+            ]
+          },
+          "fix": "safe"
+        }
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "error"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "on"
+      }
+    },
+    "domains": {
+      "react": "all",
+      "tailwind": "all",
+      "project": "all",
+      "test": "all"
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "enabled": true,
+      "jsxQuoteStyle": "double",
+      "quoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "operatorLinebreak": "before"
+    }
+  },
+  "json": {
+    "parser": {
+      "allowTrailingCommas": true,
+      "allowComments": true
+    },
+    "formatter": {
+      "enabled": true,
+      "trailingCommas": "none"
+    },
+    "linter": {
+      "enabled": true
+    },
+    "assist": {
+      "enabled": true
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    },
+    "formatter": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true
+    },
+    "assist": {
+      "enabled": true
+    }
+  }
+}

@@ -43,52 +43,56 @@ Se preferir fazer manualmente:
     cd SEU_REPOSITORIO
     ```
 
-2.  **Instale as dependências** (recomenda-se usar `npm` ou `pnpm`):
+2.  **Instale as dependências** (recomenda-se usar `bun`):
 
     ```bash
-    npm install
+    bun install
     ```
 
 3.  **Inicie o servidor de desenvolvimento:**
 
     ```bash
-    npm run dev
+    bun run dev
     ```
 
-4.  **Abra o navegador:** Acesse [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) (ou a porta indicada no terminal).
+4.  **Abra o navegador:** Acesse [http://localhost:3000](http://localhost:3000) (ou a porta indicada no terminal).
 
 ## 📜 Scripts Disponíveis
 
-  - `npm run dev`: Inicia o servidor de desenvolvimento com Vite.
-  - `npm run build`: Gera a build de produção da aplicação.
-  - `npm run serve`: Serve a build de produção localmente para testes.
-  - `npm run lint`: Executa o linter do Biome para encontrar problemas no código.
-  - `npm run format`: Formata todo o código do projeto com o Biome.
-  - `npm run check`: Executa o `lint`, `format` e `tsc` (checagem de tipos) em um único comando.
-  - `npm test`: Roda os testes configurados com Vitest.
+  - `bun run dev`: Inicia o servidor de desenvolvimento com Vite.
+  - `bun run build`: Gera a build de produção da aplicação.
+  - `bun run serve`: Serve a build de produção localmente para testes.
+  - `bun run lint`: Executa o linter do Biome para encontrar problemas no código.
+  - `bun run format`: Formata todo o código do projeto com o Biome.
+  - `bun run check`: Executa o `lint`, `format` e `tsc` (checagem de tipos) em um único comando.
+  - `bun run test`: Roda os testes configurados com Vitest.
+  - `bun run optimize-images`: Otimiza as imagens no diretório `public/images`.
 
 ## 📁 Estrutura de Pastas
 
-A estrutura de pastas é organizada para ser intuitiva e escalável.
+A estrutura de pastas é organizada para ser intuitiva e escalável, com foco em módulos.
 
 ```
 .
-├── public/                # Arquivos estáticos
+├── public/                # Arquivos estáticos (imagens, fontes)
+├── scripts/               # Scripts de automação (otimização de imagens, etc.)
 └── src/
-    ├── components/        # Componentes reutilizáveis (UI, etc.)
-    │   ├── ErrorDisplay.tsx
-    │   ├── NotFound.tsx
-    │   └── SplashScreen.tsx
-    ├── lib/                 # Utilitários, hooks, etc.
-    ├── routes/              # Definições de rota (File-Based Routing)
-    │   ├── __root.tsx       # Rota raiz (layout principal da aplicação)
-    │   ├── index.tsx        # Rota para a página inicial ('/')
-    │   └── info/
-    │       └── index.tsx    # Rota para a página '/info'
-    └── main.tsx             # Ponto de entrada da aplicação
+    ├── components/        # Componentes de UI genéricos e reutilizáveis
+    ├── core/              # Lógica de negócio central (rotas, chaves de query)
+    ├── hooks/             # Hooks customizados reutilizáveis
+    ├── lib/               # Configuração de bibliotecas (axios, queryClient)
+    ├── modules/           # Módulos de features (auth, theme, form)
+    ├── routes/            # Definições de rota do TanStack Router (File-Based Routing)
+    │   ├── __root.tsx     # Rota raiz (layout principal da aplicação)
+    │   └── index.tsx      # Rota para a página inicial ('/')
+    ├── schemas/           # Esquemas de validação com Zod
+    ├── types/             # Tipos e interfaces globais
+    ├── utils/             # Funções utilitárias genéricas
+    └── main.tsx           # Ponto de entrada da aplicação
 ```
 
-  - **`src/routes`**: O coração da aplicação. O TanStack Router usa os arquivos nesta pasta para criar as rotas automaticamente. O arquivo `__root.tsx` define o layout global, incluindo `<body>`, `<head>`, e onde as rotas filhas serão renderizadas (`<Outlet />`).
+  - **`src/routes`**: O coração da aplicação. O TanStack Router usa os arquivos nesta pasta para criar as rotas automaticamente. O arquivo `__root.tsx` define o layout global.
+  - **`src/modules`**: Cada pasta representa uma "feature" da aplicação (ex: autenticação), contendo seus próprios componentes, APIs, e lógica de estado.
 
 ## 🤝 Contribuição
 

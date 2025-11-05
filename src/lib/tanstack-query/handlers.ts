@@ -1,5 +1,5 @@
 import type { Mutation, Query } from "@tanstack/react-query";
-import { queryClient } from "@/lib/react-query/client";
+import { queryClient } from "@/lib/tanstack-query/client";
 import { getSession } from "@/modules/auth/utils/auth";
 import { handleToastError, handleToastSuccess } from "./utils";
 

@@ -1,6 +1,6 @@
 import { type Mutation, MutationCache, type Query, QueryCache, QueryClient } from "@tanstack/react-query";
 import { DEFAULT_GC_TIME, DEFAULT_STALE_TIME } from "@/core/cache";
-import { globalErrorHandler, globalSuccessHandler } from "@/lib/react-query/handlers";
+import { globalErrorHandler, globalSuccessHandler } from "@/lib/tanstack-query/handlers";
 import { queryRetryHandler } from "./retry";
 
 const RETRY_DELAY = 5000;

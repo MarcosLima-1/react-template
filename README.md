@@ -94,16 +94,6 @@ A estrutura de pastas é organizada para ser intuitiva e escalável, com foco em
   - **`src/routes`**: O coração da aplicação. O TanStack Router usa os arquivos nesta pasta para criar as rotas automaticamente. O arquivo `__root.tsx` define o layout global.
   - **`src/modules`**: Cada pasta representa uma "feature" da aplicação (ex: autenticação), contendo seus próprios componentes, APIs, e lógica de estado.
 
-## 🤝 Contribuição
-
-Contribuições são muito bem-vindas\! Se você tem alguma sugestão para melhorar este template:
-
-1.  Faça um **Fork** do projeto.
-2.  Crie uma nova **Branch** (`git checkout -b feature/sua-feature`).
-3.  Faça o **Commit** das suas alterações (`git commit -m 'feat: Adiciona sua feature'`).
-4.  Faça o **Push** para a Branch (`git push origin feature/sua-feature`).
-5.  Abra um **Pull Request**.
-
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://www.google.com/search?q=LICENSE) para mais detalhes.

@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import { queryKeys } from "@/core/query-keys.ts";
 import { route } from "@/core/routes.ts";
-import { queryClient } from "@/lib/tanstack-query.ts";
+import { queryClient } from "@/lib/tanstack-query/client";
 import { getStorageSession } from "@/modules/auth/storage/session.ts";
 import { type SaveSessionDataProps, type SessionProps, sessionSchema } from "@/modules/auth/types/auth";
 import { deleteSessionData, saveSessionData } from "@/modules/auth/utils/utils.ts";
@@ -10,7 +10,6 @@ export function signOut() {
 	const callbackurl = location.pathname;
 	deleteSessionData();
 	queryClient.clear();
-	queryClient.refetchQueries({ queryKey: queryKeys.session() });
 
 	location.replace(`${route.LOGIN_URL}?redirect=${callbackurl}`);
 }

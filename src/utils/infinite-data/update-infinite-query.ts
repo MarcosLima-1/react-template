@@ -1,6 +1,6 @@
 import type { InfiniteData, QueryKey } from "@tanstack/react-query";
 import { type Draft, produce } from "immer";
-import { queryClient } from "@/lib/tanstack-query";
+import { queryClient } from "@/lib/tanstack-query/client";
 
 interface UpdateInfiniteQueryItemProps<T> {
 	queryKey: QueryKey;

@@ -8,316 +8,341 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router"
 
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as AuthChangePasswordRouteRouteImport } from "./routes/auth/change-password/route";
-import { Route as AuthChangeEmailRouteRouteImport } from "./routes/auth/change-email/route";
-import { Route as AuthRedirectRouteRouteImport } from "./routes/auth/_redirect/route";
-import { Route as ErrorServerErrorIndexRouteImport } from "./routes/error/server-error/index";
-import { Route as AuthChangePasswordIndexRouteImport } from "./routes/auth/change-password/index";
-import { Route as AuthChangeEmailIndexRouteImport } from "./routes/auth/change-email/index";
-import { Route as AuthRedirectRegisterRouteRouteImport } from "./routes/auth/_redirect/register/route";
-import { Route as AuthRedirectLoginRouteRouteImport } from "./routes/auth/_redirect/login/route";
-import { Route as AuthRedirectRegisterIndexRouteImport } from "./routes/auth/_redirect/register/index";
-import { Route as AuthRedirectLoginIndexRouteImport } from "./routes/auth/_redirect/login/index";
+import { Route as rootRouteImport } from "./routes/__root"
+import { Route as IndexRouteImport } from "./routes/index"
+import { Route as AuthChangePasswordRouteRouteImport } from "./routes/auth/change-password/route"
+import { Route as AuthChangeEmailRouteRouteImport } from "./routes/auth/change-email/route"
+import { Route as AuthRedirectRouteRouteImport } from "./routes/auth/_redirect/route"
+import { Route as ErrorServerErrorIndexRouteImport } from "./routes/error/server-error/index"
+import { Route as AuthChangePasswordIndexRouteImport } from "./routes/auth/change-password/index"
+import { Route as AuthChangeEmailIndexRouteImport } from "./routes/auth/change-email/index"
+import { Route as AuthRedirectRegisterRouteRouteImport } from "./routes/auth/_redirect/register/route"
+import { Route as AuthRedirectLoginRouteRouteImport } from "./routes/auth/_redirect/login/route"
+import { Route as AuthRedirectRegisterIndexRouteImport } from "./routes/auth/_redirect/register/index"
+import { Route as AuthRedirectLoginIndexRouteImport } from "./routes/auth/_redirect/login/index"
 
-const AuthRouteImport = createFileRoute("/auth")();
+const AuthRouteImport = createFileRoute("/auth")()
 
 const AuthRoute = AuthRouteImport.update({
-	id: "/auth",
-	path: "/auth",
-	getParentRoute: () => rootRouteImport,
-} as any);
+  id: "/auth",
+  path: "/auth",
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
-	id: "/",
-	path: "/",
-	getParentRoute: () => rootRouteImport,
-} as any);
+  id: "/",
+  path: "/",
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthChangePasswordRouteRoute = AuthChangePasswordRouteRouteImport.update({
-	id: "/change-password",
-	path: "/change-password",
-	getParentRoute: () => AuthRoute,
-} as any);
+  id: "/change-password",
+  path: "/change-password",
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthChangeEmailRouteRoute = AuthChangeEmailRouteRouteImport.update({
-	id: "/change-email",
-	path: "/change-email",
-	getParentRoute: () => AuthRoute,
-} as any);
+  id: "/change-email",
+  path: "/change-email",
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthRedirectRouteRoute = AuthRedirectRouteRouteImport.update({
-	id: "/_redirect",
-	getParentRoute: () => AuthRoute,
-} as any);
+  id: "/_redirect",
+  getParentRoute: () => AuthRoute,
+} as any)
 const ErrorServerErrorIndexRoute = ErrorServerErrorIndexRouteImport.update({
-	id: "/error/server-error/",
-	path: "/error/server-error/",
-	getParentRoute: () => rootRouteImport,
-} as any);
+  id: "/error/server-error/",
+  path: "/error/server-error/",
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthChangePasswordIndexRoute = AuthChangePasswordIndexRouteImport.update({
-	id: "/",
-	path: "/",
-	getParentRoute: () => AuthChangePasswordRouteRoute,
-} as any);
+  id: "/",
+  path: "/",
+  getParentRoute: () => AuthChangePasswordRouteRoute,
+} as any)
 const AuthChangeEmailIndexRoute = AuthChangeEmailIndexRouteImport.update({
-	id: "/",
-	path: "/",
-	getParentRoute: () => AuthChangeEmailRouteRoute,
-} as any);
-const AuthRedirectRegisterRouteRoute = AuthRedirectRegisterRouteRouteImport.update({
-	id: "/register",
-	path: "/register",
-	getParentRoute: () => AuthRedirectRouteRoute,
-} as any);
+  id: "/",
+  path: "/",
+  getParentRoute: () => AuthChangeEmailRouteRoute,
+} as any)
+const AuthRedirectRegisterRouteRoute =
+  AuthRedirectRegisterRouteRouteImport.update({
+    id: "/register",
+    path: "/register",
+    getParentRoute: () => AuthRedirectRouteRoute,
+  } as any)
 const AuthRedirectLoginRouteRoute = AuthRedirectLoginRouteRouteImport.update({
-	id: "/login",
-	path: "/login",
-	getParentRoute: () => AuthRedirectRouteRoute,
-} as any);
-const AuthRedirectRegisterIndexRoute = AuthRedirectRegisterIndexRouteImport.update({
-	id: "/",
-	path: "/",
-	getParentRoute: () => AuthRedirectRegisterRouteRoute,
-} as any);
+  id: "/login",
+  path: "/login",
+  getParentRoute: () => AuthRedirectRouteRoute,
+} as any)
+const AuthRedirectRegisterIndexRoute =
+  AuthRedirectRegisterIndexRouteImport.update({
+    id: "/",
+    path: "/",
+    getParentRoute: () => AuthRedirectRegisterRouteRoute,
+  } as any)
 const AuthRedirectLoginIndexRoute = AuthRedirectLoginIndexRouteImport.update({
-	id: "/",
-	path: "/",
-	getParentRoute: () => AuthRedirectLoginRouteRoute,
-} as any);
+  id: "/",
+  path: "/",
+  getParentRoute: () => AuthRedirectLoginRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-	"/": typeof IndexRoute;
-	"/auth": typeof AuthRedirectRouteRouteWithChildren;
-	"/auth/change-email": typeof AuthChangeEmailRouteRouteWithChildren;
-	"/auth/change-password": typeof AuthChangePasswordRouteRouteWithChildren;
-	"/auth/login": typeof AuthRedirectLoginRouteRouteWithChildren;
-	"/auth/register": typeof AuthRedirectRegisterRouteRouteWithChildren;
-	"/auth/change-email/": typeof AuthChangeEmailIndexRoute;
-	"/auth/change-password/": typeof AuthChangePasswordIndexRoute;
-	"/error/server-error": typeof ErrorServerErrorIndexRoute;
-	"/auth/login/": typeof AuthRedirectLoginIndexRoute;
-	"/auth/register/": typeof AuthRedirectRegisterIndexRoute;
+  "/": typeof IndexRoute
+  "/auth": typeof AuthRedirectRouteRouteWithChildren
+  "/auth/change-email": typeof AuthChangeEmailRouteRouteWithChildren
+  "/auth/change-password": typeof AuthChangePasswordRouteRouteWithChildren
+  "/auth/login": typeof AuthRedirectLoginRouteRouteWithChildren
+  "/auth/register": typeof AuthRedirectRegisterRouteRouteWithChildren
+  "/auth/change-email/": typeof AuthChangeEmailIndexRoute
+  "/auth/change-password/": typeof AuthChangePasswordIndexRoute
+  "/error/server-error": typeof ErrorServerErrorIndexRoute
+  "/auth/login/": typeof AuthRedirectLoginIndexRoute
+  "/auth/register/": typeof AuthRedirectRegisterIndexRoute
 }
 export interface FileRoutesByTo {
-	"/": typeof IndexRoute;
-	"/auth": typeof AuthRedirectRouteRouteWithChildren;
-	"/auth/change-email": typeof AuthChangeEmailIndexRoute;
-	"/auth/change-password": typeof AuthChangePasswordIndexRoute;
-	"/error/server-error": typeof ErrorServerErrorIndexRoute;
-	"/auth/login": typeof AuthRedirectLoginIndexRoute;
-	"/auth/register": typeof AuthRedirectRegisterIndexRoute;
+  "/": typeof IndexRoute
+  "/auth": typeof AuthRedirectRouteRouteWithChildren
+  "/auth/change-email": typeof AuthChangeEmailIndexRoute
+  "/auth/change-password": typeof AuthChangePasswordIndexRoute
+  "/error/server-error": typeof ErrorServerErrorIndexRoute
+  "/auth/login": typeof AuthRedirectLoginIndexRoute
+  "/auth/register": typeof AuthRedirectRegisterIndexRoute
 }
 export interface FileRoutesById {
-	__root__: typeof rootRouteImport;
-	"/": typeof IndexRoute;
-	"/auth": typeof AuthRouteWithChildren;
-	"/auth/_redirect": typeof AuthRedirectRouteRouteWithChildren;
-	"/auth/change-email": typeof AuthChangeEmailRouteRouteWithChildren;
-	"/auth/change-password": typeof AuthChangePasswordRouteRouteWithChildren;
-	"/auth/_redirect/login": typeof AuthRedirectLoginRouteRouteWithChildren;
-	"/auth/_redirect/register": typeof AuthRedirectRegisterRouteRouteWithChildren;
-	"/auth/change-email/": typeof AuthChangeEmailIndexRoute;
-	"/auth/change-password/": typeof AuthChangePasswordIndexRoute;
-	"/error/server-error/": typeof ErrorServerErrorIndexRoute;
-	"/auth/_redirect/login/": typeof AuthRedirectLoginIndexRoute;
-	"/auth/_redirect/register/": typeof AuthRedirectRegisterIndexRoute;
+  __root__: typeof rootRouteImport
+  "/": typeof IndexRoute
+  "/auth": typeof AuthRouteWithChildren
+  "/auth/_redirect": typeof AuthRedirectRouteRouteWithChildren
+  "/auth/change-email": typeof AuthChangeEmailRouteRouteWithChildren
+  "/auth/change-password": typeof AuthChangePasswordRouteRouteWithChildren
+  "/auth/_redirect/login": typeof AuthRedirectLoginRouteRouteWithChildren
+  "/auth/_redirect/register": typeof AuthRedirectRegisterRouteRouteWithChildren
+  "/auth/change-email/": typeof AuthChangeEmailIndexRoute
+  "/auth/change-password/": typeof AuthChangePasswordIndexRoute
+  "/error/server-error/": typeof ErrorServerErrorIndexRoute
+  "/auth/_redirect/login/": typeof AuthRedirectLoginIndexRoute
+  "/auth/_redirect/register/": typeof AuthRedirectRegisterIndexRoute
 }
 export interface FileRouteTypes {
-	fileRoutesByFullPath: FileRoutesByFullPath;
-	fullPaths:
-		| "/"
-		| "/auth"
-		| "/auth/change-email"
-		| "/auth/change-password"
-		| "/auth/login"
-		| "/auth/register"
-		| "/auth/change-email/"
-		| "/auth/change-password/"
-		| "/error/server-error"
-		| "/auth/login/"
-		| "/auth/register/";
-	fileRoutesByTo: FileRoutesByTo;
-	to: "/" | "/auth" | "/auth/change-email" | "/auth/change-password" | "/error/server-error" | "/auth/login" | "/auth/register";
-	id:
-		| "__root__"
-		| "/"
-		| "/auth"
-		| "/auth/_redirect"
-		| "/auth/change-email"
-		| "/auth/change-password"
-		| "/auth/_redirect/login"
-		| "/auth/_redirect/register"
-		| "/auth/change-email/"
-		| "/auth/change-password/"
-		| "/error/server-error/"
-		| "/auth/_redirect/login/"
-		| "/auth/_redirect/register/";
-	fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | "/"
+    | "/auth"
+    | "/auth/change-email"
+    | "/auth/change-password"
+    | "/auth/login"
+    | "/auth/register"
+    | "/auth/change-email/"
+    | "/auth/change-password/"
+    | "/error/server-error"
+    | "/auth/login/"
+    | "/auth/register/"
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | "/"
+    | "/auth"
+    | "/auth/change-email"
+    | "/auth/change-password"
+    | "/error/server-error"
+    | "/auth/login"
+    | "/auth/register"
+  id:
+    | "__root__"
+    | "/"
+    | "/auth"
+    | "/auth/_redirect"
+    | "/auth/change-email"
+    | "/auth/change-password"
+    | "/auth/_redirect/login"
+    | "/auth/_redirect/register"
+    | "/auth/change-email/"
+    | "/auth/change-password/"
+    | "/error/server-error/"
+    | "/auth/_redirect/login/"
+    | "/auth/_redirect/register/"
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-	IndexRoute: typeof IndexRoute;
-	AuthRoute: typeof AuthRouteWithChildren;
-	ErrorServerErrorIndexRoute: typeof ErrorServerErrorIndexRoute;
+  IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
+  ErrorServerErrorIndexRoute: typeof ErrorServerErrorIndexRoute
 }
 
 declare module "@tanstack/react-router" {
-	interface FileRoutesByPath {
-		"/auth": {
-			id: "/auth";
-			path: "/auth";
-			fullPath: "/auth";
-			preLoaderRoute: typeof AuthRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-		"/": {
-			id: "/";
-			path: "/";
-			fullPath: "/";
-			preLoaderRoute: typeof IndexRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-		"/auth/change-password": {
-			id: "/auth/change-password";
-			path: "/change-password";
-			fullPath: "/auth/change-password";
-			preLoaderRoute: typeof AuthChangePasswordRouteRouteImport;
-			parentRoute: typeof AuthRoute;
-		};
-		"/auth/change-email": {
-			id: "/auth/change-email";
-			path: "/change-email";
-			fullPath: "/auth/change-email";
-			preLoaderRoute: typeof AuthChangeEmailRouteRouteImport;
-			parentRoute: typeof AuthRoute;
-		};
-		"/auth/_redirect": {
-			id: "/auth/_redirect";
-			path: "/auth";
-			fullPath: "/auth";
-			preLoaderRoute: typeof AuthRedirectRouteRouteImport;
-			parentRoute: typeof AuthRoute;
-		};
-		"/error/server-error/": {
-			id: "/error/server-error/";
-			path: "/error/server-error";
-			fullPath: "/error/server-error";
-			preLoaderRoute: typeof ErrorServerErrorIndexRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-		"/auth/change-password/": {
-			id: "/auth/change-password/";
-			path: "/";
-			fullPath: "/auth/change-password/";
-			preLoaderRoute: typeof AuthChangePasswordIndexRouteImport;
-			parentRoute: typeof AuthChangePasswordRouteRoute;
-		};
-		"/auth/change-email/": {
-			id: "/auth/change-email/";
-			path: "/";
-			fullPath: "/auth/change-email/";
-			preLoaderRoute: typeof AuthChangeEmailIndexRouteImport;
-			parentRoute: typeof AuthChangeEmailRouteRoute;
-		};
-		"/auth/_redirect/register": {
-			id: "/auth/_redirect/register";
-			path: "/register";
-			fullPath: "/auth/register";
-			preLoaderRoute: typeof AuthRedirectRegisterRouteRouteImport;
-			parentRoute: typeof AuthRedirectRouteRoute;
-		};
-		"/auth/_redirect/login": {
-			id: "/auth/_redirect/login";
-			path: "/login";
-			fullPath: "/auth/login";
-			preLoaderRoute: typeof AuthRedirectLoginRouteRouteImport;
-			parentRoute: typeof AuthRedirectRouteRoute;
-		};
-		"/auth/_redirect/register/": {
-			id: "/auth/_redirect/register/";
-			path: "/";
-			fullPath: "/auth/register/";
-			preLoaderRoute: typeof AuthRedirectRegisterIndexRouteImport;
-			parentRoute: typeof AuthRedirectRegisterRouteRoute;
-		};
-		"/auth/_redirect/login/": {
-			id: "/auth/_redirect/login/";
-			path: "/";
-			fullPath: "/auth/login/";
-			preLoaderRoute: typeof AuthRedirectLoginIndexRouteImport;
-			parentRoute: typeof AuthRedirectLoginRouteRoute;
-		};
-	}
+  interface FileRoutesByPath {
+    "/auth": {
+      id: "/auth"
+      path: "/auth"
+      fullPath: "/auth"
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/": {
+      id: "/"
+      path: "/"
+      fullPath: "/"
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/auth/change-password": {
+      id: "/auth/change-password"
+      path: "/change-password"
+      fullPath: "/auth/change-password"
+      preLoaderRoute: typeof AuthChangePasswordRouteRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    "/auth/change-email": {
+      id: "/auth/change-email"
+      path: "/change-email"
+      fullPath: "/auth/change-email"
+      preLoaderRoute: typeof AuthChangeEmailRouteRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    "/auth/_redirect": {
+      id: "/auth/_redirect"
+      path: "/auth"
+      fullPath: "/auth"
+      preLoaderRoute: typeof AuthRedirectRouteRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    "/error/server-error/": {
+      id: "/error/server-error/"
+      path: "/error/server-error"
+      fullPath: "/error/server-error"
+      preLoaderRoute: typeof ErrorServerErrorIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/auth/change-password/": {
+      id: "/auth/change-password/"
+      path: "/"
+      fullPath: "/auth/change-password/"
+      preLoaderRoute: typeof AuthChangePasswordIndexRouteImport
+      parentRoute: typeof AuthChangePasswordRouteRoute
+    }
+    "/auth/change-email/": {
+      id: "/auth/change-email/"
+      path: "/"
+      fullPath: "/auth/change-email/"
+      preLoaderRoute: typeof AuthChangeEmailIndexRouteImport
+      parentRoute: typeof AuthChangeEmailRouteRoute
+    }
+    "/auth/_redirect/register": {
+      id: "/auth/_redirect/register"
+      path: "/register"
+      fullPath: "/auth/register"
+      preLoaderRoute: typeof AuthRedirectRegisterRouteRouteImport
+      parentRoute: typeof AuthRedirectRouteRoute
+    }
+    "/auth/_redirect/login": {
+      id: "/auth/_redirect/login"
+      path: "/login"
+      fullPath: "/auth/login"
+      preLoaderRoute: typeof AuthRedirectLoginRouteRouteImport
+      parentRoute: typeof AuthRedirectRouteRoute
+    }
+    "/auth/_redirect/register/": {
+      id: "/auth/_redirect/register/"
+      path: "/"
+      fullPath: "/auth/register/"
+      preLoaderRoute: typeof AuthRedirectRegisterIndexRouteImport
+      parentRoute: typeof AuthRedirectRegisterRouteRoute
+    }
+    "/auth/_redirect/login/": {
+      id: "/auth/_redirect/login/"
+      path: "/"
+      fullPath: "/auth/login/"
+      preLoaderRoute: typeof AuthRedirectLoginIndexRouteImport
+      parentRoute: typeof AuthRedirectLoginRouteRoute
+    }
+  }
 }
 
 interface AuthRedirectLoginRouteRouteChildren {
-	AuthRedirectLoginIndexRoute: typeof AuthRedirectLoginIndexRoute;
+  AuthRedirectLoginIndexRoute: typeof AuthRedirectLoginIndexRoute
 }
 
-const AuthRedirectLoginRouteRouteChildren: AuthRedirectLoginRouteRouteChildren = {
-	AuthRedirectLoginIndexRoute: AuthRedirectLoginIndexRoute,
-};
+const AuthRedirectLoginRouteRouteChildren: AuthRedirectLoginRouteRouteChildren =
+  {
+    AuthRedirectLoginIndexRoute: AuthRedirectLoginIndexRoute,
+  }
 
-const AuthRedirectLoginRouteRouteWithChildren = AuthRedirectLoginRouteRoute._addFileChildren(AuthRedirectLoginRouteRouteChildren);
+const AuthRedirectLoginRouteRouteWithChildren =
+  AuthRedirectLoginRouteRoute._addFileChildren(
+    AuthRedirectLoginRouteRouteChildren,
+  )
 
 interface AuthRedirectRegisterRouteRouteChildren {
-	AuthRedirectRegisterIndexRoute: typeof AuthRedirectRegisterIndexRoute;
+  AuthRedirectRegisterIndexRoute: typeof AuthRedirectRegisterIndexRoute
 }
 
-const AuthRedirectRegisterRouteRouteChildren: AuthRedirectRegisterRouteRouteChildren = {
-	AuthRedirectRegisterIndexRoute: AuthRedirectRegisterIndexRoute,
-};
+const AuthRedirectRegisterRouteRouteChildren: AuthRedirectRegisterRouteRouteChildren =
+  {
+    AuthRedirectRegisterIndexRoute: AuthRedirectRegisterIndexRoute,
+  }
 
-const AuthRedirectRegisterRouteRouteWithChildren = AuthRedirectRegisterRouteRoute._addFileChildren(AuthRedirectRegisterRouteRouteChildren);
+const AuthRedirectRegisterRouteRouteWithChildren =
+  AuthRedirectRegisterRouteRoute._addFileChildren(
+    AuthRedirectRegisterRouteRouteChildren,
+  )
 
 interface AuthRedirectRouteRouteChildren {
-	AuthRedirectLoginRouteRoute: typeof AuthRedirectLoginRouteRouteWithChildren;
-	AuthRedirectRegisterRouteRoute: typeof AuthRedirectRegisterRouteRouteWithChildren;
+  AuthRedirectLoginRouteRoute: typeof AuthRedirectLoginRouteRouteWithChildren
+  AuthRedirectRegisterRouteRoute: typeof AuthRedirectRegisterRouteRouteWithChildren
 }
 
 const AuthRedirectRouteRouteChildren: AuthRedirectRouteRouteChildren = {
-	AuthRedirectLoginRouteRoute: AuthRedirectLoginRouteRouteWithChildren,
-	AuthRedirectRegisterRouteRoute: AuthRedirectRegisterRouteRouteWithChildren,
-};
+  AuthRedirectLoginRouteRoute: AuthRedirectLoginRouteRouteWithChildren,
+  AuthRedirectRegisterRouteRoute: AuthRedirectRegisterRouteRouteWithChildren,
+}
 
-const AuthRedirectRouteRouteWithChildren = AuthRedirectRouteRoute._addFileChildren(AuthRedirectRouteRouteChildren);
+const AuthRedirectRouteRouteWithChildren =
+  AuthRedirectRouteRoute._addFileChildren(AuthRedirectRouteRouteChildren)
 
 interface AuthChangeEmailRouteRouteChildren {
-	AuthChangeEmailIndexRoute: typeof AuthChangeEmailIndexRoute;
+  AuthChangeEmailIndexRoute: typeof AuthChangeEmailIndexRoute
 }
 
 const AuthChangeEmailRouteRouteChildren: AuthChangeEmailRouteRouteChildren = {
-	AuthChangeEmailIndexRoute: AuthChangeEmailIndexRoute,
-};
-
-const AuthChangeEmailRouteRouteWithChildren = AuthChangeEmailRouteRoute._addFileChildren(AuthChangeEmailRouteRouteChildren);
-
-interface AuthChangePasswordRouteRouteChildren {
-	AuthChangePasswordIndexRoute: typeof AuthChangePasswordIndexRoute;
+  AuthChangeEmailIndexRoute: AuthChangeEmailIndexRoute,
 }
 
-const AuthChangePasswordRouteRouteChildren: AuthChangePasswordRouteRouteChildren = {
-	AuthChangePasswordIndexRoute: AuthChangePasswordIndexRoute,
-};
+const AuthChangeEmailRouteRouteWithChildren =
+  AuthChangeEmailRouteRoute._addFileChildren(AuthChangeEmailRouteRouteChildren)
 
-const AuthChangePasswordRouteRouteWithChildren = AuthChangePasswordRouteRoute._addFileChildren(AuthChangePasswordRouteRouteChildren);
+interface AuthChangePasswordRouteRouteChildren {
+  AuthChangePasswordIndexRoute: typeof AuthChangePasswordIndexRoute
+}
+
+const AuthChangePasswordRouteRouteChildren: AuthChangePasswordRouteRouteChildren =
+  {
+    AuthChangePasswordIndexRoute: AuthChangePasswordIndexRoute,
+  }
+
+const AuthChangePasswordRouteRouteWithChildren =
+  AuthChangePasswordRouteRoute._addFileChildren(
+    AuthChangePasswordRouteRouteChildren,
+  )
 
 interface AuthRouteChildren {
-	AuthRedirectRouteRoute: typeof AuthRedirectRouteRouteWithChildren;
-	AuthChangeEmailRouteRoute: typeof AuthChangeEmailRouteRouteWithChildren;
-	AuthChangePasswordRouteRoute: typeof AuthChangePasswordRouteRouteWithChildren;
+  AuthRedirectRouteRoute: typeof AuthRedirectRouteRouteWithChildren
+  AuthChangeEmailRouteRoute: typeof AuthChangeEmailRouteRouteWithChildren
+  AuthChangePasswordRouteRoute: typeof AuthChangePasswordRouteRouteWithChildren
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
-	AuthRedirectRouteRoute: AuthRedirectRouteRouteWithChildren,
-	AuthChangeEmailRouteRoute: AuthChangeEmailRouteRouteWithChildren,
-	AuthChangePasswordRouteRoute: AuthChangePasswordRouteRouteWithChildren,
-};
+  AuthRedirectRouteRoute: AuthRedirectRouteRouteWithChildren,
+  AuthChangeEmailRouteRoute: AuthChangeEmailRouteRouteWithChildren,
+  AuthChangePasswordRouteRoute: AuthChangePasswordRouteRouteWithChildren,
+}
 
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-	IndexRoute: IndexRoute,
-	AuthRoute: AuthRouteWithChildren,
-	ErrorServerErrorIndexRoute: ErrorServerErrorIndexRoute,
-};
-export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
+  IndexRoute: IndexRoute,
+  AuthRoute: AuthRouteWithChildren,
+  ErrorServerErrorIndexRoute: ErrorServerErrorIndexRoute,
+}
+export const routeTree = rootRouteImport
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()

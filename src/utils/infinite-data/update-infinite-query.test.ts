@@ -1,8 +1,8 @@
 import { describe, expect, it, type Mock, vi } from "vitest";
-import { queryClient } from "@/lib/tanstack-query";
+import { queryClient } from "@/lib/tanstack-query/client";
 import { updateInfiniteQueryItem } from "@/utils/infinite-data/update-infinite-query";
 
-vi.mock("@/lib/tanstack-query", () => ({
+vi.mock("@/lib/react-query/client", () => ({
 	queryClient: {
 		setQueriesData: vi.fn(),
 	},

@@ -3,7 +3,7 @@ import { RefreshCw, ServerIcon as ServerX, Wifi } from "lucide-react";
 import z from "zod/v4";
 import { GradientBackground } from "@/components/misc/gradient-background";
 import { Button } from "@/components/ui/button";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { route } from "@/core/routes";
 import type { FileRouteTypes } from "@/routeTree.gen";
 
@@ -24,16 +24,16 @@ export default function ServerError() {
 		<div className="relative flex min-h-screen w-full items-center justify-center bg-background p-4">
 			<GradientBackground variants="destructive" className="z-0" />
 			<div className="z-10 w-full max-w-md">
-				<CardHeader className="items-center text-center">
+				<Card.Header className="items-center text-center">
 					<div className="mb-4 flex size-16 items-center justify-center rounded-full bg-destructive/10">
 						<ServerX className="size-8 text-destructive" />
 					</div>
-					<CardTitle className="font-semibold text-xl">Servidor em atualização ou Indisponível</CardTitle>
-					<CardDescription className="text-muted-foreground">
+					<Card.Title className="font-semibold text-xl">Servidor em atualização ou Indisponível</Card.Title>
+					<Card.Description className="text-muted-foreground">
 						Não foi possível conectar ao servidor. Verifique sua conexão com a internet e tente novamente.
-					</CardDescription>
-				</CardHeader>
-				<CardContent className="space-y-4">
+					</Card.Description>
+				</Card.Header>
+				<Card.Content className="space-y-4">
 					<div className="flex items-center justify-center space-x-2 text-muted-foreground text-sm">
 						<Wifi className="size-4" />
 						<span>Verifique sua conexão</span>
@@ -47,7 +47,7 @@ export default function ServerError() {
 					<div className="text-center">
 						<p className="text-muted-foreground text-xs">Se o problema persistir, entre em contato com o suporte</p>
 					</div>
-				</CardContent>
+				</Card.Content>
 			</div>
 		</div>
 	);

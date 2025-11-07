@@ -20,6 +20,7 @@ export default defineConfig({
 			target: "react",
 			autoCodeSplitting: true,
 			quoteStyle: "double",
+			generatedRouteTree: "./src/types/routeTree.generated.ts",
 		}),
 		tailwindcss(),
 		react({

@@ -10,18 +10,18 @@
 
 import { createFileRoute } from "@tanstack/react-router"
 
-import { Route as rootRouteImport } from "./routes/__root"
-import { Route as IndexRouteImport } from "./routes/index"
-import { Route as AuthChangePasswordRouteRouteImport } from "./routes/auth/change-password/route"
-import { Route as AuthChangeEmailRouteRouteImport } from "./routes/auth/change-email/route"
-import { Route as AuthRedirectRouteRouteImport } from "./routes/auth/_redirect/route"
-import { Route as ErrorServerErrorIndexRouteImport } from "./routes/error/server-error/index"
-import { Route as AuthChangePasswordIndexRouteImport } from "./routes/auth/change-password/index"
-import { Route as AuthChangeEmailIndexRouteImport } from "./routes/auth/change-email/index"
-import { Route as AuthRedirectRegisterRouteRouteImport } from "./routes/auth/_redirect/register/route"
-import { Route as AuthRedirectLoginRouteRouteImport } from "./routes/auth/_redirect/login/route"
-import { Route as AuthRedirectRegisterIndexRouteImport } from "./routes/auth/_redirect/register/index"
-import { Route as AuthRedirectLoginIndexRouteImport } from "./routes/auth/_redirect/login/index"
+import { Route as rootRouteImport } from "./../routes/__root"
+import { Route as IndexRouteImport } from "./../routes/index"
+import { Route as AuthChangePasswordRouteRouteImport } from "./../routes/auth/change-password/route"
+import { Route as AuthChangeEmailRouteRouteImport } from "./../routes/auth/change-email/route"
+import { Route as AuthRedirectRouteRouteImport } from "./../routes/auth/_redirect/route"
+import { Route as ErrorServerErrorIndexRouteImport } from "./../routes/error/server-error/index"
+import { Route as AuthChangePasswordIndexRouteImport } from "./../routes/auth/change-password/index"
+import { Route as AuthChangeEmailIndexRouteImport } from "./../routes/auth/change-email/index"
+import { Route as AuthRedirectRegisterRouteRouteImport } from "./../routes/auth/_redirect/register/route"
+import { Route as AuthRedirectLoginRouteRouteImport } from "./../routes/auth/_redirect/login/route"
+import { Route as AuthRedirectRegisterIndexRouteImport } from "./../routes/auth/_redirect/register/index"
+import { Route as AuthRedirectLoginIndexRouteImport } from "./../routes/auth/_redirect/login/index"
 
 const AuthRouteImport = createFileRoute("/auth")()
 

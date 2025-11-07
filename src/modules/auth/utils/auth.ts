@@ -1,16 +1,15 @@
-import { toast } from "sonner";
 import { queryKeys } from "@/core/query-keys.ts";
 import { route } from "@/core/routes.ts";
 import { queryClient } from "@/lib/tanstack-query/client";
 import { getStorageSession } from "@/modules/auth/storage/session.ts";
 import { type SaveSessionDataProps, type SessionProps, sessionSchema } from "@/modules/auth/types/auth";
 import { deleteSessionData, saveSessionData } from "@/modules/auth/utils/utils.ts";
+import { toast } from "@/modules/notification/components/toasts";
 
 export function signOut() {
 	const callbackurl = location.pathname;
 	deleteSessionData();
 	queryClient.clear();
-
 	location.replace(`${route.LOGIN_URL}?redirect=${callbackurl}`);
 }
 
@@ -20,7 +19,7 @@ interface SignInProps extends SaveSessionDataProps {
 
 export function signIn({ redirect, session, accessToken }: SignInProps) {
 	if (!session || !accessToken) {
-		toast.error("Props da sessão invalidos!!");
+		toast.error({ title: "Erro ao Logar", description: "Props da sessão inválidos!" });
 		return;
 	}
 
@@ -32,7 +31,6 @@ export function signIn({ redirect, session, accessToken }: SignInProps) {
 
 export function getSession(): SessionProps | null {
 	const session = getStorageSession();
-
 	const validation = sessionSchema.safeParse(session);
 
 	if (!session || validation.success === false) return null;
@@ -41,8 +39,7 @@ export function getSession(): SessionProps | null {
 }
 
 export function getExistingSession(): SessionProps {
-	// biome-ignore lint/style/noNonNullAssertion: Função usada em lugares onde sempre terá a session, caso não exista ele deslogará o usuário
-	const session = getStorageSession()!;
+	const session = getStorageSession();
 	const validation = sessionSchema.safeParse(session);
 
 	if (!session || validation.success === false) {

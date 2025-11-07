@@ -1,0 +1,20 @@
+services:
+  app:
+    ports:
+      - 3000:3000
+    build:
+      context: .
+      dockerfile: dockerfile
+      target: production
+      args:
+        VITE_BUILD_MODE: prod
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget --quiet --tries=1 --spider http://0.0.0.0:3000/ || exit 1",
+        ]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 30s

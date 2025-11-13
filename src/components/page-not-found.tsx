@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { GhostIcon, HomeIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export function NotFound() {
+export function PageNotFound() {
 	return (
 		<div className="flex h-svh w-full flex-col items-center justify-center gap-3 p-4 text-center">
 			<GhostIcon className="size-24 text-primary" />

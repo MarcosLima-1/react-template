@@ -5,8 +5,8 @@ import { useFormStepContext } from "@/modules/auth/context/step-form-context";
 import { saveTempMailInStorage } from "@/modules/auth/storage/temp-mail";
 import { useAppForm } from "@/modules/form/app-form";
 import { Field } from "@/modules/form/field";
-import { validateEmail } from "@/utils/regex/validate-email";
-import { validatePassword } from "@/utils/regex/validate-password";
+import { validateEmail } from "@/utils/validators/validate-email";
+import { validatePassword } from "@/utils/validators/validate-password";
 
 export const registerSchema = z.object({
 	email: validateEmail,

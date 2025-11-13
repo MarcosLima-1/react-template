@@ -7,7 +7,7 @@ import { signOut } from "@/modules/auth/utils/auth";
 import { useAppForm } from "@/modules/form/app-form";
 import { Field } from "@/modules/form/field";
 import { SendSecurityCodeField } from "@/modules/form/form-fields/send-security-code-field";
-import { validateEmail } from "@/utils/regex/validate-email";
+import { validateEmail } from "@/utils/validators/validate-email";
 
 export const changeEmailSchema = z.object({
 	securityCode: z.string().max(6).min(6),

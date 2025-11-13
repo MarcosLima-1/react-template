@@ -1,5 +1,5 @@
 import { STORAGE_KEYS } from "@/modules/auth/core/storage";
-import { validateEmail } from "@/utils/regex/validate-email";
+import { validateEmail } from "@/utils/validators/validate-email";
 
 export function saveTempMailInStorage(email: string) {
 	localStorage.setItem(STORAGE_KEYS.TEMP_MAIL, email);

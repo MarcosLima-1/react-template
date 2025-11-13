@@ -1,4 +1,4 @@
-import { toast } from "sonner";
+import { toast } from "@/modules/notification/components/toasts";
 
 interface CopyToClipboardProps {
 	value: string;
@@ -7,5 +7,5 @@ interface CopyToClipboardProps {
 
 export function copyToClipboard({ value, message }: CopyToClipboardProps) {
 	navigator.clipboard.writeText(value);
-	toast.success(message);
+	toast.success({ title: "Valor Copiado!", description: message });
 }

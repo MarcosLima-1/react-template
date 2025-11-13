@@ -1,4 +1,4 @@
-import type { FileRouteTypes } from "@/routeTree.gen";
+import type { FileRouteTypes } from "@/types/routeTree.generated";
 
 export const route: Record<string, FileRouteTypes["to"]> = {
 	LOGIN_URL: "/auth/login",

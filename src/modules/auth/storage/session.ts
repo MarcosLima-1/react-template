@@ -1,4 +1,4 @@
-import type { SessionProps } from "@/modules/auth/types/auth";
+import { type SessionProps, sessionSchema } from "@/modules/auth/types/auth";
 import { STORAGE_KEYS } from "../core/storage";
 
 export function saveSessionInStorage(session: SessionProps) {
@@ -6,9 +6,14 @@ export function saveSessionInStorage(session: SessionProps) {
 }
 
 export function getStorageSession(): SessionProps | null {
-	const token = localStorage.getItem(STORAGE_KEYS.SESSION);
-	if (!token) return null;
-	return JSON.parse(token);
+	const data = localStorage.getItem(STORAGE_KEYS.SESSION);
+	if (!data) return null;
+
+	const { data: session, success } = sessionSchema.safeParse(JSON.parse(data));
+
+	if (!success || !session) return null;
+
+	return session;
 }
 
 export function deleteStorageSession() {

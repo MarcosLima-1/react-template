@@ -13,7 +13,7 @@ import { isAxiosError } from "axios";
 import { LockKeyholeIcon, SearchXIcon } from "lucide-react";
 import { scan } from "react-scan";
 import { GenericError } from "@/components/generic-error";
-import { NotFound } from "@/components/not-found";
+import { PageNotFound } from "@/components/page-not-found";
 import { SplashScreen } from "@/components/splash-screen";
 import { UnavailableContent } from "@/components/unavailable-content";
 import { env } from "@/lib/env";
@@ -44,7 +44,7 @@ const router = createRouter({
 		}
 		return <GenericError error={error} />;
 	},
-	defaultNotFoundComponent: () => <NotFound />,
+	defaultNotFoundComponent: () => <PageNotFound />,
 	defaultPendingComponent: () => <SplashScreen />,
 	defaultPreload: false,
 	defaultViewTransition: true,

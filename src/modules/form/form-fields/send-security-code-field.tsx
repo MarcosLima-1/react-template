@@ -5,7 +5,7 @@ import { type SecurityCodePurpose, useMutationRequestSecurityCode } from "@/modu
 import { useAppForm } from "@/modules/form/app-form";
 import { Field } from "@/modules/form/field/index";
 import { cn } from "@/utils/cn.ts";
-import { ALLOWED_DOMAINS } from "@/utils/regex/validate-email.ts";
+import { ALLOWED_DOMAINS } from "@/utils/validators/validate-email";
 
 interface SendSecurityCodeFieldProps extends ComponentProps<typeof Input> {
 	disableCharCounter?: boolean;

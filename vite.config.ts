@@ -1,15 +1,11 @@
-import { resolve } from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
-import react from "@vitejs/plugin-react";
+import viteReact from "@vitejs/plugin-react";
 import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
 import Inspect from "vite-plugin-inspect";
-
-const ReactCompilerConfig = {
-	target: "19",
-};
+import viteTsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
 	plugins: [
@@ -22,10 +18,13 @@ export default defineConfig({
 			quoteStyle: "double",
 			generatedRouteTree: "./src/types/routeTree.generated.ts",
 		}),
+		viteTsConfigPaths({
+			projects: ["./tsconfig.json"],
+		}),
 		tailwindcss(),
-		react({
+		viteReact({
 			babel: {
-				plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]],
+				plugins: [["babel-plugin-react-compiler"]],
 			},
 		}),
 		Inspect({}),
@@ -35,15 +34,8 @@ export default defineConfig({
 			sourcemap: true,
 		}),
 	],
-	resolve: {
-		alias: {
-			"@": resolve(__dirname, "./src"),
-		},
-	},
 	build: {
 		sourcemap: true,
-		cssMinify: "lightningcss",
-		minify: "terser",
 	},
 	server: {
 		port: 3000,

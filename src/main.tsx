@@ -6,7 +6,7 @@ import "./global.css";
 import "@/lib/env";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { FormDevtools } from "@tanstack/react-form-devtools";
+import { FormDevtoolsPanel } from "@tanstack/react-form-devtools";
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { isAxiosError } from "axios";
@@ -19,16 +19,13 @@ import { UnavailableContent } from "@/components/unavailable-content";
 import { env } from "@/lib/env";
 import { queryClient } from "@/lib/tanstack-query/client";
 import { setupAuthRequestInterceptor, setupAuthResponseInterceptor } from "@/modules/auth/middlewares/auth-interceptors";
+import { getSession } from "@/modules/auth/utils/auth";
 import { routeTree } from "@/types/routeTree.generated";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
 
-declare module "@tanstack/react-router" {
-	interface Register {
-		router: typeof router;
-	}
-}
+const session = getSession();
 
-const router = createRouter({
+export const router = createRouter({
 	routeTree,
 	defaultErrorComponent: ({ error }) => {
 		if (isAxiosError(error)) {
@@ -50,6 +47,7 @@ const router = createRouter({
 	defaultViewTransition: true,
 	context: {
 		queryClient,
+		session,
 	},
 });
 
@@ -80,7 +78,7 @@ createRoot(rootContainer).render(
 						},
 						{
 							name: "TanStack Form",
-							render: <FormDevtools />,
+							render: <FormDevtoolsPanel />,
 						},
 					]}
 				/>

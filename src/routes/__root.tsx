@@ -1,10 +1,10 @@
-import type { QueryClient } from "@tanstack/react-query";
 import { createRootRouteWithContext, HeadContent, Outlet } from "@tanstack/react-router";
 import { Footer } from "@/components/footer";
 import { NavigationHeader } from "@/components/navegation-header";
 import { Toaster } from "@/components/ui/sonner";
+import type { RouteContext } from "@/types/tanstack-router";
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRouteWithContext<RouteContext>()({
 	head: () => ({
 		meta: [
 			{ name: "title", content: "React Template" },

@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { useFormContext } from "@/modules/form/app-form";
 import { cn } from "@/utils/cn";
 

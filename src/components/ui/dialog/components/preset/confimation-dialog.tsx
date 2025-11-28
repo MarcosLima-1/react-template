@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { Dialog } from "@/components/ui/dialog";
 import { cn } from "@/utils/cn";
 
 interface ConfimationDialogProps {
-	children: ReactNode;
+	children?: ReactNode;
 	onClickConfirm?: () => void;
 	onClickCancel?: () => void;
-	confirmButtonVariant?: "default" | "destructive";
+	confirmButtonVariant?: "primary" | "destructive";
 	confirmButtonLabel?: string;
 	className?: string;
 	open?: boolean;
@@ -17,9 +17,10 @@ interface ConfimationDialogProps {
 }
 
 export function ConfimationDialog({
-	confirmButtonVariant = "default",
+	confirmButtonVariant = "primary",
 	confirmButtonLabel = "Confirmar",
 	className,
+	children,
 	onClickCancel,
 	onClickConfirm,
 	description,
@@ -37,6 +38,7 @@ export function ConfimationDialog({
 				<Dialog.title>{title}</Dialog.title>
 				{description && <Dialog.description>{description}</Dialog.description>}
 			</Dialog.header>
+			{children}
 			<Dialog.footer>
 				<Dialog.trigger asChild>
 					<Button onClick={handleCancelClick} variant="outline">

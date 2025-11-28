@@ -1,6 +1,6 @@
 import { EyeClosedIcon, EyeIcon } from "lucide-react";
 import { type ComponentProps, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { Input } from "@/components/ui/input";
 import { useFieldContext } from "@/modules/form/app-form";
 

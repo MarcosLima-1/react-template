@@ -1,7 +1,7 @@
 import { ImageOffIcon, RotateCwIcon } from "lucide-react";
 import { type ComponentProps, useState } from "react";
 import { z } from "zod/v4";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { Card } from "@/components/ui/card";
 import type { ImageTypes } from "@/types/images-types.generated";
 import { cn } from "@/utils/cn";

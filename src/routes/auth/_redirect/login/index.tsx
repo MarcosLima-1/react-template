@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { EmailVerificationForm } from "@/modules/auth/components/email-verification-form";
 import { LoginForm } from "@/modules/auth/components/login-form";
 import { OauthProviders } from "@/modules/auth/components/oauth-providers";

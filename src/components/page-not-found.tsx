@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { GhostIcon, HomeIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 
 export function PageNotFound() {
 	return (

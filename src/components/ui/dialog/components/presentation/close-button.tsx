@@ -1,6 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { XIcon } from "lucide-react";
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button/button";
 import { useDialogContext } from "@/components/ui/dialog/context/dialog-context";
 import { cn } from "@/utils/cn";
 

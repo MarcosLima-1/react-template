@@ -1,6 +1,6 @@
 import { toast as sonnerToast } from "sonner";
 import { RoundedIcon } from "@/components/misc/rounded-icon";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { toastMeta } from "@/modules/notification/constants/toast-base";
 import type { ToastBaseProps } from "@/modules/notification/types/toast-base";
 

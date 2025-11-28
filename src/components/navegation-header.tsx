@@ -4,7 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { LogOutIcon, User2Icon, UserIcon } from "lucide-react";
 import { AppLogo } from "@/components/misc/app-logo";
 import { Avatar } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { Dialog } from "@/components/ui/dialog";
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { getUserSessionOptions } from "@/modules/auth/api/get-session-user";

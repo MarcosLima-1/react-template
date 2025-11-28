@@ -2,10 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { RefreshCw, ServerIcon as ServerX, Wifi } from "lucide-react";
 import z from "zod/v4";
 import { GradientBackground } from "@/components/misc/gradient-background";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button/button";
 import { Card } from "@/components/ui/card";
 import { route } from "@/core/routes";
-import type { FileRouteTypes } from "@/routeTree.gen";
 
 const loginSearchParams = z.object({
 	redirect: z.string().optional(),
@@ -18,7 +17,7 @@ export const Route = createFileRoute("/error/server-error/")({
 export default function ServerError() {
 	const { redirect } = Route.useSearch();
 
-	const link = (redirect as FileRouteTypes["to"]) || route.DEFAULT_AUTHENTICATED_URL;
+	const link = redirect ?? route.DEFAULT_AUTHENTICATED_URL;
 
 	return (
 		<div className="relative flex min-h-screen w-full items-center justify-center bg-background p-4">
@@ -38,7 +37,7 @@ export default function ServerError() {
 						<Wifi className="size-4" />
 						<span>Verifique sua conexão</span>
 					</div>
-					<Button asChild className="w-full" variant="default">
+					<Button asChild className="w-full" variant="primary">
 						<Link to={link}>
 							<RefreshCw />
 							Tentar Novamente

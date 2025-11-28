@@ -1,5 +1,5 @@
 import { LogOutIcon } from "lucide-react";
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button/button";
 import { Dialog } from "@/components/ui/dialog";
 import { signOut } from "@/modules/auth/utils/auth";
 import { cn } from "@/utils/cn";

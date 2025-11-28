@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+build/*
 *.local
 
 # Editor directories and files
@@ -24,5 +25,7 @@ dist-ssr
 *.sln
 *.sw?
 /src/public-paths.d.ts
-bundle-analysis.html
-/.tanstack
+.tanstack
+
+*storybook.log
+storybook-static

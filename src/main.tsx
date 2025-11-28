@@ -11,7 +11,6 @@ import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { isAxiosError } from "axios";
 import { LockKeyholeIcon, SearchXIcon } from "lucide-react";
-import { scan } from "react-scan";
 import { GenericError } from "@/components/generic-error";
 import { PageNotFound } from "@/components/page-not-found";
 import { SplashScreen } from "@/components/splash-screen";
@@ -91,7 +90,9 @@ setupAuthRequestInterceptor();
 setupAuthResponseInterceptor();
 
 if (env.VITE_DEV_MODE) {
-	scan({
-		enabled: true,
+	import("react-scan").then(({ scan }) => {
+		scan({
+			enabled: true,
+		});
 	});
 }

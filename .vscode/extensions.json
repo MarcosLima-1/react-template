@@ -3,12 +3,11 @@
 		"biomejs.biome",
 		"shd101wyy.markdown-preview-enhanced",
 		"csstools.postcss",
-		"ms-azuretools.vscode-containers",
-		"ahmadalli.vscode-nginx-conf",
+		"hangxingliu.vscode-nginx-conf-hint",
 		"aaron-bond.better-comments",
-		"maptz.regionfolder",
+		"vitest.explorer",
 		"bradlc.vscode-tailwindcss",
-		"pomdtr.excalidraw-editor"
+		"ms-azuretools.vscode-containers"
 	],
 	"unwantedRecommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
 }

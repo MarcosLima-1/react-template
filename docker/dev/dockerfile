@@ -1,0 +1,17 @@
+FROM node:22-alpine3.22 AS base
+
+ARG VITE_BUILD_MODE=dev
+RUN apk add --no-cache bash git
+SHELL ["/bin/bash", "-c"]
+RUN npm install -g bun@1.3.3
+
+FROM base as runner
+
+USER node
+WORKDIR /app
+
+COPY package.json bun.lock ./
+RUN bun i
+EXPOSE 5173
+
+ENTRYPOINT ["sleep", "infinity"]

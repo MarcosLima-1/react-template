@@ -1,0 +1,33 @@
+FROM node:22-alpine3.22 AS base
+
+ARG VITE_BUILD_MODE=prod
+
+RUN npm install -g bun@1.3.3
+
+FROM base AS build
+
+WORKDIR /build
+
+COPY package.json bun.lock ./
+
+RUN bun i --frozen-lockfile --production
+
+COPY . .
+
+RUN bun run build --mode $VITE_BUILD_MODE
+
+FROM nginx:1.29.3-alpine-slim  AS production
+
+COPY --chown=nginx:nginx --from=build /build/nginx /etc/nginx/conf.d
+
+COPY --chown=nginx:nginx --from=build /build/build/frontend /usr/share/nginx/html/site
+
+RUN chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/run && \
+    chown -R nginx:nginx /var/log/nginx
+
+USER nginx
+
+EXPOSE 5173
+
+HEALTHCHECK --interval=15s --timeout=30s --start-period=5s --retries=3 CMD ["CMD-SHELL", "wget --quiet --tries=1 --spider http://0.0.0.0:5173 || exit 1"]

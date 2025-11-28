@@ -1,0 +1,23 @@
+name: "development-react-template"
+
+volumes:
+  home-data:
+  node-modules-data:
+services:
+  react-template:
+    ports:
+      - 5173:5173
+    build:
+      context: ../../
+      dockerfile: docker/dev/dockerfile
+      args:
+        VITE_BUILD_MODE: dev
+    volumes:
+      - ../../:/app
+      - node-modules-data:/app/node_modules
+      - home-data:/home/node
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+          cpus: 4

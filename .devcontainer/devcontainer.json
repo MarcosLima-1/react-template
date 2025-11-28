@@ -1,0 +1,24 @@
+{
+	"name": "react-template",
+	"dockerComposeFile": "../docker/dev/docker-compose.yml",
+	"workspaceFolder": "/app",
+	"service": "react-template",
+	"remoteUser": "node",
+	"forwardPorts": [5173],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"biomejs.biome",
+				"shd101wyy.markdown-preview-enhanced",
+				"csstools.postcss",
+				"hangxingliu.vscode-nginx-conf-hint",
+				"aaron-bond.better-comments",
+				"vitest.explorer",
+				"bradlc.vscode-tailwindcss",
+				"github.vscode-github-actions",
+				"ms-azuretools.vscode-containers",
+				"ms-vscode-remote.remote-containers"
+			]
+		}
+	}
+}

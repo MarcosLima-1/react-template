@@ -1,0 +1,15 @@
+FROM node:22-alpine3.22 AS base
+
+RUN npm install -g bun@1.3.3
+
+FROM base AS test
+
+COPY --chown=node:node package.json bun.lock ./
+
+RUN bun i --frozen-lockfile
+
+COPY --chown=node:node . .
+
+USER node
+
+ENTRYPOINT ["bun", "run", "test"]

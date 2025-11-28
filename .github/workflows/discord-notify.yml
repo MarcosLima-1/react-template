@@ -1,0 +1,25 @@
+name: discord-notify
+run-name: Discord notify - ${{ github.run_number }}
+on:
+  workflow_run:
+    workflows: ["tests", "build-push"]
+    types:
+      - completed
+
+jobs:
+  send_notification:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: Enviar notificação para o Discord
+        uses: appleboy/discord-action@v1.0.0
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          message: |
+            ⚠️ **Workflow falhou!**
+            - Repositório: ${{ github.repository }}
+            - Branch: ${{ github.ref_name }}
+            - Workflow que falhou: ${{ github.event.workflow_run.name }}
+            - Status: ${{ github.event.workflow_run.conclusion }}
+            - Link: ${{ github.event.workflow_run.html_url }}

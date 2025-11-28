@@ -26,6 +26,7 @@ build/*
 *.sw?
 /src/public-paths.d.ts
 .tanstack
+docker-compose.override.yml
 
 *storybook.log
 storybook-static

@@ -34,8 +34,7 @@
       "correctness": {
         "noUnusedImports": {
           "level": "warn",
-          "fix": "safe",
-          "options": {}
+          "fix": "safe"
         },
         "useImportExtensions": "off",
         "noChildrenProp": "off"

@@ -3,7 +3,7 @@ run-name: Build & push - ${{ github.run_number }}
 on:
   workflow_run:
     workflows: ["tests"]
-    branches: ["main", "dev"]
+    branches: ["main", "dev", "staging"]
     types:
       - completed
 
@@ -30,4 +30,4 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/apps:${{ github.event.repository.name }}-${{ github.ref_name }}-latest
           build-args: |
-            VITE_BUILD_MODE=${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+            VITE_BUILD_MODE=${{ github.ref_name == 'main' && 'prod' || github.ref_name  }}

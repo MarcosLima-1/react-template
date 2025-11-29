@@ -1,18 +1,50 @@
-# ? Files
-.env*.local
-README.md
-npm-debug.log
-.dockerignore
-dockerfile
-
-# ? Folders
-.tanstack
-.vscode
-.zed
-build
-docker
+# no needed on docker
 .github
-.unlighthouse
 .git
-node_modules
 scripts
+docker
+.dockerignore
+README.md
+*.docs.*
+doc
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+
+# artifacts
+node_modules
+build/*
+*.generated.*
+*.gen.*
+.tanstack
+.unlighthouse
+
+# local files
+docker-compose.override.yml
+*.local
+
+# IDE files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+.zed/*
+!.zed/settings.json
+
+.idea
+
+# others
+
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

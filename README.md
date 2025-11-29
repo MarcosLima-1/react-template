@@ -39,7 +39,7 @@ Se preferir fazer manualmente:
 1.  **Clone o repositório:**
 
     ```bash
-    git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
+    git clone https://github.com/MarcosLima-1/react-template.git
     cd SEU_REPOSITORIO
     ```
 
@@ -59,14 +59,20 @@ Se preferir fazer manualmente:
 
 ## 📜 Scripts Disponíveis
 
-  - `bun run dev`: Inicia o servidor de desenvolvimento com Vite.
+  - `bun run dev`: Inicia o servidor de desenvolvimento com Vite no modo de desenvolvimento.
   - `bun run build`: Gera a build de produção da aplicação.
   - `bun run serve`: Serve a build de produção localmente para testes.
-  - `bun run lint`: Executa o linter do Biome para encontrar problemas no código.
   - `bun run format`: Formata todo o código do projeto com o Biome.
+  - `bun run lint`: Executa o linter do Biome para encontrar problemas no código.
   - `bun run check`: Executa o `lint`, `format` e `tsc` (checagem de tipos) em um único comando.
-  - `bun run test`: Roda os testes configurados com Vitest.
-  - `bun run optimize-images`: Otimiza as imagens no diretório `public/images`.
+  - `bun run test`: Roda a checagem de tipos e os testes configurados com Vitest.
+  - `bun run script:create-images-type`: Gera um arquivo de definição de tipos TypeScript para todas as imagens no diretório `public/images`.
+  - `bun run script:optimize-images`: Otimiza as imagens no diretório `public/images` e atualiza os tipos de imagem.
+  - `bun run storybook:dev`: Inicia o Storybook no modo de desenvolvimento.
+  - `bun run storybook:build`: Gera a build estática do Storybook para produção.
+  - `bun run docker:test`: Executa os testes em um ambiente Docker isolado.
+  - `bun run docker:test-down`: Para e remove os contêineres de teste do Docker.
+  - `bun run docker:build`: Constrói e inicia os contêineres Docker de produção.
 
 ## 📁 Estrutura de Pastas
 

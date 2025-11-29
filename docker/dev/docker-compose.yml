@@ -3,6 +3,10 @@ name: "development-react-template"
 volumes:
   home-data:
   node-modules-data:
+
+include:
+  - ../services/docker-compose.yml
+
 services:
   react-template:
     ports:

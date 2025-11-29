@@ -1,4 +1,8 @@
 name: "production-react-template"
+
+include:
+  - ../services/docker-compose.yml
+
 services:
   app:
     ports:
@@ -8,16 +12,6 @@ services:
       dockerfile: docker/prod/dockerfile
       args:
         VITE_BUILD_MODE: prod
-    # healthcheck:
-    #   test:
-    #     [
-    #       "CMD-SHELL",
-    #       "wget --quiet --tries=1 --spider http://0.0.0.0:5173 || exit 1",
-    #     ]
-    #   interval: 15s
-    #   timeout: 30s
-    #   retries: 5
-    #   start_period: 30s
     deploy:
       restart_policy:
         condition: on-failure

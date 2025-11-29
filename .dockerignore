@@ -1,0 +1,18 @@
+# ? Files
+.env*.local
+README.md
+npm-debug.log
+.dockerignore
+dockerfile
+
+# ? Folders
+.tanstack
+.vscode
+.zed
+build
+docker
+.github
+.unlighthouse
+.git
+node_modules
+scripts

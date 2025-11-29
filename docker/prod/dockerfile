@@ -18,16 +18,18 @@ RUN bun run build --mode $VITE_BUILD_MODE
 
 FROM nginx:1.29.3-alpine-slim  AS production
 
-COPY --chown=nginx:nginx --from=build /build/nginx /etc/nginx/conf.d
+RUN apk add curl
 
-COPY --chown=nginx:nginx --from=build /build/build/frontend /usr/share/nginx/html/site
+COPY --from=build /build/nginx /etc/nginx
 
-RUN chown -R nginx:nginx /var/cache/nginx && \
-    chown -R nginx:nginx /var/run && \
-    chown -R nginx:nginx /var/log/nginx
+COPY --from=build /build/build/frontend /usr/share/nginx/html/site
 
-USER nginx
+# RUN chown -R nginx:nginx /var/cache/nginx && \
+#     chown -R nginx:nginx /var/run && \
+#     chown -R nginx:nginx /var/log/nginx
+
+# USER nginx
 
 EXPOSE 5173
 
-HEALTHCHECK --interval=15s --timeout=30s --start-period=5s --retries=3 CMD ["CMD-SHELL", "wget --quiet --tries=1 --spider http://0.0.0.0:5173 || exit 1"]
+HEALTHCHECK --interval=10s --timeout=30s --start-period=20s --retries=3 CMD ["curl", "-f", "http://0.0.0.0:5173"]

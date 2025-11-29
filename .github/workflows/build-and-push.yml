@@ -26,9 +26,8 @@ jobs:
         uses: docker/build-push-action@v6.18.0
         with:
           context: .
-          file: ./dockerfile
-          target: production
+          file: ./docker/prod/dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/apps:${{ github.event.repository.name }}-${{ github.ref_name }}-latest
           build-args: |
-            VITE_BUILD_MODE=${{ github.ref_name == 'master' && 'prod' || 'dev' }}
+            VITE_BUILD_MODE=${{ github.ref_name == 'main' && 'prod' || 'dev' }}

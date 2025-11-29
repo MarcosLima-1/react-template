@@ -15,7 +15,8 @@
     "script:optimize-images": "bun ./scripts/optimize-images.ts && bun run script:create-images-type",
     "storybook:dev": "storybook dev -p 6006",
     "storybook:build": "storybook build -o ./build/storybook",
-    "docker:test": "docker compose -f ./docker/test/docker-compose.yml up --wait --wait-timeout 120 --build --remove-orphans",
+    "docker:test": "docker compose -f ./docker/test/docker-compose.yml up --wait --wait-timeout 480 --build --remove-orphans && bun run docker:test-down",
+    "docker:test-down": "docker compose -f ./docker/test/docker-compose.yml down -v",
     "docker:build": "docker compose -f ./docker/prod/docker-compose.yml up -d --build --remove-orphans"
   },
   "dependencies": {

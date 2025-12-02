@@ -21,4 +21,3 @@ services:
       resources:
         limits:
           memory: 4g
-          cpus: 4

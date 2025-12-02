@@ -15,10 +15,10 @@ jobs:
       - name: Run tests and healthChecker
         run: docker compose -f ./docker/test/docker-compose.yml up --wait --wait-timeout 480
 
-      - name: Shutdown all services
-        if: always()
-        run: docker compose -f ./docker/test/docker-compose.yml down
-
       - name: View logs on failure
         if: failure()
         run: docker compose -f ./docker/test/docker-compose.yml logs
+
+      - name: Shutdown all services
+        if: always()
+        run: docker compose -f ./docker/test/docker-compose.yml down -v

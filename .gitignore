@@ -11,8 +11,6 @@ lerna-debug.log*
 # artifacts
 node_modules
 build/*
-*.generated.*
-*.gen.*
 .tanstack
 .unlighthouse
 

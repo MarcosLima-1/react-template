@@ -22,6 +22,8 @@ import { Route as AuthRedirectRegisterRouteRouteImport } from "./../routes/auth/
 import { Route as AuthRedirectLoginRouteRouteImport } from "./../routes/auth/_redirect/login/route"
 import { Route as AuthRedirectRegisterIndexRouteImport } from "./../routes/auth/_redirect/register/index"
 import { Route as AuthRedirectLoginIndexRouteImport } from "./../routes/auth/_redirect/login/index"
+import { Route as LandingPagesPoliciesTermsOfUseIndexRouteImport } from "./../routes/_landing-pages/policies/terms-of-use/index"
+import { Route as LandingPagesPoliciesPrivacyPolicyIndexRouteImport } from "./../routes/_landing-pages/policies/privacy-policy/index"
 
 const AuthRouteImport = createFileRoute("/auth")()
 
@@ -86,6 +88,18 @@ const AuthRedirectLoginIndexRoute = AuthRedirectLoginIndexRouteImport.update({
   path: "/",
   getParentRoute: () => AuthRedirectLoginRouteRoute,
 } as any)
+const LandingPagesPoliciesTermsOfUseIndexRoute =
+  LandingPagesPoliciesTermsOfUseIndexRouteImport.update({
+    id: "/_landing-pages/policies/terms-of-use/",
+    path: "/policies/terms-of-use/",
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LandingPagesPoliciesPrivacyPolicyIndexRoute =
+  LandingPagesPoliciesPrivacyPolicyIndexRouteImport.update({
+    id: "/_landing-pages/policies/privacy-policy/",
+    path: "/policies/privacy-policy/",
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
@@ -97,6 +111,8 @@ export interface FileRoutesByFullPath {
   "/auth/change-email/": typeof AuthChangeEmailIndexRoute
   "/auth/change-password/": typeof AuthChangePasswordIndexRoute
   "/error/server-error": typeof ErrorServerErrorIndexRoute
+  "/policies/privacy-policy": typeof LandingPagesPoliciesPrivacyPolicyIndexRoute
+  "/policies/terms-of-use": typeof LandingPagesPoliciesTermsOfUseIndexRoute
   "/auth/login/": typeof AuthRedirectLoginIndexRoute
   "/auth/register/": typeof AuthRedirectRegisterIndexRoute
 }
@@ -106,6 +122,8 @@ export interface FileRoutesByTo {
   "/auth/change-email": typeof AuthChangeEmailIndexRoute
   "/auth/change-password": typeof AuthChangePasswordIndexRoute
   "/error/server-error": typeof ErrorServerErrorIndexRoute
+  "/policies/privacy-policy": typeof LandingPagesPoliciesPrivacyPolicyIndexRoute
+  "/policies/terms-of-use": typeof LandingPagesPoliciesTermsOfUseIndexRoute
   "/auth/login": typeof AuthRedirectLoginIndexRoute
   "/auth/register": typeof AuthRedirectRegisterIndexRoute
 }
@@ -121,6 +139,8 @@ export interface FileRoutesById {
   "/auth/change-email/": typeof AuthChangeEmailIndexRoute
   "/auth/change-password/": typeof AuthChangePasswordIndexRoute
   "/error/server-error/": typeof ErrorServerErrorIndexRoute
+  "/_landing-pages/policies/privacy-policy/": typeof LandingPagesPoliciesPrivacyPolicyIndexRoute
+  "/_landing-pages/policies/terms-of-use/": typeof LandingPagesPoliciesTermsOfUseIndexRoute
   "/auth/_redirect/login/": typeof AuthRedirectLoginIndexRoute
   "/auth/_redirect/register/": typeof AuthRedirectRegisterIndexRoute
 }
@@ -136,6 +156,8 @@ export interface FileRouteTypes {
     | "/auth/change-email/"
     | "/auth/change-password/"
     | "/error/server-error"
+    | "/policies/privacy-policy"
+    | "/policies/terms-of-use"
     | "/auth/login/"
     | "/auth/register/"
   fileRoutesByTo: FileRoutesByTo
@@ -145,6 +167,8 @@ export interface FileRouteTypes {
     | "/auth/change-email"
     | "/auth/change-password"
     | "/error/server-error"
+    | "/policies/privacy-policy"
+    | "/policies/terms-of-use"
     | "/auth/login"
     | "/auth/register"
   id:
@@ -159,6 +183,8 @@ export interface FileRouteTypes {
     | "/auth/change-email/"
     | "/auth/change-password/"
     | "/error/server-error/"
+    | "/_landing-pages/policies/privacy-policy/"
+    | "/_landing-pages/policies/terms-of-use/"
     | "/auth/_redirect/login/"
     | "/auth/_redirect/register/"
   fileRoutesById: FileRoutesById
@@ -167,6 +193,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   ErrorServerErrorIndexRoute: typeof ErrorServerErrorIndexRoute
+  LandingPagesPoliciesPrivacyPolicyIndexRoute: typeof LandingPagesPoliciesPrivacyPolicyIndexRoute
+  LandingPagesPoliciesTermsOfUseIndexRoute: typeof LandingPagesPoliciesTermsOfUseIndexRoute
 }
 
 declare module "@tanstack/react-router" {
@@ -255,6 +283,20 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthRedirectLoginIndexRouteImport
       parentRoute: typeof AuthRedirectLoginRouteRoute
     }
+    "/_landing-pages/policies/terms-of-use/": {
+      id: "/_landing-pages/policies/terms-of-use/"
+      path: "/policies/terms-of-use"
+      fullPath: "/policies/terms-of-use"
+      preLoaderRoute: typeof LandingPagesPoliciesTermsOfUseIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    "/_landing-pages/policies/privacy-policy/": {
+      id: "/_landing-pages/policies/privacy-policy/"
+      path: "/policies/privacy-policy"
+      fullPath: "/policies/privacy-policy"
+      preLoaderRoute: typeof LandingPagesPoliciesPrivacyPolicyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -342,6 +384,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   ErrorServerErrorIndexRoute: ErrorServerErrorIndexRoute,
+  LandingPagesPoliciesPrivacyPolicyIndexRoute:
+    LandingPagesPoliciesPrivacyPolicyIndexRoute,
+  LandingPagesPoliciesTermsOfUseIndexRoute:
+    LandingPagesPoliciesTermsOfUseIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -14,21 +14,16 @@ export function Footer() {
 					</div>
 
 					<div>
-						<h3 className="mb-3 font-semibold">Suporte</h3>
+						<h3 className="mb-3 font-semibold">Informações</h3>
 						<ul className="space-y-2 text-muted-foreground text-sm">
 							<li>
-								<Link to="/" className="transition-colors hover:text-foreground">
-									Ajuda
+								<Link to="/policies/privacy-policy" className="transition-colors hover:text-foreground">
+									Políticas de Privacidade
 								</Link>
 							</li>
 							<li>
-								<Link to="/" className="transition-colors hover:text-foreground">
-									Contato
-								</Link>
-							</li>
-							<li>
-								<Link to="/" className="transition-colors hover:text-foreground">
-									Privacidade
+								<Link to="/policies/terms-of-use" className="transition-colors hover:text-foreground">
+									Termos de uso
 								</Link>
 							</li>
 						</ul>

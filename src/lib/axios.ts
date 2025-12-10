@@ -3,7 +3,7 @@ import { env } from "@/lib/env";
 
 const userAgent = navigator.userAgent;
 export const api = axios.create({
-	baseURL: import.meta.env.VITE_API_URL,
+	baseURL: env.VITE_URL_API,
 	timeout: 20000,
 	headers: {
 		"x-app-version": env.VITE_WEB_VERSION,
@@ -13,7 +13,7 @@ export const api = axios.create({
 });
 
 export const publicApi = axios.create({
-	baseURL: import.meta.env.VITE_API_URL,
+	baseURL: env.VITE_URL_API,
 	timeout: 10000,
 	headers: {
 		"X-app-version": env.VITE_WEB_VERSION,

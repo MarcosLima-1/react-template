@@ -1,6 +1,6 @@
 import { isAxiosError } from "axios";
 
-const NON_RETRYABLE_STATUSES = [403, 401, 400, 404, 500, 0];
+export const NON_RETRYABLE_STATUSES = [403, 401, 400, 404, 500, 0];
 
 export function queryRetryHandler(retryCount: number, error: unknown): boolean {
 	if (!isAxiosError(error)) return false;

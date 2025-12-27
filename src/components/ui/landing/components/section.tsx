@@ -10,7 +10,7 @@ export function LandingSection({ className, children, ref, ...props }: LandingSe
 		<section
 			ref={ref}
 			data-slot="section"
-			className={cn("relative flex w-full max-w-7xl flex-col items-center px-6", className)}
+			className={cn("relative flex w-full flex-col items-center justify-center gap-10 px-2 sm:px-4", className)}
 			{...props}
 		>
 			{children}

@@ -1,8 +1,9 @@
 FROM node:22-trixie-slim AS base
 
 ARG VITE_BUILD_MODE=dev
-RUN apt update -y &&  apt install -y zsh git ffmpeg
-SHELL ["/bin/zsh", "-c"]
+RUN apt update -y &&  apt install -y git ffmpeg
+SHELL ["/bin/bash", "-c"]
+
 RUN npm install -g bun@1.3.3
 
 FROM base AS runner

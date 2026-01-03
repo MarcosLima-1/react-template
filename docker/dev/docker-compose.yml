@@ -2,7 +2,6 @@ name: "development-react-template"
 
 volumes:
   home-data:
-  node-modules-data:
 
 include:
   - ../services/docker-compose.yml
@@ -18,7 +17,6 @@ services:
         VITE_BUILD_MODE: dev
     volumes:
       - ../../:/app
-      - node-modules-data:/app/node_modules
       - home-data:/home/node
     deploy:
       resources:

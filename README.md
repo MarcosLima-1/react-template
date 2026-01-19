@@ -18,17 +18,20 @@ Um template opinativo e pronto para produção para criar aplicações web moder
   - **Componentes Prontos:** Inclui componentes de UI pré-construídos para estados comuns: `Erro`, `Não Encontrado` e `Splash Screen`.
   - **SEO e Metadados:** Gerenciamento de tags `<head>` integrado ao roteador, permitindo metadados dinâmicos e por rota de forma simples.
 
-## 🚀 Tecnologias Inclusas
+## 🚀 Tecnologias
 
-Este template integra uma seleção cuidadosa das melhores ferramentas do ecossistema React.
+Este template integra uma seleção cuidadosa de tecnologias modernas para garantir uma base sólida e escalável. As principais são **React 19**, **Vite**, **TypeScript**, e **TanStack Router**.
 
-| Categoria                  | Tecnologia                                                                         |
-| -------------------------- | ---------------------------------------------------------------------------------- |
-| **Core & Build** | `React 19`, `Vite 7`, `TypeScript`                                                 |
-| **Roteamento & Dados** | `TanStack Router`, `TanStack Query`, `TanStack Form`, `Axios`                      |
-| **Estilização & UI** | `Tailwind CSS 4`, `Lucide React` (Ícones), `Sonner` (Notificações)                 |
-| **Validação & Utilitários**| `Zod`, `Day.js`, `js-cookie`, `clsx`, `tailwind-merge`                             |
-| **Tooling & Qualidade** | `Biome` (Lint & Format), `Vitest` (Testes), `Rollup Visualizer` (Análise de Bundle) |
+Para uma lista completa e detalhada de todas as dependências do projeto e suas respectivas funções, consulte o nosso **[Guia de Tecnologias](./doc/TECH_STACK.md)**.
+
+## 📚 Documentação
+
+Além do guia de tecnologias, o projeto possui uma documentação detalhada sobre padrões, configurações e decisões de arquitetura que pode ser encontrada na pasta `/doc`.
+
+- **[Resumo do Projeto](./doc/summary.doc.md):** Uma visão geral dos objetivos e da estrutura do template.
+- **[Padrões de Design](./doc/design-pattern.doc.md):** Explicações sobre os padrões de código e arquitetura utilizados.
+- **[Ambientes e Variáveis](./doc/envs.doc.md):** Detalhes sobre a configuração das variáveis de ambiente.
+- **[Desenvolvimento com Dev Containers](./doc/dev-containers.doc.md):** Instruções para usar o ambiente de desenvolvimento em contêiner.
 
 ## ⚡ Começando
 

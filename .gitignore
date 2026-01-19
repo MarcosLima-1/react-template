@@ -13,6 +13,7 @@ node_modules
 build/*
 .tanstack
 .unlighthouse
+*.generated.*
 
 # local files
 docker-compose.override.yml
@@ -36,3 +37,9 @@ docker-compose.override.yml
 *.njsproj
 *.sln
 *.sw?
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+*storybook.log
+storybook-static

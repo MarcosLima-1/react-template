@@ -8,7 +8,10 @@ export const Route = createRootRouteWithContext<RouteContext>()({
 	head: () => ({
 		meta: [
 			{ name: "title", content: "React Template" },
-			{ name: "description", content: "Um template moderno para aplicações React." },
+			{
+				name: "description",
+				content: "Um template moderno para aplicações React.",
+			},
 		],
 	}),
 	component: RootComponent,
@@ -18,6 +21,7 @@ function RootComponent() {
 	return (
 		<>
 			<HeadContent />
+
 			<div className="w-full">
 				<NavigationHeader />
 				<main className="flex w-full flex-col items-center">

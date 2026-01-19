@@ -1,17 +1,17 @@
 FROM node:22-trixie-slim AS base
-
-ARG VITE_BUILD_MODE=dev
-RUN apt update -y &&  apt install -y zsh git ffmpeg
-SHELL ["/bin/zsh", "-c"]
-RUN npm install -g bun@1.3.3
-
-FROM base AS runner
-
 WORKDIR /app
 
-COPY package.json bun.lock ./
-RUN bun i
-RUN bunx playwright install --with-deps
+RUN groupadd -g 972 docker || groupmod -g 972 docker
+RUN usermod -aG docker node
+
+RUN apt update -y &&  apt install -y curl
+RUN npm install -g bun@1.3.6
+
+FROM base AS runner
+WORKDIR /app
+
+COPY --chown=node:node package.json bun.lock ./
+RUN bunx -y playwright@1.57.0 install --with-deps
 
 RUN chown -R node:node /app
 

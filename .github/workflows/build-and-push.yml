@@ -1,9 +1,13 @@
 name: build-push
 run-name: Build & push - ${{ github.run_number }}
+
 on:
   workflow_run:
     workflows: ["tests"]
-    branches: ["main", "dev", "staging"]
+    branches:
+      - main
+      - staging
+      - dev
     types:
       - completed
 
@@ -11,23 +15,52 @@ jobs:
   build-push:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Define image tag
+        id: meta
+        run: echo "tag=${{ secrets.DOCKER_USERNAME }}/apps:${{ github.event.repository.name }}-${{ github.event.workflow_run.head_branch }}-latest" >> $GITHUB_OUTPUT
 
       - name: Log in to Docker Hub
-        uses: docker/login-action@v3.5.0
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v6.18.0
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./docker/prod/dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/apps:${{ github.event.repository.name }}-${{ github.ref_name }}-latest
-          build-args: |
-            VITE_BUILD_MODE=${{ github.ref_name == 'main' && 'prod' || github.ref_name  }}
+          push: false
+          load: true
+          tags: ${{ steps.meta.outputs.tag }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ steps.meta.outputs.tag }}
+          format: "table"
+          exit-code: 0
+          ignore-unfixed: true
+          vuln-type: "os,library"
+          severity: "CRITICAL,HIGH"
+          output: "trivy_report.txt"
+
+      - name: Send vulnerability report to Discord
+        uses: appleboy/discord-action@v1.2.0
+        with:
+          webhook_id: ${{ secrets.DISCORD_VULNERABILITY_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_VULNERABILITY_WEBHOOK_TOKEN }}
+          message: "Segue o relatório de vulnerabilidades para a imagem `${{ steps.meta.outputs.tag }}`"
+          attachment: ./trivy_report.txt
+
+      - name: Push image to Docker Hub
+        run: docker push ${{ steps.meta.outputs.tag }}

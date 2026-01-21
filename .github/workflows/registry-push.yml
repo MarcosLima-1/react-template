@@ -1,0 +1,40 @@
+name: registry-push
+run-name: Registry & push - ${{ github.run_number }}
+
+on:
+  workflow_run:
+    workflows: ["image-scan"]
+    branches:
+      - main
+      - staging
+      - dev
+    types:
+      - completed
+
+jobs:
+  registry-push:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./docker/prod/dockerfile
+          push: true
+          load: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/apps:${{ github.event.repository.name }}-${{ github.event.workflow_run.head_branch }}-latest

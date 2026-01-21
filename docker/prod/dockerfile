@@ -1,8 +1,8 @@
-FROM node:22-alpine3.22 AS base
+FROM node:22-alpine3.23 AS base
 
 ARG VITE_BUILD_MODE=prod
 
-RUN npm install -g bun@1.3.3
+RUN npm install -g bun@1.3.6
 
 FROM base AS build
 
@@ -16,19 +16,11 @@ COPY . .
 
 RUN bun run build --mode $VITE_BUILD_MODE
 
-FROM nginx:1.29.3-alpine-slim  AS production
-
+FROM nginx:1.29.4-alpine-slim  AS production
 RUN apk add curl
 
 COPY --from=build /build/nginx /etc/nginx
-
 COPY --from=build /build/build/frontend /usr/share/nginx/html/site
-
-# RUN chown -R nginx:nginx /var/cache/nginx && \
-#     chown -R nginx:nginx /var/run && \
-#     chown -R nginx:nginx /var/log/nginx
-
-# USER nginx
 
 EXPOSE 5173
 

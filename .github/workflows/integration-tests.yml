@@ -1,19 +1,21 @@
-name: tests
-run-name: Tests & health checker - ${{ github.run_number }}
+name: integration-tests
+run-name: Integration Tests - ${{ github.run_number }}
 
 on:
-  push:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["unit-tests"]
+    types:
+      - completed
 
 jobs:
-  build:
+  integration-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Run tests and healthChecker
-        run: docker compose -f ./docker/test/docker-compose.yml up --wait --wait-timeout 480
+        run: docker compose -f ./docker/test/docker-compose.yml up --wait --wait-timeout 120 --build --remove-orphans
 
       - name: View logs on failure
         if: failure()

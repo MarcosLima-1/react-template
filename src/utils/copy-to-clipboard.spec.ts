@@ -1,6 +1,6 @@
-import { toast } from "sonner";
-import { describe, expect, it, vi } from "vitest";
+import { toast } from "@/modules/notification/components/toasts";
 import { copyToClipboard } from "@/utils/copy-to-clipboard";
+import { describe, expect, it, vi } from "vitest";
 
 vi.mock("sonner", () => ({
 	toast: {

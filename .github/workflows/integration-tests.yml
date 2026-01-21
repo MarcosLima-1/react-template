@@ -1,12 +1,14 @@
-name: tests
-run-name: Tests & health checker - ${{ github.run_number }}
+name: integration-tests
+run-name: Integration Tests - ${{ github.run_number }}
 
 on:
-  push:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["unit-tests"]
+    types:
+      - completed
 
 jobs:
-  build:
+  integration-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

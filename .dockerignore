@@ -39,7 +39,6 @@ docker-compose.override.yml
 !.zed/settings.json
 
 .idea
-
 # others
 
 .DS_Store

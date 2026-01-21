@@ -3,23 +3,22 @@ name: "development-react-template"
 volumes:
   home-data:
   node-modules-data:
-
 include:
   - ../services/docker-compose.yml
 
 services:
-  react-template:
+  app:
     ports:
       - 5173:5173
     build:
       context: ../../
       dockerfile: docker/dev/dockerfile
-      args:
-        VITE_BUILD_MODE: dev
     volumes:
       - ../../:/app
-      - node-modules-data:/app/node_modules
       - home-data:/home/node
+      - node-modules-data:/app/node_modules
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.zshrc:/home/node/.zshrc
     deploy:
       resources:
         limits:

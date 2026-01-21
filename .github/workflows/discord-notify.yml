@@ -2,13 +2,18 @@ name: discord-notify
 run-name: Discord notify - ${{ github.run_number }}
 on:
   workflow_run:
-    workflows: ["tests", "build-push"]
+    workflows:
+      - lint
+      - unit-tests
+      - integration-tests
+      - image-scan
+      - registry-push
     types:
       - requested
       - completed
 
 jobs:
-  send_notification:
+  discord-notify:
     runs-on: ubuntu-latest
     steps:
       - name: Send 'In Progress' notification

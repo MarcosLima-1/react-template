@@ -7,10 +7,10 @@
     "dev": "bun run script:create-images-type && vite dev --mode dev",
     "build": "vite build",
     "serve": "vite preview",
-    "test": "tsc --noEmit && vitest run",
     "format": "biome format --write",
-    "lint": "biome lint",
+    "lint": "tsc --noEmit && biome lint",
     "check": "biome check",
+    "test": "vitest run",
     "script:create-images-type": "bun ./scripts/create-images-type.ts",
     "script:optimize-images": "bun ./scripts/optimize-images.ts && bun run script:create-images-type",
     "storybook:dev": "storybook dev -p 6006",
@@ -18,8 +18,7 @@
     "docker:test": "docker compose -f ./docker/test/docker-compose.yml up --wait --wait-timeout 480 --build --remove-orphans && bun run docker:test-down",
     "docker:test-down": "docker compose -f ./docker/test/docker-compose.yml down -v",
     "docker:build": "docker compose -f ./docker/prod/docker-compose.yml up -d --build --remove-orphans",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "docker:scan": "docker compose -f ./docker/prod/docker-compose.yml build && trivy image production-mimaeu-backend-app"
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
@@ -64,18 +63,18 @@
     "@storybook/addon-onboarding": "^10.1.11",
     "@storybook/addon-themes": "^10.1.11",
     "@storybook/addon-vitest": "^10.1.11",
-    "storybook-addon-tag-badges": "^3.0.4",
     "@tanstack/devtools-event-client": "^0.4.0",
     "@types/node": "^22.19.3",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
+    "@vitest/browser-playwright": "4.0.17",
+    "playwright": "^1.57.0",
     "react-scan": "^0.4.3",
     "rollup-plugin-visualizer": "^6.0.5",
+    "storybook-addon-tag-badges": "^3.0.4",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-inspect": "^11.3.3",
-    "vitest": "^4.0.17",
-    "playwright": "^1.57.0",
-    "@vitest/browser-playwright": "4.0.17"
+    "vitest": "^4.0.17"
   }
 }

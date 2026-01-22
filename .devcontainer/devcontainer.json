@@ -2,9 +2,30 @@
 	"name": "react-template",
 	"dockerComposeFile": "../docker/dev/docker-compose.yml",
 	"workspaceFolder": "/app",
-	"service": "react-template",
+	"service": "app",
+	"updateRemoteUserUID": true,
 	"remoteUser": "node",
-	"forwardPorts": [5173],
+	"onCreateCommand": "bun i",
+	"features": {
+		"ghcr.io/devcontainers/features/git": "latest",
+		"ghcr.io/devcontainers/features/docker-in-docker": {
+			"version": "latest",
+			"username": "node"
+		},
+		"ghcr.io/dhoeric/features/trivy": "latest",
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"installOhMyZsh": true,
+			"installOhMyZshConfig": true,
+			"configureZshAsDefaultShell": true,
+			"username": "node"
+		},
+		"ghcr.io/devcontainers-extra/features/zsh-plugins": {
+			"plugins": "git docker bun",
+			"username": "node"
+		},
+		"ghcr.io/devcontainers-extra/features/ffmpeg-apt-get:1": true
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [

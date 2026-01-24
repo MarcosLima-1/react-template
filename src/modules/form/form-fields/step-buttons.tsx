@@ -1,5 +1,5 @@
 import type { AnyFieldMeta } from "@tanstack/react-form";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "@/components/ui/button";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
 import { useFieldContext, useFormContext } from "@/modules/form/app-form";
 

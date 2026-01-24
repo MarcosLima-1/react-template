@@ -1,14 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { HomeIcon } from "lucide-react";
 import { Image } from "@/components/misc/image";
 import { RoundedIcon } from "@/components/misc/rounded-icon";
 import { ShadowBlur } from "@/components/misc/shadow-blur";
+import { Button } from "@/components/ui/button";
+import { useMutationLogin } from "@/modules/auth/api/login";
+import { createFileRoute } from "@tanstack/react-router";
+import { HomeIcon } from "lucide-react";
 
 export const Route = createFileRoute("/")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
+	const { mutateAsync: login } = useMutationLogin();
 	return (
 		<div className="flex h-svh w-full items-center justify-center bg-background">
 			<div className="relative flex size-11/12 flex-col items-center justify-center rounded-2xl border border-primary/20 bg-card p-8 shadow-2xl shadow-purple-500/10 md:size-4/5">
@@ -20,8 +23,23 @@ function RouteComponent() {
 					React Template
 				</h1>
 				<p className="mt-4 text-center text-gray-400 text-lg">Seu ponto de partida para aplicações modernas.</p>
+				<div className="mt-8 flex flex-wrap gap-4">
+					<Button
+						onClick={() => {
+							login({ email: "test@gmail.com", password: "password" });
+						}}
+					>
+						Error api
+					</Button>
+					<Button
+						onClick={() => {
+							throw new Error("Test error boundary");
+						}}
+					>
+						Error local
+					</Button>
+				</div>
 			</div>
-
 			<a
 				target="_blank"
 				rel="noopener noreferrer"

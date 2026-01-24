@@ -1,5 +1,5 @@
 import { LogOutIcon } from "lucide-react";
-import { Button, type ButtonProps } from "@/components/ui/button/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
 import { signOut } from "@/modules/auth/utils/auth";
 import { cn } from "@/utils/cn";
@@ -15,7 +15,7 @@ export function SignOutButton({ className, ...props }: SignOutButtonProps) {
 
 	return (
 		<Dialog.provider>
-			<Dialog.trigger asChild>
+			<Dialog.trigger>
 				<Button
 					className={cn("relative h-10 w-full justify-start overflow-hidden text-left [&.active]:border-primary", className)}
 					{...props}
@@ -28,10 +28,10 @@ export function SignOutButton({ className, ...props }: SignOutButtonProps) {
 					<Dialog.title>Tem certeza que deseja sair?</Dialog.title>
 				</Dialog.header>
 				<Dialog.footer>
-					<Dialog.close asChild>
+					<Dialog.close>
 						<Button variant="outline">Cancelar</Button>
 					</Dialog.close>
-					<Dialog.close asChild>
+					<Dialog.close>
 						<Button variant="destructive" onClick={handleLogout}>
 							Sair
 						</Button>

@@ -1,0 +1,859 @@
+
+Report Summary
+
+┌──────────────────────────────────────────────────┬────────┬─────────────────┬─────────┐
+│                      Target                      │  Type  │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────────┼────────┼─────────────────┼─────────┤
+│ adrianokowalski/jre8-alpine:1.0.0 (alpine 3.9.4) │ alpine │       213       │    -    │
+└──────────────────────────────────────────────────┴────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+adrianokowalski/jre8-alpine:1.0.0 (alpine 3.9.4)
+================================================
+Total: 213 (UNKNOWN: 0, LOW: 94, MEDIUM: 90, HIGH: 26, CRITICAL: 3)
+
+┌───────────────────┬──────────────────┬──────────┬────────┬───────────────────┬───────────────┬──────────────────────────────────────────────────────────────┐
+│      Library      │  Vulnerability   │ Severity │ Status │ Installed Version │ Fixed Version │                            Title                             │
+├───────────────────┼──────────────────┼──────────┼────────┼───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ freetype          │ CVE-2020-15999   │ CRITICAL │ fixed  │ 2.9.1-r2          │ 2.9.1-r3      │ freetype: Heap-based buffer overflow due to integer          │
+│                   │                  │          │        │                   │               │ truncation in Load_SBit_Png                                  │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-15999                   │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ krb5-libs         │ CVE-2020-28196   │ HIGH     │        │ 1.15.5-r0         │ 1.15.5-r1     │ krb5: unbounded recursion via an ASN.1-encoded Kerberos      │
+│                   │                  │          │        │                   │               │ message in lib/krb5/asn.1/asn1_encode.c may lead...          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-28196                   │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ libcom_err        │ CVE-2019-5094    │ MEDIUM   │        │ 1.44.5-r0         │ 1.44.5-r1     │ e2fsprogs: Crafted ext4 partition leads to out-of-bounds     │
+│                   │                  │          │        │                   │               │ write                                                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-5094                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-5188    │          │        │                   │ 1.44.5-r2     │ e2fsprogs: Out-of-bounds write in e2fsck/rehash.c            │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-5188                    │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ libcrypto1.1      │ CVE-2020-1967    │ HIGH     │        │ 1.1.1b-r1         │ 1.1.1g-r0     │ openssl: Segmentation fault in SSL_check_chain causes denial │
+│                   │                  │          │        │                   │               │ of service                                                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-1967                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-23840   │          │        │                   │ 1.1.1j-r0     │ openssl: integer overflow in CipherUpdate                    │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-23840                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-3450    │          │        │                   │ 1.1.1k-r0     │ openssl: CA certificate check bypass with                    │
+│                   │                  │          │        │                   │               │ X509_V_FLAG_X509_STRICT                                      │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-3450                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-1547    │ MEDIUM   │        │                   │ 1.1.1d-r0     │ openssl: side-channel weak encryption vulnerability          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-1547                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-1549    │          │        │                   │               │ openssl: information disclosure in fork()                    │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-1549                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-1551    │          │        │                   │ 1.1.1d-r2     │ openssl: Integer overflow in RSAZ modular exponentiation on  │
+│                   │                  │          │        │                   │               │ x86_64                                                       │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-1551                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-1971    │          │        │                   │ 1.1.1i-r0     │ openssl: EDIPARTYNAME NULL pointer de-reference              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-1971                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-23841   │          │        │                   │ 1.1.1j-r0     │ openssl: NULL pointer dereference in                         │
+│                   │                  │          │        │                   │               │ X509_issuer_and_serial_hash()                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-23841                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-3449    │          │        │                   │ 1.1.1k-r0     │ openssl: NULL pointer dereference in signature_algorithms    │
+│                   │                  │          │        │                   │               │ processing                                                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-3449                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-1563    │ LOW      │        │                   │ 1.1.1d-r0     │ openssl: information disclosure in PKCS7_dataDecode and      │
+│                   │                  │          │        │                   │               │ CMS_decrypt_set1_pkey                                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-1563                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-23839   │          │        │                   │ 1.1.1j-r0     │ openssl: incorrect SSLv2 rollback protection                 │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-23839                   │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ libjpeg-turbo     │ CVE-2019-2201    │ HIGH     │        │ 1.5.3-r4          │ 1.5.3-r6      │ libjpeg-turbo: several integer overflows and subsequent      │
+│                   │                  │          │        │                   │               │ segfaults when attempting to compress/decompress             │
+│                   │                  │          │        │                   │               │ gigapixel...                                                 │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2201                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2018-14498   │ MEDIUM   │        │                   │ 1.5.3-r5      │ libjpeg-turbo: heap-based buffer over-read via crafted 8-bit │
+│                   │                  │          │        │                   │               │ BMP in get_8bit_row in rdbmp.c...                            │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2018-14498                   │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ libssl1.1         │ CVE-2020-1967    │ HIGH     │        │ 1.1.1b-r1         │ 1.1.1g-r0     │ openssl: Segmentation fault in SSL_check_chain causes denial │
+│                   │                  │          │        │                   │               │ of service                                                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-1967                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-23840   │          │        │                   │ 1.1.1j-r0     │ openssl: integer overflow in CipherUpdate                    │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-23840                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-3450    │          │        │                   │ 1.1.1k-r0     │ openssl: CA certificate check bypass with                    │
+│                   │                  │          │        │                   │               │ X509_V_FLAG_X509_STRICT                                      │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-3450                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-1547    │ MEDIUM   │        │                   │ 1.1.1d-r0     │ openssl: side-channel weak encryption vulnerability          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-1547                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-1549    │          │        │                   │               │ openssl: information disclosure in fork()                    │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-1549                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-1551    │          │        │                   │ 1.1.1d-r2     │ openssl: Integer overflow in RSAZ modular exponentiation on  │
+│                   │                  │          │        │                   │               │ x86_64                                                       │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-1551                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-1971    │          │        │                   │ 1.1.1i-r0     │ openssl: EDIPARTYNAME NULL pointer de-reference              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-1971                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-23841   │          │        │                   │ 1.1.1j-r0     │ openssl: NULL pointer dereference in                         │
+│                   │                  │          │        │                   │               │ X509_issuer_and_serial_hash()                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-23841                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-3449    │          │        │                   │ 1.1.1k-r0     │ openssl: NULL pointer dereference in signature_algorithms    │
+│                   │                  │          │        │                   │               │ processing                                                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-3449                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-1563    │ LOW      │        │                   │ 1.1.1d-r0     │ openssl: information disclosure in PKCS7_dataDecode and      │
+│                   │                  │          │        │                   │               │ CMS_decrypt_set1_pkey                                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-1563                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2021-23839   │          │        │                   │ 1.1.1j-r0     │ openssl: incorrect SSLv2 rollback protection                 │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2021-23839                   │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ libtasn1          │ CVE-2018-1000654 │ MEDIUM   │        │ 4.13-r0           │ 4.14-r0       │ libtasn1: Infinite loop in _asn1_expand_object_id(ptree)     │
+│                   │                  │          │        │                   │               │ leads to memory exhaustion                                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2018-1000654                 │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ libx11            │ CVE-2020-14363   │ HIGH     │        │ 1.6.7-r0          │ 1.6.12-r0     │ libX11: integer overflow leads to double free in locale      │
+│                   │                  │          │        │                   │               │ handling                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14363                   │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14344   │ MEDIUM   │        │                   │ 1.6.10-r0     │ libX11: Heap overflow in the X input method client           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14344                   │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ musl              │ CVE-2019-14697   │ CRITICAL │        │ 1.1.20-r4         │ 1.1.20-r5     │ musl libc through 1.1.23 has an x87 floating-point stack     │
+│                   │                  │          │        │                   │               │ adjustment im ......                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-14697                   │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-28928   │ MEDIUM   │        │                   │ 1.1.20-r6     │ In musl libc through 1.2.1, wcsnrtombs mishandles particular │
+│                   │                  │          │        │                   │               │ combinati ...                                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-28928                   │
+├───────────────────┼──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│ musl-utils        │ CVE-2019-14697   │ CRITICAL │        │                   │ 1.1.20-r5     │ musl libc through 1.1.23 has an x87 floating-point stack     │
+│                   │                  │          │        │                   │               │ adjustment im ......                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-14697                   │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-28928   │ MEDIUM   │        │                   │ 1.1.20-r6     │ In musl libc through 1.2.1, wcsnrtombs mishandles particular │
+│                   │                  │          │        │                   │               │ combinati ...                                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-28928                   │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ openjdk8-jre      │ CVE-2020-14583   │ HIGH     │        │ 8.212.04-r0       │ 8.272.10-r0   │ OpenJDK: Bypass of boundary checks in nio.Buffer via         │
+│                   │                  │          │        │                   │               │ concurrent access (Libraries, 8238920)...                    │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14583                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14593   │          │        │                   │               │ OpenJDK: Incomplete bounds checks in Affine Transformations  │
+│                   │                  │          │        │                   │               │ (2D, 8240119)                                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14593                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2604    │          │        │                   │ 8.242.08-r0   │ OpenJDK: Serialization filter changes via jdk.serialFilter   │
+│                   │                  │          │        │                   │               │ property modification (Serialization, 8231422)               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2604                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2803    │          │        │                   │ 8.252.09-r0   │ OpenJDK: Incorrect bounds checks in NIO Buffers (Libraries,  │
+│                   │                  │          │        │                   │               │ 8234841)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2803                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2805    │          │        │                   │               │ OpenJDK: Incorrect type checks in MethodType.readObject()    │
+│                   │                  │          │        │                   │               │ (Libraries, 8235274)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2805                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2745    │ MEDIUM   │        │                   │ 8.222.10-r0   │ OpenJDK: Side-channel attack risks in Elliptic Curve (EC)    │
+│                   │                  │          │        │                   │               │ cryptography (Security, 8208698)                             │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2745                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2762    │          │        │                   │               │ OpenJDK: Insufficient checks of suppressed exceptions in     │
+│                   │                  │          │        │                   │               │ deserialization (Utilities, 8212328)                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2762                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2769    │          │        │                   │               │ OpenJDK: Unbounded memory allocation during deserialization  │
+│                   │                  │          │        │                   │               │ in Collections (Utilities, 8213432)                          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2769                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2816    │          │        │                   │               │ OpenJDK: Missing URL format validation (Networking, 8221518) │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2816                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2949    │          │        │                   │ 8.232.09-r0   │ OpenJDK: Improper handling of Kerberos proxy credentials     │
+│                   │                  │          │        │                   │               │ (Kerberos, 8220302)                                          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2949                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2958    │          │        │                   │               │ OpenJDK: Incorrect escaping of command line arguments in     │
+│                   │                  │          │        │                   │               │ ProcessImpl on Windows (Libraries,...                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2958                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2975    │          │        │                   │               │ OpenJDK: Unexpected exception thrown during regular          │
+│                   │                  │          │        │                   │               │ expression processing in Nashorn (Scripting, 8223518)...     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2975                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2989    │          │        │                   │               │ OpenJDK: Incorrect handling of HTTP proxy responses in       │
+│                   │                  │          │        │                   │               │ HttpURLConnection (Networking, 8225298)                      │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2989                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2999    │          │        │                   │               │ OpenJDK: Insufficient filtering of HTML event attributes in  │
+│                   │                  │          │        │                   │               │ Javadoc (Javadoc, 8226765)                                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2999                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-7317    │          │        │                   │ 8.222.10-r0   │ libpng: use-after-free in png_image_free in png.c            │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-7317                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14556   │          │        │                   │ 8.272.10-r0   │ OpenJDK: Incorrect handling of access control context in     │
+│                   │                  │          │        │                   │               │ ForkJoinPool (Libraries, 8237117)                            │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14556                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14621   │          │        │                   │               │ OpenJDK: XML validation manipulation due to incomplete       │
+│                   │                  │          │        │                   │               │ application of the use-grammar-pool-only feature...          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14621                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14779   │          │        │                   │               │ OpenJDK: High memory usage during deserialization of Proxy   │
+│                   │                  │          │        │                   │               │ class with many interfaces...                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14779                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14781   │          │        │                   │               │ OpenJDK: Credentials sent over unencrypted LDAP connection   │
+│                   │                  │          │        │                   │               │ (JNDI, 8237990)                                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14781                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14782   │          │        │                   │               │ OpenJDK: Certificate blacklist bypass via alternate          │
+│                   │                  │          │        │                   │               │ certificate encodings (Libraries, 8237995)                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14782                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14792   │          │        │                   │               │ OpenJDK: Integer overflow leading to out-of-bounds access    │
+│                   │                  │          │        │                   │               │ (Hotspot, 8241114)                                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14792                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14797   │          │        │                   │               │ OpenJDK: Incomplete check for invalid characters in URI to   │
+│                   │                  │          │        │                   │               │ path conversion (Libraries,...                               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14797                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14803   │          │        │                   │               │ OpenJDK: Race condition in NIO Buffer boundary checks        │
+│                   │                  │          │        │                   │               │ (Libraries, 8244136)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14803                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2593    │          │        │                   │ 8.242.08-r0   │ OpenJDK: Incorrect isBuiltinStreamHandler check causing URL  │
+│                   │                  │          │        │                   │               │ normalization issues (Networking, 8228548)                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2593                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2601    │          │        │                   │               │ OpenJDK: Use of unsafe RSA-MD5 checksum in Kerberos TGS      │
+│                   │                  │          │        │                   │               │ (Security, 8229951)                                          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2601                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2781    │          │        │                   │ 8.252.09-r0   │ OpenJDK: Re-use of single TLS session for new connections    │
+│                   │                  │          │        │                   │               │ (JSSE, 8234408)                                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2781                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2800    │          │        │                   │               │ OpenJDK: CRLF injection into HTTP headers in HttpServer      │
+│                   │                  │          │        │                   │               │ (Lightweight HTTP Server, 8234825)...                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2800                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2830    │          │        │                   │               │ OpenJDK: Regular expression DoS in Scanner (Concurrency,     │
+│                   │                  │          │        │                   │               │ 8236201)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2830                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2766    │ LOW      │        │                   │ 8.222.10-r0   │ OpenJDK: Insufficient permission checks for file:// URLs on  │
+│                   │                  │          │        │                   │               │ Windows (Networking, 8213431)                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2766                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2786    │          │        │                   │               │ OpenJDK: Insufficient restriction of privileges in           │
+│                   │                  │          │        │                   │               │ AccessController (Security, 8216381)                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2786                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2842    │          │        │                   │               │ OpenJDK: Missing array bounds check in crypto providers      │
+│                   │                  │          │        │                   │               │ (JCE, 8223511)                                               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2842                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2894    │          │        │                   │ 8.232.09-r0   │ OpenJDK: Side-channel vulnerability in the ECDSA             │
+│                   │                  │          │        │                   │               │ implementation (Security, 8228825)                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2894                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2933    │          │        │                   │               │ OpenJDK: FilePermission checks not preformed correctly on    │
+│                   │                  │          │        │                   │               │ Windows (Libraries, 8213429)                                 │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2933                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2945    │          │        │                   │               │ OpenJDK: Missing restrictions on use of custom SocketImpl    │
+│                   │                  │          │        │                   │               │ (Networking, 8218573)                                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2945                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2962    │          │        │                   │               │ OpenJDK: NULL pointer dereference in DrawGlyphList (2D,      │
+│                   │                  │          │        │                   │               │ 8222690)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2962                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2964    │          │        │                   │               │ OpenJDK: Unexpected exception thrown by Pattern processing   │
+│                   │                  │          │        │                   │               │ crafted regular expression (Concurrency, 8222684)...         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2964                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2973    │          │        │                   │               │ OpenJDK: Unexpected exception thrown by XPathParser          │
+│                   │                  │          │        │                   │               │ processing crafted XPath expression (JAXP, 8223505)...       │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2973                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2978    │          │        │                   │               │ OpenJDK: Incorrect handling of nested jar: URLs in Jar URL   │
+│                   │                  │          │        │                   │               │ handler (Networking,...                                      │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2978                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2981    │          │        │                   │               │ OpenJDK: Unexpected exception thrown by XPath processing     │
+│                   │                  │          │        │                   │               │ crafted XPath expression (JAXP, 8224532)...                  │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2981                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2983    │          │        │                   │               │ OpenJDK: Unexpected exception thrown during Font object      │
+│                   │                  │          │        │                   │               │ deserialization (Serialization, 8224915)                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2983                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2987    │          │        │                   │               │ OpenJDK: Missing glyph bitmap image dimension check in       │
+│                   │                  │          │        │                   │               │ FreetypeFontScaler (2D, 8225286)                             │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2987                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2988    │          │        │                   │               │ OpenJDK: Integer overflow in bounds check in SunGraphics2D   │
+│                   │                  │          │        │                   │               │ (2D, 8225292)                                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2988                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2992    │          │        │                   │               │ OpenJDK: Excessive memory allocation in CMap when reading    │
+│                   │                  │          │        │                   │               │ TrueType font (2D, 8225597)...                               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2992                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14577   │          │        │                   │ 8.272.10-r0   │ OpenJDK: HostnameChecker does not ensure X.509 certificate   │
+│                   │                  │          │        │                   │               │ names are in normalized form...                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14577                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14578   │          │        │                   │               │ OpenJDK: Unexpected exception raised by DerInputStream       │
+│                   │                  │          │        │                   │               │ (Libraries, 8237731)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14578                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14579   │          │        │                   │               │ OpenJDK: Unexpected exception raised by DerValue.equals()    │
+│                   │                  │          │        │                   │               │ (Libraries, 8237736)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14579                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14581   │          │        │                   │               │ OpenJDK: Information disclosure in color management (2D,     │
+│                   │                  │          │        │                   │               │ 8238002)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14581                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14796   │          │        │                   │               │ OpenJDK: Missing permission check in path to URI conversion  │
+│                   │                  │          │        │                   │               │ (Libraries, 8242680)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14796                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14798   │          │        │                   │               │ OpenJDK: Missing maximum length check in                     │
+│                   │                  │          │        │                   │               │ WindowsNativeDispatcher.asNativeBuffer() (Libraries,         │
+│                   │                  │          │        │                   │               │ 8242695)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14798                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2583    │          │        │                   │ 8.242.08-r0   │ OpenJDK: Incorrect exception processing during               │
+│                   │                  │          │        │                   │               │ deserialization in BeanContextSupport (Serialization,        │
+│                   │                  │          │        │                   │               │ 8224909)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2583                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2590    │          │        │                   │               │ OpenJDK: Improper checks of SASL message properties in       │
+│                   │                  │          │        │                   │               │ GssKrb5Base (Security, 8226352)                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2590                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2654    │          │        │                   │               │ OpenJDK: Excessive memory usage in OID processing in X.509   │
+│                   │                  │          │        │                   │               │ certificate parsing (Libraries,...                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2654                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2659    │          │        │                   │               │ OpenJDK: Incomplete enforcement of maxDatagramSockets limit  │
+│                   │                  │          │        │                   │               │ in DatagramChannelImpl (Networking, 8231795)                 │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2659                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2754    │          │        │                   │ 8.252.09-r0   │ OpenJDK: Misplaced regular expression syntax error check in  │
+│                   │                  │          │        │                   │               │ RegExpScanner (Scripting, 8223898)                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2754                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2755    │          │        │                   │               │ OpenJDK: Incorrect handling of empty string nodes in regular │
+│                   │                  │          │        │                   │               │ expression Parser (Scripting,...                             │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2755                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2756    │          │        │                   │               │ OpenJDK: Incorrect handling of references to uninitialized   │
+│                   │                  │          │        │                   │               │ class descriptors during deserialization (Serialization,...  │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2756                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2757    │          │        │                   │               │ OpenJDK: Uncaught InstantiationError exception in            │
+│                   │                  │          │        │                   │               │ ObjectStreamClass (Serialization, 8224549)                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2757                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2773    │          │        │                   │               │ OpenJDK: Unexpected exceptions raised by DOMKeyInfoFactory   │
+│                   │                  │          │        │                   │               │ and DOMXMLSignatureFactory (Security, 8231415)               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2773                    │
+├───────────────────┼──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│ openjdk8-jre-base │ CVE-2020-14583   │ HIGH     │        │                   │ 8.272.10-r0   │ OpenJDK: Bypass of boundary checks in nio.Buffer via         │
+│                   │                  │          │        │                   │               │ concurrent access (Libraries, 8238920)...                    │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14583                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14593   │          │        │                   │               │ OpenJDK: Incomplete bounds checks in Affine Transformations  │
+│                   │                  │          │        │                   │               │ (2D, 8240119)                                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14593                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2604    │          │        │                   │ 8.242.08-r0   │ OpenJDK: Serialization filter changes via jdk.serialFilter   │
+│                   │                  │          │        │                   │               │ property modification (Serialization, 8231422)               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2604                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2803    │          │        │                   │ 8.252.09-r0   │ OpenJDK: Incorrect bounds checks in NIO Buffers (Libraries,  │
+│                   │                  │          │        │                   │               │ 8234841)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2803                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2805    │          │        │                   │               │ OpenJDK: Incorrect type checks in MethodType.readObject()    │
+│                   │                  │          │        │                   │               │ (Libraries, 8235274)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2805                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2745    │ MEDIUM   │        │                   │ 8.222.10-r0   │ OpenJDK: Side-channel attack risks in Elliptic Curve (EC)    │
+│                   │                  │          │        │                   │               │ cryptography (Security, 8208698)                             │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2745                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2762    │          │        │                   │               │ OpenJDK: Insufficient checks of suppressed exceptions in     │
+│                   │                  │          │        │                   │               │ deserialization (Utilities, 8212328)                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2762                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2769    │          │        │                   │               │ OpenJDK: Unbounded memory allocation during deserialization  │
+│                   │                  │          │        │                   │               │ in Collections (Utilities, 8213432)                          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2769                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2816    │          │        │                   │               │ OpenJDK: Missing URL format validation (Networking, 8221518) │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2816                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2949    │          │        │                   │ 8.232.09-r0   │ OpenJDK: Improper handling of Kerberos proxy credentials     │
+│                   │                  │          │        │                   │               │ (Kerberos, 8220302)                                          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2949                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2958    │          │        │                   │               │ OpenJDK: Incorrect escaping of command line arguments in     │
+│                   │                  │          │        │                   │               │ ProcessImpl on Windows (Libraries,...                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2958                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2975    │          │        │                   │               │ OpenJDK: Unexpected exception thrown during regular          │
+│                   │                  │          │        │                   │               │ expression processing in Nashorn (Scripting, 8223518)...     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2975                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2989    │          │        │                   │               │ OpenJDK: Incorrect handling of HTTP proxy responses in       │
+│                   │                  │          │        │                   │               │ HttpURLConnection (Networking, 8225298)                      │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2989                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2999    │          │        │                   │               │ OpenJDK: Insufficient filtering of HTML event attributes in  │
+│                   │                  │          │        │                   │               │ Javadoc (Javadoc, 8226765)                                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2999                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-7317    │          │        │                   │ 8.222.10-r0   │ libpng: use-after-free in png_image_free in png.c            │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-7317                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14556   │          │        │                   │ 8.272.10-r0   │ OpenJDK: Incorrect handling of access control context in     │
+│                   │                  │          │        │                   │               │ ForkJoinPool (Libraries, 8237117)                            │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14556                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14621   │          │        │                   │               │ OpenJDK: XML validation manipulation due to incomplete       │
+│                   │                  │          │        │                   │               │ application of the use-grammar-pool-only feature...          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14621                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14779   │          │        │                   │               │ OpenJDK: High memory usage during deserialization of Proxy   │
+│                   │                  │          │        │                   │               │ class with many interfaces...                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14779                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14781   │          │        │                   │               │ OpenJDK: Credentials sent over unencrypted LDAP connection   │
+│                   │                  │          │        │                   │               │ (JNDI, 8237990)                                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14781                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14782   │          │        │                   │               │ OpenJDK: Certificate blacklist bypass via alternate          │
+│                   │                  │          │        │                   │               │ certificate encodings (Libraries, 8237995)                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14782                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14792   │          │        │                   │               │ OpenJDK: Integer overflow leading to out-of-bounds access    │
+│                   │                  │          │        │                   │               │ (Hotspot, 8241114)                                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14792                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14797   │          │        │                   │               │ OpenJDK: Incomplete check for invalid characters in URI to   │
+│                   │                  │          │        │                   │               │ path conversion (Libraries,...                               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14797                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14803   │          │        │                   │               │ OpenJDK: Race condition in NIO Buffer boundary checks        │
+│                   │                  │          │        │                   │               │ (Libraries, 8244136)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14803                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2593    │          │        │                   │ 8.242.08-r0   │ OpenJDK: Incorrect isBuiltinStreamHandler check causing URL  │
+│                   │                  │          │        │                   │               │ normalization issues (Networking, 8228548)                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2593                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2601    │          │        │                   │               │ OpenJDK: Use of unsafe RSA-MD5 checksum in Kerberos TGS      │
+│                   │                  │          │        │                   │               │ (Security, 8229951)                                          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2601                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2781    │          │        │                   │ 8.252.09-r0   │ OpenJDK: Re-use of single TLS session for new connections    │
+│                   │                  │          │        │                   │               │ (JSSE, 8234408)                                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2781                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2800    │          │        │                   │               │ OpenJDK: CRLF injection into HTTP headers in HttpServer      │
+│                   │                  │          │        │                   │               │ (Lightweight HTTP Server, 8234825)...                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2800                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2830    │          │        │                   │               │ OpenJDK: Regular expression DoS in Scanner (Concurrency,     │
+│                   │                  │          │        │                   │               │ 8236201)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2830                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2766    │ LOW      │        │                   │ 8.222.10-r0   │ OpenJDK: Insufficient permission checks for file:// URLs on  │
+│                   │                  │          │        │                   │               │ Windows (Networking, 8213431)                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2766                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2786    │          │        │                   │               │ OpenJDK: Insufficient restriction of privileges in           │
+│                   │                  │          │        │                   │               │ AccessController (Security, 8216381)                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2786                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2842    │          │        │                   │               │ OpenJDK: Missing array bounds check in crypto providers      │
+│                   │                  │          │        │                   │               │ (JCE, 8223511)                                               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2842                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2894    │          │        │                   │ 8.232.09-r0   │ OpenJDK: Side-channel vulnerability in the ECDSA             │
+│                   │                  │          │        │                   │               │ implementation (Security, 8228825)                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2894                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2933    │          │        │                   │               │ OpenJDK: FilePermission checks not preformed correctly on    │
+│                   │                  │          │        │                   │               │ Windows (Libraries, 8213429)                                 │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2933                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2945    │          │        │                   │               │ OpenJDK: Missing restrictions on use of custom SocketImpl    │
+│                   │                  │          │        │                   │               │ (Networking, 8218573)                                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2945                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2962    │          │        │                   │               │ OpenJDK: NULL pointer dereference in DrawGlyphList (2D,      │
+│                   │                  │          │        │                   │               │ 8222690)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2962                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2964    │          │        │                   │               │ OpenJDK: Unexpected exception thrown by Pattern processing   │
+│                   │                  │          │        │                   │               │ crafted regular expression (Concurrency, 8222684)...         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2964                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2973    │          │        │                   │               │ OpenJDK: Unexpected exception thrown by XPathParser          │
+│                   │                  │          │        │                   │               │ processing crafted XPath expression (JAXP, 8223505)...       │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2973                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2978    │          │        │                   │               │ OpenJDK: Incorrect handling of nested jar: URLs in Jar URL   │
+│                   │                  │          │        │                   │               │ handler (Networking,...                                      │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2978                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2981    │          │        │                   │               │ OpenJDK: Unexpected exception thrown by XPath processing     │
+│                   │                  │          │        │                   │               │ crafted XPath expression (JAXP, 8224532)...                  │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2981                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2983    │          │        │                   │               │ OpenJDK: Unexpected exception thrown during Font object      │
+│                   │                  │          │        │                   │               │ deserialization (Serialization, 8224915)                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2983                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2987    │          │        │                   │               │ OpenJDK: Missing glyph bitmap image dimension check in       │
+│                   │                  │          │        │                   │               │ FreetypeFontScaler (2D, 8225286)                             │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2987                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2988    │          │        │                   │               │ OpenJDK: Integer overflow in bounds check in SunGraphics2D   │
+│                   │                  │          │        │                   │               │ (2D, 8225292)                                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2988                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2992    │          │        │                   │               │ OpenJDK: Excessive memory allocation in CMap when reading    │
+│                   │                  │          │        │                   │               │ TrueType font (2D, 8225597)...                               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2992                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14577   │          │        │                   │ 8.272.10-r0   │ OpenJDK: HostnameChecker does not ensure X.509 certificate   │
+│                   │                  │          │        │                   │               │ names are in normalized form...                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14577                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14578   │          │        │                   │               │ OpenJDK: Unexpected exception raised by DerInputStream       │
+│                   │                  │          │        │                   │               │ (Libraries, 8237731)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14578                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14579   │          │        │                   │               │ OpenJDK: Unexpected exception raised by DerValue.equals()    │
+│                   │                  │          │        │                   │               │ (Libraries, 8237736)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14579                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14581   │          │        │                   │               │ OpenJDK: Information disclosure in color management (2D,     │
+│                   │                  │          │        │                   │               │ 8238002)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14581                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14796   │          │        │                   │               │ OpenJDK: Missing permission check in path to URI conversion  │
+│                   │                  │          │        │                   │               │ (Libraries, 8242680)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14796                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14798   │          │        │                   │               │ OpenJDK: Missing maximum length check in                     │
+│                   │                  │          │        │                   │               │ WindowsNativeDispatcher.asNativeBuffer() (Libraries,         │
+│                   │                  │          │        │                   │               │ 8242695)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14798                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2583    │          │        │                   │ 8.242.08-r0   │ OpenJDK: Incorrect exception processing during               │
+│                   │                  │          │        │                   │               │ deserialization in BeanContextSupport (Serialization,        │
+│                   │                  │          │        │                   │               │ 8224909)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2583                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2590    │          │        │                   │               │ OpenJDK: Improper checks of SASL message properties in       │
+│                   │                  │          │        │                   │               │ GssKrb5Base (Security, 8226352)                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2590                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2654    │          │        │                   │               │ OpenJDK: Excessive memory usage in OID processing in X.509   │
+│                   │                  │          │        │                   │               │ certificate parsing (Libraries,...                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2654                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2659    │          │        │                   │               │ OpenJDK: Incomplete enforcement of maxDatagramSockets limit  │
+│                   │                  │          │        │                   │               │ in DatagramChannelImpl (Networking, 8231795)                 │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2659                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2754    │          │        │                   │ 8.252.09-r0   │ OpenJDK: Misplaced regular expression syntax error check in  │
+│                   │                  │          │        │                   │               │ RegExpScanner (Scripting, 8223898)                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2754                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2755    │          │        │                   │               │ OpenJDK: Incorrect handling of empty string nodes in regular │
+│                   │                  │          │        │                   │               │ expression Parser (Scripting,...                             │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2755                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2756    │          │        │                   │               │ OpenJDK: Incorrect handling of references to uninitialized   │
+│                   │                  │          │        │                   │               │ class descriptors during deserialization (Serialization,...  │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2756                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2757    │          │        │                   │               │ OpenJDK: Uncaught InstantiationError exception in            │
+│                   │                  │          │        │                   │               │ ObjectStreamClass (Serialization, 8224549)                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2757                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2773    │          │        │                   │               │ OpenJDK: Unexpected exceptions raised by DOMKeyInfoFactory   │
+│                   │                  │          │        │                   │               │ and DOMXMLSignatureFactory (Security, 8231415)               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2773                    │
+├───────────────────┼──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│ openjdk8-jre-lib  │ CVE-2020-14583   │ HIGH     │        │                   │ 8.272.10-r0   │ OpenJDK: Bypass of boundary checks in nio.Buffer via         │
+│                   │                  │          │        │                   │               │ concurrent access (Libraries, 8238920)...                    │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14583                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14593   │          │        │                   │               │ OpenJDK: Incomplete bounds checks in Affine Transformations  │
+│                   │                  │          │        │                   │               │ (2D, 8240119)                                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14593                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2604    │          │        │                   │ 8.242.08-r0   │ OpenJDK: Serialization filter changes via jdk.serialFilter   │
+│                   │                  │          │        │                   │               │ property modification (Serialization, 8231422)               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2604                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2803    │          │        │                   │ 8.252.09-r0   │ OpenJDK: Incorrect bounds checks in NIO Buffers (Libraries,  │
+│                   │                  │          │        │                   │               │ 8234841)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2803                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2805    │          │        │                   │               │ OpenJDK: Incorrect type checks in MethodType.readObject()    │
+│                   │                  │          │        │                   │               │ (Libraries, 8235274)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2805                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2745    │ MEDIUM   │        │                   │ 8.222.10-r0   │ OpenJDK: Side-channel attack risks in Elliptic Curve (EC)    │
+│                   │                  │          │        │                   │               │ cryptography (Security, 8208698)                             │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2745                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2762    │          │        │                   │               │ OpenJDK: Insufficient checks of suppressed exceptions in     │
+│                   │                  │          │        │                   │               │ deserialization (Utilities, 8212328)                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2762                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2769    │          │        │                   │               │ OpenJDK: Unbounded memory allocation during deserialization  │
+│                   │                  │          │        │                   │               │ in Collections (Utilities, 8213432)                          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2769                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2816    │          │        │                   │               │ OpenJDK: Missing URL format validation (Networking, 8221518) │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2816                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2949    │          │        │                   │ 8.232.09-r0   │ OpenJDK: Improper handling of Kerberos proxy credentials     │
+│                   │                  │          │        │                   │               │ (Kerberos, 8220302)                                          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2949                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2958    │          │        │                   │               │ OpenJDK: Incorrect escaping of command line arguments in     │
+│                   │                  │          │        │                   │               │ ProcessImpl on Windows (Libraries,...                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2958                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2975    │          │        │                   │               │ OpenJDK: Unexpected exception thrown during regular          │
+│                   │                  │          │        │                   │               │ expression processing in Nashorn (Scripting, 8223518)...     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2975                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2989    │          │        │                   │               │ OpenJDK: Incorrect handling of HTTP proxy responses in       │
+│                   │                  │          │        │                   │               │ HttpURLConnection (Networking, 8225298)                      │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2989                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2999    │          │        │                   │               │ OpenJDK: Insufficient filtering of HTML event attributes in  │
+│                   │                  │          │        │                   │               │ Javadoc (Javadoc, 8226765)                                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2999                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-7317    │          │        │                   │ 8.222.10-r0   │ libpng: use-after-free in png_image_free in png.c            │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-7317                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14556   │          │        │                   │ 8.272.10-r0   │ OpenJDK: Incorrect handling of access control context in     │
+│                   │                  │          │        │                   │               │ ForkJoinPool (Libraries, 8237117)                            │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14556                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14621   │          │        │                   │               │ OpenJDK: XML validation manipulation due to incomplete       │
+│                   │                  │          │        │                   │               │ application of the use-grammar-pool-only feature...          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14621                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14779   │          │        │                   │               │ OpenJDK: High memory usage during deserialization of Proxy   │
+│                   │                  │          │        │                   │               │ class with many interfaces...                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14779                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14781   │          │        │                   │               │ OpenJDK: Credentials sent over unencrypted LDAP connection   │
+│                   │                  │          │        │                   │               │ (JNDI, 8237990)                                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14781                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14782   │          │        │                   │               │ OpenJDK: Certificate blacklist bypass via alternate          │
+│                   │                  │          │        │                   │               │ certificate encodings (Libraries, 8237995)                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14782                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14792   │          │        │                   │               │ OpenJDK: Integer overflow leading to out-of-bounds access    │
+│                   │                  │          │        │                   │               │ (Hotspot, 8241114)                                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14792                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14797   │          │        │                   │               │ OpenJDK: Incomplete check for invalid characters in URI to   │
+│                   │                  │          │        │                   │               │ path conversion (Libraries,...                               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14797                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14803   │          │        │                   │               │ OpenJDK: Race condition in NIO Buffer boundary checks        │
+│                   │                  │          │        │                   │               │ (Libraries, 8244136)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14803                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2593    │          │        │                   │ 8.242.08-r0   │ OpenJDK: Incorrect isBuiltinStreamHandler check causing URL  │
+│                   │                  │          │        │                   │               │ normalization issues (Networking, 8228548)                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2593                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2601    │          │        │                   │               │ OpenJDK: Use of unsafe RSA-MD5 checksum in Kerberos TGS      │
+│                   │                  │          │        │                   │               │ (Security, 8229951)                                          │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2601                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2781    │          │        │                   │ 8.252.09-r0   │ OpenJDK: Re-use of single TLS session for new connections    │
+│                   │                  │          │        │                   │               │ (JSSE, 8234408)                                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2781                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2800    │          │        │                   │               │ OpenJDK: CRLF injection into HTTP headers in HttpServer      │
+│                   │                  │          │        │                   │               │ (Lightweight HTTP Server, 8234825)...                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2800                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2830    │          │        │                   │               │ OpenJDK: Regular expression DoS in Scanner (Concurrency,     │
+│                   │                  │          │        │                   │               │ 8236201)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2830                    │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2766    │ LOW      │        │                   │ 8.222.10-r0   │ OpenJDK: Insufficient permission checks for file:// URLs on  │
+│                   │                  │          │        │                   │               │ Windows (Networking, 8213431)                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2766                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2786    │          │        │                   │               │ OpenJDK: Insufficient restriction of privileges in           │
+│                   │                  │          │        │                   │               │ AccessController (Security, 8216381)                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2786                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2842    │          │        │                   │               │ OpenJDK: Missing array bounds check in crypto providers      │
+│                   │                  │          │        │                   │               │ (JCE, 8223511)                                               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2842                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2894    │          │        │                   │ 8.232.09-r0   │ OpenJDK: Side-channel vulnerability in the ECDSA             │
+│                   │                  │          │        │                   │               │ implementation (Security, 8228825)                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2894                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2933    │          │        │                   │               │ OpenJDK: FilePermission checks not preformed correctly on    │
+│                   │                  │          │        │                   │               │ Windows (Libraries, 8213429)                                 │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2933                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2945    │          │        │                   │               │ OpenJDK: Missing restrictions on use of custom SocketImpl    │
+│                   │                  │          │        │                   │               │ (Networking, 8218573)                                        │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2945                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2962    │          │        │                   │               │ OpenJDK: NULL pointer dereference in DrawGlyphList (2D,      │
+│                   │                  │          │        │                   │               │ 8222690)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2962                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2964    │          │        │                   │               │ OpenJDK: Unexpected exception thrown by Pattern processing   │
+│                   │                  │          │        │                   │               │ crafted regular expression (Concurrency, 8222684)...         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2964                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2973    │          │        │                   │               │ OpenJDK: Unexpected exception thrown by XPathParser          │
+│                   │                  │          │        │                   │               │ processing crafted XPath expression (JAXP, 8223505)...       │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2973                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2978    │          │        │                   │               │ OpenJDK: Incorrect handling of nested jar: URLs in Jar URL   │
+│                   │                  │          │        │                   │               │ handler (Networking,...                                      │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2978                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2981    │          │        │                   │               │ OpenJDK: Unexpected exception thrown by XPath processing     │
+│                   │                  │          │        │                   │               │ crafted XPath expression (JAXP, 8224532)...                  │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2981                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2983    │          │        │                   │               │ OpenJDK: Unexpected exception thrown during Font object      │
+│                   │                  │          │        │                   │               │ deserialization (Serialization, 8224915)                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2983                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2987    │          │        │                   │               │ OpenJDK: Missing glyph bitmap image dimension check in       │
+│                   │                  │          │        │                   │               │ FreetypeFontScaler (2D, 8225286)                             │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2987                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2988    │          │        │                   │               │ OpenJDK: Integer overflow in bounds check in SunGraphics2D   │
+│                   │                  │          │        │                   │               │ (2D, 8225292)                                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2988                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-2992    │          │        │                   │               │ OpenJDK: Excessive memory allocation in CMap when reading    │
+│                   │                  │          │        │                   │               │ TrueType font (2D, 8225597)...                               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-2992                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14577   │          │        │                   │ 8.272.10-r0   │ OpenJDK: HostnameChecker does not ensure X.509 certificate   │
+│                   │                  │          │        │                   │               │ names are in normalized form...                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14577                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14578   │          │        │                   │               │ OpenJDK: Unexpected exception raised by DerInputStream       │
+│                   │                  │          │        │                   │               │ (Libraries, 8237731)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14578                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14579   │          │        │                   │               │ OpenJDK: Unexpected exception raised by DerValue.equals()    │
+│                   │                  │          │        │                   │               │ (Libraries, 8237736)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14579                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14581   │          │        │                   │               │ OpenJDK: Information disclosure in color management (2D,     │
+│                   │                  │          │        │                   │               │ 8238002)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14581                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14796   │          │        │                   │               │ OpenJDK: Missing permission check in path to URI conversion  │
+│                   │                  │          │        │                   │               │ (Libraries, 8242680)                                         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14796                   │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-14798   │          │        │                   │               │ OpenJDK: Missing maximum length check in                     │
+│                   │                  │          │        │                   │               │ WindowsNativeDispatcher.asNativeBuffer() (Libraries,         │
+│                   │                  │          │        │                   │               │ 8242695)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-14798                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2583    │          │        │                   │ 8.242.08-r0   │ OpenJDK: Incorrect exception processing during               │
+│                   │                  │          │        │                   │               │ deserialization in BeanContextSupport (Serialization,        │
+│                   │                  │          │        │                   │               │ 8224909)                                                     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2583                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2590    │          │        │                   │               │ OpenJDK: Improper checks of SASL message properties in       │
+│                   │                  │          │        │                   │               │ GssKrb5Base (Security, 8226352)                              │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2590                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2654    │          │        │                   │               │ OpenJDK: Excessive memory usage in OID processing in X.509   │
+│                   │                  │          │        │                   │               │ certificate parsing (Libraries,...                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2654                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2659    │          │        │                   │               │ OpenJDK: Incomplete enforcement of maxDatagramSockets limit  │
+│                   │                  │          │        │                   │               │ in DatagramChannelImpl (Networking, 8231795)                 │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2659                    │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2754    │          │        │                   │ 8.252.09-r0   │ OpenJDK: Misplaced regular expression syntax error check in  │
+│                   │                  │          │        │                   │               │ RegExpScanner (Scripting, 8223898)                           │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2754                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2755    │          │        │                   │               │ OpenJDK: Incorrect handling of empty string nodes in regular │
+│                   │                  │          │        │                   │               │ expression Parser (Scripting,...                             │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2755                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2756    │          │        │                   │               │ OpenJDK: Incorrect handling of references to uninitialized   │
+│                   │                  │          │        │                   │               │ class descriptors during deserialization (Serialization,...  │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2756                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2757    │          │        │                   │               │ OpenJDK: Uncaught InstantiationError exception in            │
+│                   │                  │          │        │                   │               │ ObjectStreamClass (Serialization, 8224549)                   │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2757                    │
+│                   ├──────────────────┤          │        │                   │               ├──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-2773    │          │        │                   │               │ OpenJDK: Unexpected exceptions raised by DOMKeyInfoFactory   │
+│                   │                  │          │        │                   │               │ and DOMXMLSignatureFactory (Security, 8231415)               │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-2773                    │
+├───────────────────┼──────────────────┼──────────┤        ├───────────────────┼───────────────┼──────────────────────────────────────────────────────────────┤
+│ sqlite-libs       │ CVE-2019-19244   │ HIGH     │        │ 3.28.0-r0         │ 3.28.0-r2     │ sqlite: allows a crash if a sub-select uses both DISTINCT    │
+│                   │                  │          │        │                   │               │ and window...                                                │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-19244                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2020-11655   │          │        │                   │ 3.28.0-r3     │ sqlite: malformed window-function query leads to DoS         │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2020-11655                   │
+│                   ├──────────────────┼──────────┤        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-16168   │ MEDIUM   │        │                   │ 3.28.0-r1     │ sqlite: Division by zero in whereLoopAddBtreeIndex in        │
+│                   │                  │          │        │                   │               │ sqlite3.c                                                    │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-16168                   │
+│                   ├──────────────────┤          │        │                   ├───────────────┼──────────────────────────────────────────────────────────────┤
+│                   │ CVE-2019-19242   │          │        │                   │ 3.28.0-r2     │ sqlite: SQL injection in sqlite3ExprCodeTarget in expr.c     │
+│                   │                  │          │        │                   │               │ https://avd.aquasec.com/nvd/cve-2019-19242                   │
+└───────────────────┴──────────────────┴──────────┴────────┴───────────────────┴───────────────┴──────────────────────────────────────────────────────────────┘

@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import { cn } from "@/utils/cn";
 
-export function Container({ className, ...props }: ComponentProps<"div">) {
+export function Root({ className, ...props }: ComponentProps<"div">) {
 	return (
 		<div
 			data-slot="card-container"
@@ -32,7 +32,7 @@ function Footer({ className, ...props }: ComponentProps<"div">) {
 }
 
 export const Card = {
-	Container,
+	Container: Root,
 	Header,
 	Title,
 	Description,

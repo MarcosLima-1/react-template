@@ -23,15 +23,17 @@ export default defineConfig(async ({ mode }) => {
 			removeDevtoolsOnBuild: true,
 		}),
 		tailwindcss(),
-		sentryVitePlugin({
-			authToken: process.env.SENTRY_AUTH_TOKEN,
-			org: "test-lpx",
-			project: "test",
-		}),
 		viteReact({
 			babel: {
 				plugins: [["babel-plugin-react-compiler"]],
 			},
+		}),
+		sentryVitePlugin({
+			url: env.VITE_SENTRY_URL,
+			authToken: env.VITE_SENTRY_AUTH_TOKEN,
+			org: env.VITE_SENTRY_ORG,
+			project: env.VITE_SENTRY_PROJECT,
+			telemetry: false,
 		}),
 	];
 
@@ -52,31 +54,9 @@ export default defineConfig(async ({ mode }) => {
 	return {
 		plugins,
 		build: {
-			sourcemap: true,
+			sourcemap: "hidden",
 			outDir: "./build/frontend",
 			reportCompressedSize: true,
-			rollupOptions: {
-				external: ["react-scan"],
-				output: {
-					manualChunks: (id: string) => {
-						if (id.includes("zod")) return "zod";
-
-						// Outras libs grandes que mudam raramente
-						if (id.includes("node_modules/react")) return "react";
-						if (id.includes("node_modules/react-dom")) return "react-dom";
-
-						// Bibliotecas de UI (se usar)
-						if (id.includes("node_modules/@radix-ui")) {
-							return "ui-lib";
-						}
-
-						// Validações de formulário (agrupa com Zod)
-						if (id.includes("validation") || id.includes("schema")) {
-							return "validation";
-						}
-					},
-				},
-			},
 		},
 		server: {
 			host: true,

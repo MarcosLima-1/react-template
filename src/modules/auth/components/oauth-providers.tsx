@@ -1,6 +1,6 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { ChromeIcon } from "lucide-react";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "@/components/ui/button";
 import { useMutationLoginGoogle } from "@/modules/auth/api/login-google";
 import { signIn } from "@/modules/auth/utils/auth";
 

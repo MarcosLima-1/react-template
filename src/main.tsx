@@ -1,27 +1,27 @@
-import "@/lib/sentry-sdk";
-import * as Sentry from "@sentry/react";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { createRouter, RouterProvider } from "@tanstack/react-router";
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./global.css";
-import "@/lib/env";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { TanStackDevtools } from "@tanstack/react-devtools";
-import { FormDevtoolsPanel } from "@tanstack/react-form-devtools";
-import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { isAxiosError } from "axios";
-import { LockKeyholeIcon, SearchXIcon } from "lucide-react";
 import { GenericError } from "@/components/generic-error";
 import { PageNotFound } from "@/components/page-not-found";
 import { SplashScreen } from "@/components/splash-screen";
 import { UnavailableContent } from "@/components/unavailable-content";
+import "@/lib/env";
 import { env } from "@/lib/env";
+import "@/lib/sentry-sdk";
 import { queryClient } from "@/lib/tanstack-query/client";
 import { setupAuthRequestInterceptor, setupAuthResponseInterceptor } from "@/modules/auth/middlewares/auth-interceptors";
 import { getSession } from "@/modules/auth/utils/auth";
 import { routeTree } from "@/types/routeTree.generated";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import * as Sentry from "@sentry/react";
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import { FormDevtoolsPanel } from "@tanstack/react-form-devtools";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { isAxiosError } from "axios";
+import { LockKeyholeIcon, SearchXIcon } from "lucide-react";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./global.css";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
 
 const session = getSession();
@@ -68,7 +68,7 @@ const root = createRoot(rootContainer, {
 	// Callback called when React automatically recovers from errors.
 	onRecoverableError: Sentry.reactErrorHandler(),
 });
-
+console.log("Aplicação iniciou");
 root.render(
 	<StrictMode>
 		<QueryClientProvider client={queryClient}>

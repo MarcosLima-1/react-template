@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { RefreshCw, ServerIcon as ServerX, Wifi } from "lucide-react";
 import z from "zod/v4";
 import { GradientBackground } from "@/components/misc/gradient-background";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { route } from "@/core/routes";
 
@@ -37,7 +37,7 @@ export default function ServerError() {
 						<Wifi className="size-4" />
 						<span>Verifique sua conexão</span>
 					</div>
-					<Button asChild className="w-full" variant="primary">
+					<Button className="w-full" variant="primary">
 						<Link to={link}>
 							<RefreshCw />
 							Tentar Novamente

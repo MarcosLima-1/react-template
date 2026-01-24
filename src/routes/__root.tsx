@@ -15,6 +15,9 @@ export const Route = createRootRouteWithContext<RouteContext>()({
 		],
 	}),
 	component: RootComponent,
+	onCatch(error) {
+		return <div>Error {error.message}</div>;
+	},
 });
 
 function RootComponent() {

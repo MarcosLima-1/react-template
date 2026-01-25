@@ -1,5 +1,5 @@
 # React Template Moderno 2025
-test
+
 [](https://opensource.org/licenses/MIT)
 [](http://makeapullrequest.com)
 [](https://react.dev/)

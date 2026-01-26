@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { cn } from "@/utils/cn";
+import { cn } from "tailwind-variants";
 
 export function Root({ className, ...props }: ComponentProps<"div">) {
 	return (
@@ -10,7 +10,6 @@ export function Root({ className, ...props }: ComponentProps<"div">) {
 		/>
 	);
 }
-
 function Header({ className, ...props }: ComponentProps<"div">) {
 	return <div data-slot="card-header" className={cn("flex h-fit flex-col items-start gap-1.5 [.border-b]:pb-6", className)} {...props} />;
 }
@@ -32,7 +31,7 @@ function Footer({ className, ...props }: ComponentProps<"div">) {
 }
 
 export const Card = {
-	Container: Root,
+	Root,
 	Header,
 	Title,
 	Description,

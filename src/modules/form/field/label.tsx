@@ -1,6 +1,6 @@
-import type { ComponentProps } from "react";
 import { useFieldContext } from "@/modules/form/app-form";
-import { cn } from "@/utils/cn";
+import type { ComponentProps } from "react";
+import { cn } from "tailwind-variants";
 
 export function FieldLabel({ children, className, ...props }: ComponentProps<"label">) {
 	const field = useFieldContext();

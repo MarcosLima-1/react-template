@@ -1,7 +1,7 @@
-import type { ComponentProps } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { useFieldContext } from "@/modules/form/app-form";
-import { cn } from "@/utils/cn";
+import type { ComponentProps } from "react";
+import { cn } from "tailwind-variants";
 
 interface TextareaFieldProps extends ComponentProps<typeof Textarea> {
 	disableCharCounter?: boolean;

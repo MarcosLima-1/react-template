@@ -1,5 +1,5 @@
 import { Select as BaseUiSelect } from "@base-ui/react/select";
-import { cn } from "@/utils/cn";
+import { cn } from "tailwind-variants";
 
 function Select({ ...props }: React.ComponentProps<typeof BaseUiSelect.Root>) {
 	return <BaseUiSelect.Root {...props} />;

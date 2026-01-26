@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "tailwind-variants";
 
 interface GradientBackgroundProps {
 	variants?: "destructive" | "warning" | "default";

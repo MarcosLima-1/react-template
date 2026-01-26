@@ -1,6 +1,6 @@
-import type { ComponentProps } from "react";
 import { useFieldContext } from "@/modules/form/app-form";
-import { cn } from "@/utils/cn";
+import type { ComponentProps } from "react";
+import { cn } from "tailwind-variants";
 
 export function FieldError({ className, ...props }: ComponentProps<"p">) {
 	const field = useFieldContext();

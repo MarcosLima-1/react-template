@@ -1,6 +1,6 @@
-import type { LucideIcon } from "lucide-react";
 import { Image } from "@/components/misc/image";
-import { cn } from "@/utils/cn";
+import type { LucideIcon } from "lucide-react";
+import { cn } from "tailwind-variants";
 
 interface AvatarProps extends React.ComponentProps<"div"> {
 	fallBackIcon: LucideIcon;

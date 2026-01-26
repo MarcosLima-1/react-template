@@ -1,7 +1,3 @@
-import { ArrowBigUpIcon, MailCheckIcon } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
-import z from "zod/v4";
 import { Button } from "@/components/ui/button";
 import { type SecurityCodePurpose, useMutationRequestSecurityCode } from "@/modules/auth/api/request-security-code";
 import { useMutationVerifyUserEmail } from "@/modules/auth/api/verify-user-email";
@@ -9,7 +5,11 @@ import { deleteStorageTempMail } from "@/modules/auth/storage/temp-mail";
 import { signIn } from "@/modules/auth/utils/auth";
 import { useAppForm } from "@/modules/form/app-form";
 import { Field } from "@/modules/form/field";
-import { cn } from "@/utils/cn";
+import { ArrowBigUpIcon, MailCheckIcon } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+import { cn } from "tailwind-variants";
+import z from "zod/v4";
 
 const emailVerificationCodeSchema = z.object({
 	code: z

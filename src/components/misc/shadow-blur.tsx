@@ -1,5 +1,5 @@
 import type { HtmlHTMLAttributes } from "react";
-import { cn } from "@/utils/cn";
+import { cn } from "tailwind-variants";
 
 interface ShadowBlurProps extends HtmlHTMLAttributes<HTMLDivElement> {
 	className?: string;

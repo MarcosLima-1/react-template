@@ -1,7 +1,7 @@
+import { Avatar } from "@/components/ui/avatar";
 import { TicketIcon } from "lucide-react";
 import type { ComponentProps } from "react";
-import { Avatar } from "@/components/ui/avatar";
-import { cn } from "@/utils/cn";
+import { cn } from "tailwind-variants";
 
 interface AppLogoProps extends ComponentProps<"div"> {
 	hideName?: boolean;

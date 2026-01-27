@@ -33,6 +33,10 @@
 	--spacing-header-height: var(--header-height);
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@custom-variant light (&:where(.light, .light *));
+
 :root {
 	--radius: 0.625rem;
 

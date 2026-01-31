@@ -1,14 +1,17 @@
 FROM node:22-bookworm-slim AS base
 
 RUN groupadd -g 972 docker || groupmod -g 972 docker \
-    && usermod -aG docker node
+  && usermod -aG docker node
 
-RUN apt-get update -y && apt-get install -y \
-    curl
+RUN apt update -y && apt install -y \
+  curl \
+  git \
+  gh \
+  ffmpeg
 
-RUN npm install -g bun@1.3.6
+RUN npm install -g bun@1.3.8
 
-RUN bunx playwright install-deps
+RUN bunx playwright install-deps chromium
 
 FROM base AS builder
 USER node
@@ -18,7 +21,7 @@ COPY --chown=node:node package.json bun.lock ./
 
 RUN bun i --frozen-lockfile
 
-RUN bunx playwright install
+RUN bunx playwright install chromium
 
 FROM builder AS runner
 USER node

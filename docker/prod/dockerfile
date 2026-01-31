@@ -2,7 +2,7 @@ FROM node:22-alpine3.23 AS base
 
 ARG VITE_BUILD_MODE=prod
 
-RUN npm install -g bun@1.3.6
+RUN npm install -g bun@1.3.8
 
 FROM base AS build
 

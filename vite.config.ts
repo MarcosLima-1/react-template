@@ -57,6 +57,9 @@ export default defineConfig(async ({ mode }) => {
 			sourcemap: "hidden",
 			outDir: "./build/frontend",
 			reportCompressedSize: true,
+			rollupOptions: {
+				external: ["react-scan"],
+			},
 		},
 		server: {
 			host: true,

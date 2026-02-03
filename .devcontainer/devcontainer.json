@@ -21,7 +21,8 @@
 		"ghcr.io/devcontainers-extra/features/zsh-plugins": {
 			"plugins": "git docker bun",
 			"username": "node"
-		}
+		},
+		"ghcr.io/dhoeric/features/trivy": { "version": "latest" }
 	},
 	"customizations": {
 		"vscode": {
@@ -35,7 +36,8 @@
 				"bradlc.vscode-tailwindcss",
 				"github.vscode-github-actions",
 				"ms-azuretools.vscode-containers",
-				"ms-vscode-remote.remote-containers"
+				"ms-vscode-remote.remote-containers",
+				"AquaSecurityOfficial.trivy-vulnerability-scanner"
 			]
 		}
 	}

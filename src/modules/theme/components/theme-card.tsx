@@ -1,7 +1,7 @@
 import { CheckIcon } from "lucide-react";
 import type { CSSProperties } from "react";
+import { cn } from "tailwind-variants";
 import { SimpleLoader } from "@/components/misc/simple-loader";
-import { cn } from "@/utils/cn.ts";
 import type { ThemeType } from "../constants/themes.ts";
 import { useThemeContext } from "../context/theme-provider";
 
@@ -37,11 +37,11 @@ export function ThemeCard({ theme }: ThemeCardProps) {
 					}
 				/>
 			</div>
-			<p className="motion-preset-fade -top-1 -translate-y-full absolute hidden text-nowrap rounded-md border bg-background p-2 font-bold text-sm group-hover/theme-card:flex">
+			<p className="motion-preset-fade absolute -top-1 hidden -translate-y-full text-nowrap rounded-md border bg-background p-2 font-bold text-sm group-hover/theme-card:flex">
 				{displayName}
 			</p>
 			{isCurrentTheme && (
-				<p className="-translate-y-1/2 absolute top-0 right-0 flex size-4 translate-x-1/2 items-center justify-center rounded-full bg-amber-500 p-1">
+				<p className="absolute top-0 right-0 flex size-4 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-amber-500 p-1">
 					<CheckIcon className="text-black" />
 				</p>
 			)}

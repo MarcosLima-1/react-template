@@ -6,6 +6,9 @@ import { Accordion } from "@/components/ui/accordion/index.tsx";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { InputOTP } from "@/components/ui/input-otp";
+import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
 export const Route = createFileRoute("/examples/components/")({
@@ -44,8 +47,14 @@ function RouteComponent() {
 				<section className="space-y-4">
 					<h2 className="font-semibold text-2xl">Avatar</h2>
 					<div className="flex gap-4 rounded-lg border p-6">
-						<Avatar src="https://github.com/MarcosLima-1.png" alt="@markin" fallBackIcon={UserIcon} />
-						<Avatar alt="Sem imagem" fallBackIcon={UserIcon} />
+						<Avatar.Root>
+							<Avatar.Image src="https://github.com/MarcosLima-1.png" alt="@markin" />
+							<Avatar.Fallback>ML</Avatar.Fallback>
+							<Avatar.Badge />
+						</Avatar.Root>
+						<Avatar.Root>
+							<Avatar.Fallback>ML</Avatar.Fallback>
+						</Avatar.Root>
 					</div>
 				</section>
 
@@ -94,53 +103,52 @@ function RouteComponent() {
 					</div>
 				</section>
 
-				{/* <section className="space-y-4">
+				<section className="space-y-4">
 					<h2 className="font-semibold text-2xl">Input</h2>
 					<div className="grid w-full max-w-sm items-center gap-4 rounded-lg border p-6">
-						<Input type="email" placeholder="Email (padrão)" />
-						<Input variant="outline" type="text" placeholder="Usuário (outline)" />
+						<Input type="number" max={100} placeholder="Número (padrão)" />
 					</div>
-				</section> */}
+				</section>
 
-				{/* <section className="space-y-4">
+				<section className="space-y-4">
 					<h2 className="font-semibold text-2xl">Input OTP</h2>
 					<div className="rounded-lg border p-6">
-						<InputOTP maxLength={6}>
-							<InputOTPGroup>
-								<InputOTPSlot index={0} />
-								<InputOTPSlot index={1} />
-								<InputOTPSlot index={2} />
-							</InputOTPGroup>
-							<InputOTPSeparator />
-							<InputOTPGroup>
-								<InputOTPSlot index={3} />
-								<InputOTPSlot index={4} />
-								<InputOTPSlot index={5} />
-							</InputOTPGroup>
-						</InputOTP>
+						<InputOTP.Root maxLength={6}>
+							<InputOTP.Group>
+								<InputOTP.Slot index={0} />
+								<InputOTP.Slot index={1} />
+								<InputOTP.Slot index={2} />
+							</InputOTP.Group>
+							<InputOTP.Separator />
+							<InputOTP.Group>
+								<InputOTP.Slot index={3} />
+								<InputOTP.Slot index={4} />
+								<InputOTP.Slot index={5} />
+							</InputOTP.Group>
+						</InputOTP.Root>
 					</div>
-				</section> */}
+				</section>
 
-				{/* <section className="space-y-4">
+				<section className="space-y-4">
 					<h2 className="font-semibold text-2xl">Select</h2>
 					<div className="rounded-lg border p-6">
-						<Select>
-							<SelectTrigger className="w-[180px]">
-								<SelectValue placeholder="Selecione uma fruta" />
-							</SelectTrigger>
-							<SelectContent>
-								<SelectGroup>
-									<SelectLabel>Frutas</SelectLabel>
-									<SelectItem value="apple">Maçã</SelectItem>
-									<SelectItem value="banana">Banana</SelectItem>
-									<SelectItem value="blueberry">Mirtilo</SelectItem>
-									<SelectItem value="grapes">Uvas</SelectItem>
-									<SelectItem value="pineapple">Abacaxi</SelectItem>
-								</SelectGroup>
-							</SelectContent>
-						</Select>
+						<Select.Root>
+							<Select.Trigger className="w-45">
+								<Select.Value placeholder="Selecione uma fruta" />
+							</Select.Trigger>
+							<Select.Content>
+								<Select.Group>
+									<Select.Label>Frutas</Select.Label>
+									<Select.Item value="apple">Maçã</Select.Item>
+									<Select.Item value="banana">Banana</Select.Item>
+									<Select.Item value="blueberry">Mirtilo</Select.Item>
+									<Select.Item value="grapes">Uvas</Select.Item>
+									<Select.Item value="pineapple">Abacaxi</Select.Item>
+								</Select.Group>
+							</Select.Content>
+						</Select.Root>
 					</div>
-				</section> */}
+				</section>
 
 				<section className="space-y-4">
 					<h2 className="font-semibold text-2xl">Textarea</h2>

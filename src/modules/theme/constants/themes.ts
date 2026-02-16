@@ -23,8 +23,8 @@ export const themes: ThemeType[] = [
 		scheme: "dark",
 		isNew: true,
 		isPremium: false,
-		backgroundColor: "hsl(20, 14%, 4%)",
-		primaryColor: "hsl(48, 96%, 53%)",
+		backgroundColor: "oklch(0.084 0.006 202.917)",
+		primaryColor: "oklch(0.510 0.362 125.380)",
 	},
 	{
 		displayName: "Claro",
@@ -32,7 +32,7 @@ export const themes: ThemeType[] = [
 		scheme: "light",
 		isNew: true,
 		isPremium: false,
-		backgroundColor: "hsl(0, 0%, 95%)",
-		primaryColor: "hsl(43, 95.8%, 45%)",
+		backgroundColor: "oklch(0.553 0.054 243.018)",
+		primaryColor: "oklch(0.449 0.321 123.334)",
 	},
 ];

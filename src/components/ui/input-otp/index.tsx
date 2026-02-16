@@ -1,10 +1,9 @@
 import { OTPInput, OTPInputContext } from "input-otp";
 import { MinusIcon } from "lucide-react";
-import * as React from "react";
-
+import { useContext } from "react";
 import { cn } from "tailwind-variants";
 
-function InputOTP({
+function InputOTPRoot({
 	className,
 	containerClassName,
 	...props
@@ -32,7 +31,7 @@ function InputOTPSlot({
 }: React.ComponentProps<"div"> & {
 	index: number;
 }) {
-	const inputOTPContext = React.useContext(OTPInputContext);
+	const inputOTPContext = useContext(OTPInputContext);
 	const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
 
 	return (
@@ -63,4 +62,9 @@ function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
 	);
 }
 
-export { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot };
+export const InputOTP = {
+	Root: InputOTPRoot,
+	Group: InputOTPGroup,
+	Slot: InputOTPSlot,
+	Separator: InputOTPSeparator,
+};

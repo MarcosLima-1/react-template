@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select } from "@/components/ui/select";
 import { useFieldContext } from "@/modules/form/app-form";
 
 export interface SelectOption<T extends string = string> {
@@ -13,23 +13,24 @@ interface SelectFieldProps<T extends string> {
 	defaultValue?: T;
 	placeholder?: string;
 }
+
 export function SelectField<T extends string>({ options, placeholder, defaultValue }: SelectFieldProps<T>) {
-	const field = useFieldContext<string>();
+	const field = useFieldContext<string | null>();
 	const value = field.state.value;
 
 	return (
-		<Select value={value} defaultValue={defaultValue} onValueChange={field.handleChange}>
-			<SelectTrigger id={field.name} className="w-[180px]">
-				<SelectValue placeholder={placeholder} />
-			</SelectTrigger>
-			<SelectContent>
+		<Select.Root items={options} value={value} defaultValue={defaultValue} onValueChange={field.handleChange}>
+			<Select.Trigger id={field.name} className="w-45">
+				<Select.Value placeholder={placeholder} />
+			</Select.Trigger>
+			<Select.Content>
 				{options.map((value) => (
-					<SelectItem key={value.value} value={value.value}>
+					<Select.Item key={value.value} value={value.value}>
 						{value.icon && <value.icon />}
 						{value.label}
-					</SelectItem>
+					</Select.Item>
 				))}
-			</SelectContent>
-		</Select>
+			</Select.Content>
+		</Select.Root>
 	);
 }

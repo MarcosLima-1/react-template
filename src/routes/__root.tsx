@@ -1,7 +1,6 @@
 import { createRootRouteWithContext, HeadContent, Outlet } from "@tanstack/react-router";
 import { Footer } from "@/components/footer";
 import { NavigationHeader } from "@/components/navegation-header";
-import { Toaster } from "@/components/ui/sonner";
 import type { RouteContext } from "@/types/tanstack-router";
 
 export const Route = createRootRouteWithContext<RouteContext>()({
@@ -32,7 +31,6 @@ function RootComponent() {
 				</main>
 				<Footer />
 			</div>
-			<Toaster className="h-10" position="bottom-left" richColors duration={5000} />
 		</>
 	);
 }

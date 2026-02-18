@@ -1,5 +1,5 @@
 import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp";
+import { InputOTP } from "@/components/ui/input-otp";
 import { useFieldContext } from "@/modules/form/app-form";
 
 interface ConfirmCodeFieldProps {
@@ -11,7 +11,7 @@ export function ConfirmCodeField({ className, ...props }: ConfirmCodeFieldProps)
 	const fieldName = field.name;
 
 	return (
-		<InputOTP
+		<InputOTP.Root
 			autoFocus
 			className={className}
 			id={fieldName}
@@ -22,17 +22,17 @@ export function ConfirmCodeField({ className, ...props }: ConfirmCodeFieldProps)
 			value={field.state.value}
 			{...props}
 		>
-			<InputOTPGroup>
-				<InputOTPSlot index={0} />
-				<InputOTPSlot index={1} />
-				<InputOTPSlot index={2} />
-			</InputOTPGroup>
-			<InputOTPSeparator />
-			<InputOTPGroup>
-				<InputOTPSlot index={3} />
-				<InputOTPSlot index={4} />
-				<InputOTPSlot index={5} />
-			</InputOTPGroup>
-		</InputOTP>
+			<InputOTP.Group>
+				<InputOTP.Slot index={0} />
+				<InputOTP.Slot index={1} />
+				<InputOTP.Slot index={2} />
+			</InputOTP.Group>
+			<InputOTP.Separator />
+			<InputOTP.Group>
+				<InputOTP.Slot index={3} />
+				<InputOTP.Slot index={4} />
+				<InputOTP.Slot index={5} />
+			</InputOTP.Group>
+		</InputOTP.Root>
 	);
 }

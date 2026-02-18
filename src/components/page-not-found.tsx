@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { GhostIcon, HomeIcon } from "lucide-react";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "@/components/ui/button";
 
 export function PageNotFound() {
 	return (
@@ -10,7 +10,7 @@ export function PageNotFound() {
 			<p className="max-w-md text-lg text-muted-foreground">
 				A página que você está procurando não existe ou pode ter sido movida para outro universo.
 			</p>
-			<Button variant="outline" asChild size="lg">
+			<Button variant="outline" size="lg">
 				<Link to="/">
 					<HomeIcon size={18} />
 					Voltar para a Home

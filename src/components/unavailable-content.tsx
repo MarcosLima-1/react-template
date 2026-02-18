@@ -1,6 +1,6 @@
 import { AlertTriangle, type LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
-import { cn } from "@/utils/cn";
+import { cn } from "tailwind-variants";
 
 interface UnavailableContentProps {
 	title: string;

@@ -1,25 +1,27 @@
-import { QueryClientProvider } from "@tanstack/react-query";
-import { createRouter, RouterProvider } from "@tanstack/react-router";
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./global.css";
-import "@/lib/env";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { TanStackDevtools } from "@tanstack/react-devtools";
-import { FormDevtoolsPanel } from "@tanstack/react-form-devtools";
-import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { isAxiosError } from "axios";
-import { LockKeyholeIcon, SearchXIcon } from "lucide-react";
 import { GenericError } from "@/components/generic-error";
 import { PageNotFound } from "@/components/page-not-found";
 import { SplashScreen } from "@/components/splash-screen";
 import { UnavailableContent } from "@/components/unavailable-content";
+import "@/lib/env";
 import { env } from "@/lib/env";
+import "@/lib/sentry-sdk";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import * as Sentry from "@sentry/react";
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import { FormDevtoolsPanel } from "@tanstack/react-form-devtools";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { isAxiosError } from "axios";
+import { LockKeyholeIcon, SearchXIcon } from "lucide-react";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { queryClient } from "@/lib/tanstack-query/client";
 import { setupAuthRequestInterceptor, setupAuthResponseInterceptor } from "@/modules/auth/middlewares/auth-interceptors";
 import { getSession } from "@/modules/auth/utils/auth";
 import { routeTree } from "@/types/routeTree.generated";
+import "./global.css";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
 
 const session = getSession();
@@ -56,7 +58,18 @@ if (!rootContainer) {
 	throw new Error("Missing #root container");
 }
 
-createRoot(rootContainer).render(
+const root = createRoot(rootContainer, {
+	// Callback called when an error is thrown and not caught by an ErrorBoundary.
+	onUncaughtError: Sentry.reactErrorHandler((error, errorInfo) => {
+		console.warn("Uncaught error", error, errorInfo.componentStack);
+	}),
+	// Callback called when React catches an error in an ErrorBoundary.
+	onCaughtError: Sentry.reactErrorHandler(),
+	// Callback called when React automatically recovers from errors.
+	onRecoverableError: Sentry.reactErrorHandler(),
+});
+console.log("Aplicação iniciou");
+root.render(
 	<StrictMode>
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider>

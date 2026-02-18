@@ -1,8 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { HomeIcon } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@/components/misc/image";
-import { RoundedIcon } from "@/components/misc/rounded-icon";
-import { ShadowBlur } from "@/components/misc/shadow-blur";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export const Route = createFileRoute("/")({
 	component: RouteComponent,
@@ -11,17 +10,12 @@ export const Route = createFileRoute("/")({
 function RouteComponent() {
 	return (
 		<div className="flex h-svh w-full items-center justify-center bg-background">
-			<div className="relative flex size-11/12 flex-col items-center justify-center rounded-2xl border border-primary/20 bg-card p-8 shadow-2xl shadow-purple-500/10 md:size-4/5">
-				<ShadowBlur blur={500} spread={100} className="opacity-40" />
-				<RoundedIcon className="mb-6 bg-linear-to-br from-purple-600 to-blue-500 p-4">
-					<HomeIcon size={80} />
-				</RoundedIcon>
-				<h1 className="bg-linear-to-b from-white to-primary bg-clip-text text-center font-bold text-5xl text-transparent md:text-6xl">
-					React Template
-				</h1>
-				<p className="mt-4 text-center text-gray-400 text-lg">Seu ponto de partida para aplicações modernas.</p>
-			</div>
-
+			<Card.Root className="container">
+				<h1 className="bg-linear-to-b text-center font-bold text-5xl text-primary md:text-6xl">React Template</h1>
+				<Link to="/examples/components">
+					<Button variant="destructive">Entrar</Button>
+				</Link>
+			</Card.Root>
 			<a
 				target="_blank"
 				rel="noopener noreferrer"

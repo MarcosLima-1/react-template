@@ -1,10 +1,13 @@
-/** biome-ignore-all lint/suspicious/noConsole: usado para mostrar o progresso de otimização no console  */
-
 import { exec } from "node:child_process";
 import { readdir, stat, unlink } from "node:fs/promises";
 import { basename, dirname, extname, join, relative } from "node:path";
 import { promisify } from "node:util";
+import { consola } from "consola";
 import { beautifyBytes } from "../src/utils/formatters/beautify-bytes";
+
+// ============================================================================
+// CONFIGURAÇÕES
+// ============================================================================
 
 const execAsync = promisify(exec);
 
@@ -12,6 +15,10 @@ const IMAGES_DIR = join(process.cwd(), "public", "images");
 const FFMPEG_QUALITY = 50; // Qualidade WebP (0-100, onde 100 é a melhor)
 const MAX_HEIGHT = 720; // Resolução máxima (altura)
 const SUPPORTED_EXTENSIONS = [".png", ".jpg", ".jpeg", ".bmp", ".tiff"];
+
+// ============================================================================
+// TIPOS
+// ============================================================================
 
 /**
  * Interface para armazenar o resultado de cada processamento
@@ -31,7 +38,7 @@ async function processImage(imagePath: string): Promise<ProcessResult> {
 	const fileExt = extname(imagePath);
 	const fileName = basename(imagePath, fileExt);
 	const fileDir = dirname(imagePath);
-	const relativePath = relative(IMAGES_DIR, imagePath); // Caminho amigável para o log
+	const relativePath = relative(IMAGES_DIR, imagePath);
 
 	// Se o arquivo já for .webp, pulamos
 	if (fileExt.toLowerCase() === ".webp") {
@@ -45,24 +52,24 @@ async function processImage(imagePath: string): Promise<ProcessResult> {
 
 	const outputPath = join(fileDir, `${fileName}.webp`);
 
-	// Constroi o comando FFmpeg
+	// Constrói o comando FFmpeg
 	// -i: Arquivo de entrada
-	// -q:v ${FFMPEG_QUALITY}: Define a qualidade de compressão (para webp)
+	// -q:v: Define a qualidade de compressão (para webp)
 	// -y: Sobrescreve o arquivo de saída se ele já existir
-	// TODO: explicar o -vf
+	// -vf: Filtro de vídeo para redimensionar mantendo proporção
 	const command = `ffmpeg -y -i "${imagePath}" -vf "scale=-2:'if(gt(ih,${MAX_HEIGHT}),${MAX_HEIGHT},ih)'" -q:v ${FFMPEG_QUALITY} "${outputPath}"`;
 
-	console.log(`[Processando]: ${relativePath}`);
+	consola.start(`Processando: ${relativePath}`);
 
 	try {
 		const originalStats = await stat(imagePath);
-
 		await execAsync(command);
-
 		const newStats = await stat(outputPath);
 
-		//  Exclui o arquivo original ---
+		// Exclui o arquivo original
 		await unlink(imagePath);
+
+		consola.success(`Convertido: ${relativePath}`);
 
 		return {
 			file: relativePath,
@@ -71,7 +78,7 @@ async function processImage(imagePath: string): Promise<ProcessResult> {
 			newSizeBytes: newStats.size,
 		};
 	} catch (error) {
-		console.error(`[Erro] Falha ao processar ${relativePath}:`, error);
+		consola.error(`Falha ao processar ${relativePath}: ${(error as Error).message}`);
 		return {
 			file: relativePath,
 			status: "Error",
@@ -82,10 +89,14 @@ async function processImage(imagePath: string): Promise<ProcessResult> {
 	}
 }
 
+// ============================================================================
+// UTILITÁRIOS
+// ============================================================================
+
 /**
  * Varre o diretório recursivamente em busca de imagens.
  */
-async function scanDirectory(dir: string, results: ProcessResult[]) {
+async function scanDirectory(dir: string, results: ProcessResult[]): Promise<void> {
 	try {
 		const entries = await readdir(dir, { withFileTypes: true });
 
@@ -103,7 +114,7 @@ async function scanDirectory(dir: string, results: ProcessResult[]) {
 			}
 		}
 	} catch (err) {
-		console.error(`Não foi possível escanear o diretório ${dir}:`, err);
+		consola.error(`Não foi possível escanear o diretório ${dir}: ${err}`);
 	}
 }
 
@@ -115,25 +126,32 @@ interface TableDataProps {
 	economy: string;
 }
 
+// ============================================================================
+// FUNÇÃO PRINCIPAL
+// ============================================================================
+
 /**
  * Função principal para iniciar o script e mostrar o resumo.
  */
-async function main() {
-	console.log("--- Iniciando otimização de imagens ---");
-	console.log("AVISO: Este script SUBSTITUI os arquivos de imagem originais por versões .webp.");
-	console.log("Os arquivos originais (png, jpg, etc.) SERÃO EXCLUÍDOS após a conversão.");
-	console.log("Pressione Ctrl+C agora para cancelar (aguardando 5 segundos)...");
+async function main(): Promise<void> {
+	consola.box("🖼️  Otimização de Imagens");
+
+	consola.warn("⚠️  Este script SUBSTITUI os arquivos originais por versões .webp!");
+	consola.warn("Pressione Ctrl+C agora para cancelar (aguardando 5 segundos)...\n");
 
 	await new Promise((resolve) => setTimeout(resolve, 5000));
 
-	console.log("Iniciando varredura...\n");
+	consola.log("Iniciando varredura do diretório...\n");
 
 	const results: ProcessResult[] = [];
 	await scanDirectory(IMAGES_DIR, results);
 
-	console.log("\n--- Processamento Concluído ---");
+	// =========================================================================
+	// PROCESSAMENTO DOS RESULTADOS
+	// =========================================================================
 
-	// --- Geração da Tabela e Resumo ---
+	consola.log("");
+	consola.box("📊 Processamento Concluído");
 
 	let totalOriginal = 0;
 	let totalNew = 0;
@@ -164,7 +182,7 @@ async function main() {
 				errorCount++;
 				tableData.push({
 					file: res.file,
-					status: `❌ Erro`,
+					status: "❌ Erro",
 					oldSize: "N/A",
 					newSize: "N/A",
 					economy: "N/A",
@@ -173,25 +191,36 @@ async function main() {
 		}
 	}
 
+	// Exibe a tabela de resultados
 	if (tableData.length > 0) {
-		console.log("\n--- Relatório de Otimização ---");
+		consola.log("\n📋 Relatório Detalhado:\n");
 		console.table(tableData, ["file", "status", "oldSize", "newSize", "economy"]);
 	} else {
-		console.log("\nNenhum arquivo novo foi convertido.");
+		consola.info("ℹ️  Nenhum arquivo novo foi convertido.");
 	}
 
-	const totalSavings = totalOriginal - totalNew;
+	// =========================================================================
+	// RESUMO FINAL
+	// =========================================================================
 
-	console.log("\n--- Resumo Total ---");
-	console.log(`Arquivos Convertidos: ${convertedCount}`);
-	console.log(`Arquivos Pulados (já .webp): ${skippedCount}`);
-	console.log(`Erros: ${errorCount}`);
-	console.log("-------------------------");
-	console.log(`Tamanho Total Antigo: ${beautifyBytes(totalOriginal)}`);
-	console.log(`Tamanho Total Novo: ${beautifyBytes(totalNew)}`);
-	console.log(`🎉 Economia Total: ${beautifyBytes(totalSavings)}`);
-	console.log("--- Otimização de imagens concluída ---");
+	const totalSavings = totalOriginal - totalNew;
+	const savingsPercent = totalOriginal > 0 ? ((totalSavings / totalOriginal) * 100).toFixed(2) : "0";
+
+	consola.log(`📁 Arquivos Convertidos: ${convertedCount}`);
+	consola.log(`⏭️  Arquivos Pulados (.webp): ${skippedCount}`);
+	consola.log(`❌ Erros: ${errorCount}`);
+	consola.log("");
+	consola.log(`📦 Tamanho Original: ${beautifyBytes(totalOriginal)}`);
+	consola.log(`📦 Tamanho Final: ${beautifyBytes(totalNew)}`);
+	consola.success(`🎉 Economia Total: ${beautifyBytes(totalSavings)} (${savingsPercent}%)`);
 }
 
-// Inicia o processo
-main().catch(console.error);
+// ============================================================================
+// EXECUÇÃO
+// ============================================================================
+
+main().catch((error) => {
+	consola.error("❌ Erro ao executar o script:");
+	consola.error(error);
+	process.exit(1);
+});

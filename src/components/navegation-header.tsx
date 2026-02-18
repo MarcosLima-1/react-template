@@ -1,14 +1,8 @@
-import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { LogOutIcon, User2Icon, UserIcon } from "lucide-react";
 import { AppLogo } from "@/components/misc/app-logo";
-import { Avatar } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button/button";
-import { Dialog } from "@/components/ui/dialog";
-import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import { getUserSessionOptions } from "@/modules/auth/api/get-session-user";
-import { signOut } from "@/modules/auth/utils/auth";
 import { ThemeToggle } from "@/modules/theme/components/theme-toggle";
 
 export function NavigationHeader() {
@@ -24,31 +18,31 @@ export function NavigationHeader() {
 				<div className="flex items-center gap-3">
 					{!session && (
 						<>
-							<Button variant="ghost" size="sm" asChild>
+							<Button variant="ghost" size="sm">
 								<Link to="/auth/login">Entrar</Link>
 							</Button>
-							<Button size="sm" asChild>
+							<Button size="sm">
 								<Link to="/auth/register">Cadastro</Link>
 							</Button>
 						</>
 					)}
-					{session?.user && (
+					{/* {session?.user && (
 						<Dialog.provider>
 							<DropdownMenu>
-								<DropdownMenuTrigger asChild>
+								<DropdownMenuTrigger  >
 									<Button variant="ghost">
 										<Avatar className="size-8" src={session?.user.avatarUrl} fallBackIcon={User2Icon} alt={session?.user.name} />
 										<span className="max-sm:hidden">{session.user.name}</span>
 									</Button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent>
-									<DropdownMenuItem asChild>
+									<DropdownMenuItem  >
 										<Link to="/">
 											<UserIcon />
 											Perfil
 										</Link>
 									</DropdownMenuItem>
-									<Dialog.trigger asChild>
+									<Dialog.trigger  >
 										<DropdownMenuItem variant="destructive">
 											<LogOutIcon /> Sair
 										</DropdownMenuItem>
@@ -60,10 +54,10 @@ export function NavigationHeader() {
 									<Dialog.title>Tem certeza que deseja sair?</Dialog.title>
 								</Dialog.header>
 								<Dialog.footer>
-									<Dialog.trigger asChild>
+									<Dialog.trigger  >
 										<Button variant="outline">Cancelar</Button>
 									</Dialog.trigger>
-									<Dialog.trigger asChild>
+									<Dialog.trigger  >
 										<Button variant="destructive" onClick={signOut}>
 											Sair
 										</Button>
@@ -71,7 +65,7 @@ export function NavigationHeader() {
 								</Dialog.footer>
 							</Dialog.presets.basic>
 						</Dialog.provider>
-					)}
+					)} */}
 					<ThemeToggle />
 				</div>
 			</div>

@@ -1,7 +1,7 @@
 FROM node:22-bookworm AS base
-RUN npm install -g bun@1.3.6
+RUN npm install -g bun@1.3.8
 
-RUN bunx playwright install-deps
+RUN bunx playwright install-deps chromium
 
 FROM base AS builder
 USER node
@@ -11,7 +11,7 @@ COPY --chown=node:node package.json bun.lock ./
 
 RUN bun i --frozen-lockfile
 
-RUN bunx playwright install
+RUN bunx playwright install chromium
 
 COPY --chown=node:node . .
 

@@ -11,9 +11,28 @@ export function NavigationHeader() {
 	return (
 		<header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
 			<div className="container mx-auto flex h-header-height items-center justify-between px-4">
-				<Link to="/" className="flex items-center gap-2">
-					<AppLogo />
-				</Link>
+				<div className="flex items-center gap-6">
+					<Link to="/" className="flex items-center gap-2">
+						<AppLogo />
+					</Link>
+
+					<nav className="hidden items-center gap-6 md:flex">
+						<Link
+							to="/examples/components"
+							className="font-medium text-muted-foreground text-sm transition-colors hover:text-primary"
+							activeProps={{ className: "text-primary" }}
+						>
+							Componentes
+						</Link>
+						<Link
+							to="/examples/form"
+							className="font-medium text-muted-foreground text-sm transition-colors hover:text-primary"
+							activeProps={{ className: "text-primary" }}
+						>
+							Formulários
+						</Link>
+					</nav>
+				</div>
 
 				<div className="flex items-center gap-3">
 					{!session && (

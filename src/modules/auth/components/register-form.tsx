@@ -3,8 +3,8 @@ import { useMutationCheckEmailAvailability } from "@/modules/auth/api/check-emai
 import { useMutationRegister } from "@/modules/auth/api/register";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
 import { saveTempMailInStorage } from "@/modules/auth/storage/temp-mail";
-import { useAppForm } from "@/modules/form/app-form";
-import { Field } from "@/modules/form/field";
+import { Field } from "@/modules/form/components/field";
+import { useAppForm } from "@/modules/form/lib/app-form";
 import { validateEmail } from "@/utils/validators/validate-email";
 import { validatePassword } from "@/utils/validators/validate-password";
 

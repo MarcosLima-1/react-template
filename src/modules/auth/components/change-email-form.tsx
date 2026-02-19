@@ -4,9 +4,9 @@ import { useMutationChangeEmail } from "@/modules/auth/api/change-email";
 import { useMutationCheckEmailAvailability } from "@/modules/auth/api/check-email-availability";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
 import { signOut } from "@/modules/auth/utils/auth";
-import { useAppForm } from "@/modules/form/app-form";
-import { Field } from "@/modules/form/field";
-import { SendSecurityCodeField } from "@/modules/form/form-fields/send-security-code-field";
+import { Field } from "@/modules/form/components/field";
+import { SendSecurityCodeField } from "@/modules/form/components/form-fields/send-security-code-field";
+import { useAppForm } from "@/modules/form/lib/app-form";
 import { validateEmail } from "@/utils/validators/validate-email";
 
 export const changeEmailSchema = z.object({

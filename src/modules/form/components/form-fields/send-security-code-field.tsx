@@ -1,10 +1,10 @@
 import type { ComponentProps } from "react";
+import { cn } from "tailwind-variants";
 import { z } from "zod/v4";
 import type { Input } from "@/components/ui/input";
 import { type SecurityCodePurpose, useMutationRequestSecurityCode } from "@/modules/auth/api/request-security-code.ts";
-import { useAppForm } from "@/modules/form/app-form";
-import { Field } from "@/modules/form/field/index";
-import { cn } from "@/utils/cn.ts";
+import { Field } from "@/modules/form/components/field/index";
+import { useAppForm } from "@/modules/form/lib/app-form";
 import { ALLOWED_DOMAINS } from "@/utils/validators/validate-email";
 
 interface SendSecurityCodeFieldProps extends ComponentProps<typeof Input> {

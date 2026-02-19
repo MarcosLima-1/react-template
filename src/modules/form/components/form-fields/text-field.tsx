@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
+import { cn } from "tailwind-variants";
 import { Input } from "@/components/ui/input";
-import { useFieldContext } from "@/modules/form/app-form";
-import { cn } from "@/utils/cn.ts";
+import { useFieldContext } from "@/modules/form/lib/app-form";
 
 interface TextFieldProps extends ComponentProps<typeof Input> {
 	disableCharCounter?: boolean;

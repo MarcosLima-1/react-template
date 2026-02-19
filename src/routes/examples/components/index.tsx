@@ -5,6 +5,8 @@ import { toast } from "sonner";
 import { Accordion } from "@/components/ui/accordion/index.tsx";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Dialog } from "@/components/ui/dialog";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { InputOTP } from "@/components/ui/input-otp";
@@ -85,7 +87,7 @@ function RouteComponent() {
 					<h2 className="font-semibold text-2xl">Dropdown Menu</h2>
 					<div className="rounded-lg border p-6">
 						<DropdownMenu.Root>
-							<DropdownMenu.Trigger>Abrir menu</DropdownMenu.Trigger>
+							<DropdownMenu.Trigger render={<Button>Menu</Button>} />
 							<DropdownMenu.Content className="w-56">
 								<DropdownMenu.Group>
 									<DropdownMenu.GroupLabel>Configurações</DropdownMenu.GroupLabel>
@@ -154,6 +156,74 @@ function RouteComponent() {
 					<h2 className="font-semibold text-2xl">Textarea</h2>
 					<div className="rounded-lg border p-6">
 						<Textarea placeholder="Digite sua mensagem aqui." className="max-w-md" />
+					</div>
+				</section>
+
+				<section className="space-y-4">
+					<h2 className="font-semibold text-2xl">Card</h2>
+					<div className="rounded-lg border p-6">
+						<Card.Root className="w-full max-w-sm">
+							<Card.Header>
+								<Card.Title>Criar projeto</Card.Title>
+								<Card.Description>Implante seu novo projeto em um clique.</Card.Description>
+							</Card.Header>
+							<Card.Content>
+								<div className="grid w-full items-center gap-4">
+									<div className="flex flex-col space-y-1.5">
+										<Input placeholder="Nome do seu projeto" />
+									</div>
+									<div className="flex flex-col space-y-1.5">
+										<Select.Root>
+											<Select.Trigger>
+												<Select.Value placeholder="Framework" />
+											</Select.Trigger>
+											<Select.Content>
+												<Select.Item value="next">Next.js</Select.Item>
+												<Select.Item value="sveltekit">SvelteKit</Select.Item>
+												<Select.Item value="astro">Astro</Select.Item>
+												<Select.Item value="nuxt">Nuxt.js</Select.Item>
+											</Select.Content>
+										</Select.Root>
+									</div>
+								</div>
+							</Card.Content>
+							<Card.Footer className="flex justify-between">
+								<Button variant="outline">Cancelar</Button>
+								<Button>Implantar</Button>
+							</Card.Footer>
+						</Card.Root>
+					</div>
+				</section>
+
+				<section className="space-y-4">
+					<h2 className="font-semibold text-2xl">Dialog</h2>
+					<div className="rounded-lg border p-6">
+						<Dialog.Root>
+							<Dialog.Trigger render={<Button>Editar Perfil</Button>} />
+							<Dialog.Content className="sm:max-w-md">
+								<Dialog.Header>
+									<Dialog.Title>Editar Perfil</Dialog.Title>
+									<Dialog.Description>Faça alterações em seu perfil aqui. Clique em salvar quando terminar.</Dialog.Description>
+								</Dialog.Header>
+								<div className="grid gap-4 py-4">
+									<div className="grid grid-cols-4 items-center gap-4">
+										<label htmlFor="name" className="text-right font-medium text-sm">
+											Nome
+										</label>
+										<Input defaultValue="Pedro Duarte" className="col-span-3" />
+									</div>
+									<div className="grid grid-cols-4 items-center gap-4">
+										<label htmlFor="username" className="text-right font-medium text-sm">
+											Usuário
+										</label>
+										<Input defaultValue="@peduarte" className="col-span-3" />
+									</div>
+								</div>
+								<Dialog.Footer>
+									<Button type="submit">Salvar alterações</Button>
+								</Dialog.Footer>
+							</Dialog.Content>
+						</Dialog.Root>
 					</div>
 				</section>
 			</div>

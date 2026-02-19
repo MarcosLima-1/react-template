@@ -23,7 +23,6 @@ function RootComponent() {
 	return (
 		<>
 			<HeadContent />
-
 			<div className="w-full">
 				<NavigationHeader />
 				<main className="flex w-full flex-col items-center">

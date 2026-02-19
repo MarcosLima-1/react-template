@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LandingPageContainer } from "@/components/misc/landing-page-container";
-import { LandingSection } from "@/components/misc/landing-section";
+import { Landing } from "@/components/ui/landing";
 import { TermosOfUseText } from "@/modules/landing-pages/pages/policies/components/termos-of-use-text";
 
 export const Route = createFileRoute("/_landing-pages/policies/terms-of-use/")({
@@ -9,10 +8,10 @@ export const Route = createFileRoute("/_landing-pages/policies/terms-of-use/")({
 
 function RouteComponent() {
 	return (
-		<LandingPageContainer>
-			<LandingSection className="items-start">
+		<Landing.Page>
+			<Landing.Container className="items-start">
 				<TermosOfUseText />
-			</LandingSection>
-		</LandingPageContainer>
+			</Landing.Container>
+		</Landing.Page>
 	);
 }

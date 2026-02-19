@@ -6,8 +6,8 @@ import { useMutationLogin } from "@/modules/auth/api/login";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
 import { saveTempMailInStorage } from "@/modules/auth/storage/temp-mail";
 import { signIn } from "@/modules/auth/utils/auth";
-import { useAppForm } from "@/modules/form/app-form";
-import { Field } from "@/modules/form/field";
+import { Field } from "@/modules/form/components/field";
+import { useAppForm } from "@/modules/form/lib/app-form";
 
 export const loginSchema = z.object({
 	email: z.email(),

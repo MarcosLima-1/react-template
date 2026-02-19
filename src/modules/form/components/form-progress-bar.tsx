@@ -1,11 +1,11 @@
+import { cn } from "tailwind-variants";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
-import { cn } from "@/utils/cn.ts";
 
 export function FormProgressBar() {
 	const { currentStep, steps, totalVisualSteps } = useFormStepContext();
 	const progressPercentage = (currentStep / totalVisualSteps) * 100;
 	return (
-		<div className="relative flex w-[300px] items-center justify-around overflow-hidden">
+		<div className="relative flex w-75 items-center justify-around overflow-hidden">
 			{steps
 				.filter(({ hideOnProgressBar }) => !hideOnProgressBar)
 				.map(({ icon: Icon, label }, index) => {
@@ -26,7 +26,7 @@ export function FormProgressBar() {
 						</div>
 					);
 				})}
-			<div className="-translate-y-1/2 absolute top-4 left-0 h-1 w-full rounded-full bg-accent">
+			<div className="absolute top-4 left-0 h-1 w-full -translate-y-1/2 rounded-full bg-accent">
 				<div className="h-full max-w-full rounded-full bg-primary transition-all" style={{ width: `${progressPercentage}%` }} />
 			</div>
 		</div>

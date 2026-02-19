@@ -1,6 +1,6 @@
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { InputOTP } from "@/components/ui/input-otp";
-import { useFieldContext } from "@/modules/form/app-form";
+import { useFieldContext } from "@/modules/form/lib/app-form";
 
 interface ConfirmCodeFieldProps {
 	className?: string;

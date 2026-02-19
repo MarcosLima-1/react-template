@@ -1,18 +1,16 @@
 import type { ComponentProps, KeyboardEvent, WheelEvent } from "react";
 import { Input } from "@/components/ui/input";
-import { useFieldContext } from "@/modules/form/app-form";
-import { beautifyCents } from "@/utils/formatters/beautify-cents.ts";
+import { useFieldContext } from "@/modules/form/lib/app-form";
 
-interface CentsFieldProps extends ComponentProps<typeof Input> {
+interface NumberFieldProps extends ComponentProps<typeof Input> {
 	disableCharCounter?: boolean;
 	min?: number;
 	max?: number;
 }
 
-export function CentsField({ min = 0, disableCharCounter, ...props }: CentsFieldProps) {
+export function NumberField({ min = 0, disableCharCounter, ...props }: NumberFieldProps) {
 	const field = useFieldContext<number | null>();
 	const fieldName = field.name;
-	const value = field.state.value;
 
 	function handleChange(inputValue: string) {
 		let value: number = Number(inputValue);
@@ -65,20 +63,17 @@ export function CentsField({ min = 0, disableCharCounter, ...props }: CentsField
 	}
 
 	return (
-		<div className="flex items-center gap-2">
-			<Input
-				id={fieldName}
-				min={min}
-				name={fieldName}
-				onBlur={field.handleBlur}
-				onChange={(e) => handleChange(e.target.value)}
-				onKeyDown={handleKey}
-				onWheel={handleWheel}
-				type="text"
-				value={field.state.value?.toString() || ""}
-				{...props}
-			/>
-			<p>{value ? beautifyCents(value) : 0}</p>
-		</div>
+		<Input
+			id={fieldName}
+			min={min}
+			name={fieldName}
+			onBlur={field.handleBlur}
+			onChange={(e) => handleChange(e.target.value)}
+			onKeyDown={handleKey}
+			onWheel={handleWheel}
+			type="text"
+			value={field.state.value?.toString() || ""}
+			{...props}
+		/>
 	);
 }

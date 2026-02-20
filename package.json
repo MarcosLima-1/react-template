@@ -44,19 +44,18 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "dayjs": "^1.11.19",
     "immer": "^11.1.4",
-    "input-otp": "^1.4.2",
     "lucide-react": "^0.575.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-markdown": "^10.1.0",
+    "rollup-plugin-visualizer": "^6.0.5",
     "sonner": "^2.0.7",
     "storybook": "^10.2.10",
     "tailwind-variants": "^3.2.2",
     "tailwindcss": "^4.2.0",
     "vite-tsconfig-paths": "^6.1.1",
     "web-vitals": "^5.1.0",
-    "zod": "^4.3.6",
-    "rollup-plugin-visualizer": "^6.0.5"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.2",

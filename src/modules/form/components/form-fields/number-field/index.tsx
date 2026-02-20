@@ -1,6 +1,6 @@
 import type { ComponentProps, KeyboardEvent, WheelEvent } from "react";
 import { Input } from "@/components/ui/input";
-import { useFieldContext } from "@/modules/form/lib/app-form";
+import { useFieldContext } from "@/modules/form/context/app-form-context";
 
 interface NumberFieldProps extends ComponentProps<typeof Input> {
 	disableCharCounter?: boolean;

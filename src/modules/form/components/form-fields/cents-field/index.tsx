@@ -1,6 +1,6 @@
 import type { ComponentProps, KeyboardEvent, WheelEvent } from "react";
 import { Input } from "@/components/ui/input";
-import { useFieldContext } from "@/modules/form/lib/app-form";
+import { useFieldContext } from "@/modules/form/context/app-form-context";
 import { beautifyCents } from "@/utils/formatters/beautify-cents.ts";
 
 interface CentsFieldProps extends ComponentProps<typeof Input> {

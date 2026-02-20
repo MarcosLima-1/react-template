@@ -1,4 +1,4 @@
-import { createFormHook, createFormHookContexts } from "@tanstack/react-form";
+import { createFormHook } from "@tanstack/react-form";
 import { CentsField } from "@/modules/form/components/form-fields/cents-field";
 import { ConfirmCodeField } from "@/modules/form/components/form-fields/confirm-code-field";
 import { NumberField } from "@/modules/form/components/form-fields/number-field";
@@ -8,8 +8,7 @@ import { StepButtons } from "@/modules/form/components/form-fields/step-buttons"
 import { SubmitButton } from "@/modules/form/components/form-fields/submit-button";
 import { TextField } from "@/modules/form/components/form-fields/text-field";
 import { TextareaField } from "@/modules/form/components/form-fields/textarea-field";
-
-export const { fieldContext, formContext, useFieldContext, useFormContext } = createFormHookContexts();
+import { fieldContext, formContext } from "../context/app-form-context";
 
 export const { useAppForm } = createFormHook({
 	fieldComponents: {

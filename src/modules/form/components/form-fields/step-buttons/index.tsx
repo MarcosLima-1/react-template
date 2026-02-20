@@ -1,7 +1,7 @@
 import type { AnyFieldMeta } from "@tanstack/react-form";
 import { Button } from "@/components/ui/button";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
-import { useFieldContext, useFormContext } from "@/modules/form/lib/app-form";
+import { useFieldContext, useFormContext } from "@/modules/form/context/app-form-context";
 
 interface StepButtonsProps {
 	lastButtonText?: string;

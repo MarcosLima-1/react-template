@@ -39,10 +39,12 @@ const meta = {
 		const canvas = within(canvasElement);
 		const input = canvas.getByTitle("input-story");
 
+		await userEvent.clear(input);
 		await userEvent.type(input, "test");
 
 		if (args.onChange) {
 			await expect(args.onChange).toHaveBeenCalled();
+			await expect(input).toHaveValue("test");
 		}
 	},
 	args: { onChange: fn(), title: "input-story" },

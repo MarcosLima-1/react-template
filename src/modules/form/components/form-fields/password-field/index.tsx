@@ -2,7 +2,7 @@ import { EyeClosedIcon, EyeIcon } from "lucide-react";
 import { type ComponentProps, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useFieldContext } from "@/modules/form/lib/app-form";
+import { useFieldContext } from "@/modules/form/context/app-form-context";
 
 export function PasswordField({ ...props }: ComponentProps<"input">) {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);

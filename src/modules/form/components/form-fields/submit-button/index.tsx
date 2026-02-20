@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
 import { Button } from "@/components/ui/button";
-import { useFormContext } from "@/modules/form/lib/app-form";
+import { useFormContext } from "@/modules/form/context/app-form-context";
 
 interface SubmitButtonProps extends ComponentProps<typeof Button> {
 	disableOnDefaultValue?: boolean;

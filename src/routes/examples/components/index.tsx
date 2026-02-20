@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { UserIcon } from "lucide-react";
 import { toast } from "sonner";
-
 import { Accordion } from "@/components/ui/accordion/index.tsx";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,6 @@ import { Card } from "@/components/ui/card";
 import { Dialog } from "@/components/ui/dialog";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { InputOTP } from "@/components/ui/input-otp";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -109,25 +107,6 @@ function RouteComponent() {
 					<h2 className="font-semibold text-2xl">Input</h2>
 					<div className="grid w-full max-w-sm items-center gap-4 rounded-lg border p-6">
 						<Input type="number" max={100} placeholder="Número (padrão)" />
-					</div>
-				</section>
-
-				<section className="space-y-4">
-					<h2 className="font-semibold text-2xl">Input OTP</h2>
-					<div className="rounded-lg border p-6">
-						<InputOTP.Root maxLength={6}>
-							<InputOTP.Group>
-								<InputOTP.Slot index={0} />
-								<InputOTP.Slot index={1} />
-								<InputOTP.Slot index={2} />
-							</InputOTP.Group>
-							<InputOTP.Separator />
-							<InputOTP.Group>
-								<InputOTP.Slot index={3} />
-								<InputOTP.Slot index={4} />
-								<InputOTP.Slot index={5} />
-							</InputOTP.Group>
-						</InputOTP.Root>
 					</div>
 				</section>
 

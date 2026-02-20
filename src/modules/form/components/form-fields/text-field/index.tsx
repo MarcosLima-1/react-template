@@ -1,24 +1,26 @@
 import type { ComponentProps } from "react";
 import { cn } from "tailwind-variants";
-import { Textarea } from "@/components/ui/textarea";
-import { useFieldContext } from "@/modules/form/lib/app-form";
+import { Input } from "@/components/ui/input";
+import { useFieldContext } from "@/modules/form/context/app-form-context";
 
-interface TextareaFieldProps extends ComponentProps<typeof Textarea> {
+interface TextFieldProps extends ComponentProps<typeof Input> {
 	disableCharCounter?: boolean;
 }
 
-export function TextareaField({ className, disableCharCounter, maxLength, ...props }: TextareaFieldProps) {
+export function TextField({ maxLength, disableCharCounter, className, ...props }: TextFieldProps) {
 	const field = useFieldContext<string>();
+	const fieldName = field.name;
 	const valueLength = field.state.value?.length ?? 0;
 
 	return (
-		<div className="relative">
-			<Textarea
-				className={cn("h-50 resize-none", className)}
-				id={field.name}
+		<div className={cn(className, "relative")}>
+			<Input
+				id={fieldName}
 				maxLength={maxLength}
-				name={field.name}
+				name={fieldName}
+				onBlur={field.handleBlur}
 				onChange={(e) => field.handleChange(e.target.value)}
+				type="text"
 				value={field.state.value}
 				{...props}
 			/>

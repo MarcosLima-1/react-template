@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { Select } from "@/components/ui/select";
-import { useFieldContext } from "@/modules/form/lib/app-form";
+import { useFieldContext } from "@/modules/form/context/app-form-context";
 
 export interface SelectOption<T extends string = string> {
 	value: T;

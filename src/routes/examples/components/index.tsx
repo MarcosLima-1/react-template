@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { UserIcon } from "lucide-react";
-import { toast } from "sonner";
 import { Accordion } from "@/components/ui/accordion/index.tsx";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -55,29 +54,6 @@ function RouteComponent() {
 						<Avatar.Root>
 							<Avatar.Fallback>ML</Avatar.Fallback>
 						</Avatar.Root>
-					</div>
-				</section>
-
-				<section className="space-y-4">
-					<h2 className="font-semibold text-2xl">Button & Sonner (Toast)</h2>
-					<div className="flex flex-wrap items-center gap-4 rounded-lg border p-6">
-						<Button>Padrão</Button>
-						<Button
-							onClick={() =>
-								toast.success("Evento criado com sucesso!", {
-									description: "Domingo, 3 de Dezembro de 2023 às 9:00 AM",
-									action: {
-										label: "Desfazer",
-										onClick: () => console.log("Desfeito"),
-									},
-								})
-							}
-						>
-							Mostrar Toast de Sucesso
-						</Button>
-						<Button variant="destructive" onClick={() => toast.error("Falha ao criar evento.")}>
-							Mostrar Toast de Erro
-						</Button>
 					</div>
 				</section>
 

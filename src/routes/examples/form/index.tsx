@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { toast } from "sonner";
 import { z } from "zod";
 import { Card } from "@/components/ui/card";
 import { Field } from "@/modules/form/components/field";
 import { useAppForm } from "@/modules/form/lib/app-form";
+import { toast } from "@/modules/notification/components/toasts";
 
 export const Route = createFileRoute("/examples/form/")({
 	component: RouteComponent,
@@ -40,8 +40,9 @@ function RouteComponent() {
 		},
 		defaultValues,
 		onSubmit: async ({ value }) => {
-			toast.success("Formulário enviado!", {
-				description: <pre className="code mt-2 w-85 rounded-md bg-slate-950 p-4">{JSON.stringify(value, null, 2)}</pre>,
+			toast.success({
+				title: "Formulário enviado!",
+				description: JSON.stringify(value, null, 2),
 			});
 		},
 	});

@@ -1,9 +1,27 @@
-import { toastBase } from "@/modules/notification/components/toast-base";
-import type { ToastBaseProps } from "@/modules/notification/types/toast-base";
+import { toastManager } from "@/modules/notification/lib/toast-manager";
+import type { ToastProps, variants } from "@/modules/notification/types/toast-base";
 
+function add(props: ToastProps, type: variants) {
+	return toastManager.add({
+		...props,
+		type,
+		data: {
+			...props.data,
+			variant: type,
+		},
+	});
+}
+
+/**
+ * Programmatic toast API.
+ *
+ * @example
+ * toast.success({ title: "Saved!", description: "Your changes were saved." });
+ * toast.error({ title: "Error", description: "Something went wrong.", button: { label: "Retry", onClick: () => {} } });
+ */
 export const toast = {
-	error: (toast: Omit<ToastBaseProps, "id" | "variants">) => toastBase({ ...toast, variants: "error" }),
-	success: (toast: Omit<ToastBaseProps, "id" | "variants">) => toastBase({ ...toast, variants: "success" }),
-	warning: (toast: Omit<ToastBaseProps, "id" | "variants">) => toastBase({ ...toast, variants: "warning" }),
-	info: (toast: Omit<ToastBaseProps, "id" | "variants">) => toastBase({ ...toast, variants: "info" }),
+	error: (input: ToastProps) => add(input, "error"),
+	success: (input: ToastProps) => add(input, "success"),
+	warning: (input: ToastProps) => add(input, "warning"),
+	info: (input: ToastProps) => add(input, "info"),
 };

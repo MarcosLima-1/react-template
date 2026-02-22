@@ -22,6 +22,7 @@ import { setupAuthRequestInterceptor, setupAuthResponseInterceptor } from "@/mod
 import { getSession } from "@/modules/auth/utils/auth";
 import { routeTree } from "@/types/routeTree.generated";
 import "./global.css";
+import { ToastProvider } from "@/modules/notification/components/toast-provider";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
 
 const session = getSession();
@@ -73,9 +74,11 @@ root.render(
 	<StrictMode>
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider>
-				<GoogleOAuthProvider clientId={env.VITE_GOOGLE_CLIENT_ID}>
-					<RouterProvider router={router} />
-				</GoogleOAuthProvider>
+				<ToastProvider>
+					<GoogleOAuthProvider clientId={env.VITE_GOOGLE_CLIENT_ID}>
+						<RouterProvider router={router} />
+					</GoogleOAuthProvider>
+				</ToastProvider>
 			</ThemeProvider>
 			{env.VITE_DEV_MODE && (
 				<TanStackDevtools

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
 import { customMarkdownComponents } from "@/lib/react-markdown";
 import { useAlertQueue } from "@/modules/alert/hooks/use-alert-queue";
-import type { Alert, AlertVariant, ImageAlert, MarkdownAlert, TextAlert, TextImageAlert } from "@/modules/alert/types/alert";
+import type { Alert, AlertVariant, ImageAlert, TextAlert, TextImageAlert } from "@/modules/alert/types/alert";
 
 // ---------------------------------------------------------------------------
 // Per-variant content renderers
@@ -15,15 +15,14 @@ type AlertRenderers = {
 };
 
 const alertRenderers: AlertRenderers = {
-	text: (alert: TextAlert) => <p className="text-muted-foreground text-sm leading-relaxed">{alert.content}</p>,
 	image: (alert: ImageAlert) => <img src={alert.src} alt={alert.alt ?? ""} className="w-full rounded-lg object-cover" />,
 	"text-image": (alert: TextImageAlert) => (
 		<div className="space-y-3">
 			<img src={alert.src} alt={alert.alt ?? ""} className="h-auto w-full rounded-lg object-contain" />
-			<p className="text-muted-foreground text-sm leading-relaxed">{alert.content}</p>
+			<ReactMarkdown components={customMarkdownComponents}>{alert.content}</ReactMarkdown>
 		</div>
 	),
-	markdown: (alert: MarkdownAlert) => <ReactMarkdown components={customMarkdownComponents}>{alert.content}</ReactMarkdown>,
+	text: (alert: TextAlert) => <ReactMarkdown components={customMarkdownComponents}>{alert.content}</ReactMarkdown>,
 };
 
 function renderAlertContent(alert: Alert): React.ReactNode {

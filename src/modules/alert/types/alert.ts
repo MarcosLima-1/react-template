@@ -6,7 +6,7 @@
  *
  * @example
  * const alerts: Alert[] = [
- *   { id: "1", variant: "text", title: "Manutenção programada", content: "O sistema ficará indisponível às 02:00." },
+ *   { id: "1", variant: "text", title: "Manutenção programada", content: "O sistema ficará **indisponível** às 02:00." },
  *   { id: "2", variant: "image", src: "/banner.png", alt: "Promoção" },
  *   { id: "3", variant: "text-image", title: "Novidade!", content: "Veja nossa nova funcionalidade.", src: "/feature.png" },
  * ];
@@ -29,17 +29,7 @@ interface AlertBase {
 
 export interface TextAlert extends AlertBase {
 	variant: "text";
-	/** Main body text of the alert. */
-	content: string;
-}
-
-// ---------------------------------------------------------------------------
-// Variant: markdown
-// ---------------------------------------------------------------------------
-
-export interface MarkdownAlert extends AlertBase {
-	variant: "markdown";
-	/** Main body text of the alert. */
+	/** Markdown-enabled body text of the alert. */
 	content: string;
 }
 
@@ -73,7 +63,7 @@ export interface TextImageAlert extends AlertBase {
 // Union — add new variants here
 // ---------------------------------------------------------------------------
 
-export type Alert = TextAlert | ImageAlert | TextImageAlert | MarkdownAlert;
+export type Alert = TextAlert | ImageAlert | TextImageAlert;
 
 /** All possible variant keys derived from the union. */
 export type AlertVariant = Alert["variant"];

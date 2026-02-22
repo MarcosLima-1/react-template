@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AlertDialog } from "@/modules/alert/components/alert-dialog";
-import type { Alert, ImageAlert, MarkdownAlert, TextAlert, TextImageAlert } from "@/modules/alert/types/alert";
+import type { Alert, ImageAlert, TextAlert, TextImageAlert } from "@/modules/alert/types/alert";
 import { toast } from "@/modules/notification/components/toasts";
 
 /** Distributed Omit so discriminated props (content, src, …) remain accessible. */
-type AlertInput = Omit<TextAlert, "id"> | Omit<ImageAlert, "id"> | Omit<TextImageAlert, "id"> | Omit<MarkdownAlert, "id">;
+type AlertInput = Omit<TextAlert, "id"> | Omit<ImageAlert, "id"> | Omit<TextImageAlert, "id">;
 
 export const Route = createFileRoute("/examples/notifications/")({
 	component: RouteComponent,
@@ -23,6 +23,19 @@ function makeId() {
 	return `demo-${++alertCounter}`;
 }
 
+const markdownExample = `## O que há de novo
+
+### Melhorias
+- Desempenho geral aprimorado
+- Novo tema escuro
+
+### Correções
+- Corrigido erro ao exportar relatórios em PDF
+- Resolvido problema de login em dispositivos móveis
+
+> Obrigado a todos que reportaram os problemas!
+`;
+
 function RouteComponent() {
 	const [alerts, setAlerts] = useState<Alert[]>([]);
 
@@ -36,13 +49,13 @@ function RouteComponent() {
 		const id3 = makeId();
 		setAlerts((prev) => [
 			...prev,
-			{ id: id1, variant: "text", title: "Alerta 1 de 3", content: "Esta é a primeira mensagem da fila." },
-			{ id: id2, variant: "text", title: "Alerta 2 de 3", content: "Esta é a segunda mensagem da fila." },
+			{ id: id1, variant: "text", title: "Alerta 1 de 3", content: "Esta é a **primeira** mensagem da fila." },
+			{ id: id2, variant: "text", title: "Alerta 2 de 3", content: "Esta é a **segunda** mensagem da fila." },
 			{
 				id: id3,
 				variant: "text",
 				title: "Alerta 3 de 3",
-				content: "Esta é a última mensagem da fila. Tudo concluído!",
+				content: "Esta é a **última** mensagem da fila. Tudo concluído!",
 			},
 		]);
 	}
@@ -244,37 +257,6 @@ function RouteComponent() {
 
 					<Card.Root className="p-6">
 						<div className="space-y-6">
-							{/* Variante: texto */}
-							<div className="space-y-2">
-								<h3 className="font-medium text-muted-foreground text-sm uppercase tracking-wide">Variante: texto</h3>
-								<div className="flex flex-wrap gap-3">
-									<Button
-										variant="outline"
-										onClick={() =>
-											addAlert({
-												variant: "text",
-												title: "Manutenção programada",
-												content:
-													"O sistema ficará indisponível no domingo, dia 25 de fevereiro, das 02:00 às 04:00 (horário de Brasília). Salve seu trabalho antes desse período.",
-											})
-										}
-									>
-										Alerta de texto
-									</Button>
-									<Button
-										variant="outline"
-										onClick={() =>
-											addAlert({
-												variant: "text",
-												content: "Alerta sem título — apenas com conteúdo de texto.",
-											})
-										}
-									>
-										Alerta de texto (sem título)
-									</Button>
-								</div>
-							</div>
-
 							{/* Variante: imagem */}
 							<div className="space-y-2">
 								<h3 className="font-medium text-muted-foreground text-sm uppercase tracking-wide">Variante: imagem</h3>
@@ -316,34 +298,33 @@ function RouteComponent() {
 									</Button>
 								</div>
 							</div>
-							{/* Variante: markdown */}
+							{/* Variante: texto */}
 							<div className="space-y-2">
-								<h3 className="font-medium text-muted-foreground text-sm uppercase tracking-wide">Variante: markdown</h3>
+								<h3 className="font-medium text-muted-foreground text-sm uppercase tracking-wide">Variante: texto</h3>
 								<div className="flex flex-wrap gap-3">
 									<Button
 										variant="outline"
 										onClick={() =>
 											addAlert({
-												variant: "markdown",
+												variant: "text",
 												title: "Notas da versão 2.1.0",
-												content:
-													"## O que há de novo\n\n### Melhorias\n- Desempenho geral aprimorado\n- Novo tema escuro\n\n### Correções\n- Corrigido erro ao exportar relatórios em PDF\n- Resolvido problema de login em dispositivos móveis\n\n> Obrigado a todos que reportaram os problemas! ## O que há de novo\n\n### Melhorias\n- Desempenho geral aprimorado\n- Novo tema escuro\n\n### Correções\n- Corrigido erro ao exportar relatórios em PDF\n- Resolvido problema de login em dispositivos móveis\n\n> Obrigado a todos que reportaram os problemas! ## O que há de novo\n\n### Melhorias\n- Desempenho geral aprimorado\n- Novo tema escuro\n\n### Correções\n- Corrigido erro ao exportar relatórios em PDF\n- Resolvido problema de login em dispositivos móveis\n\n> Obrigado a todos que reportaram os problemas! ## O que há de novo\n\n### Melhorias\n- Desempenho geral aprimorado\n- Novo tema escuro\n\n### Correções\n- Corrigido erro ao exportar relatórios em PDF\n- Resolvido problema de login em dispositivos móveis\n\n> Obrigado a todos que reportaram os problemas! ## O que há de novo\n\n### Melhorias\n- Desempenho geral aprimorado\n- Novo tema escuro\n\n### Correções\n- Corrigido erro ao exportar relatórios em PDF\n- Resolvido problema de login em dispositivos móveis\n\n> Obrigado a todos que reportaram os problemas!",
+												content: markdownExample,
 											})
 										}
 									>
-										Alerta markdown
+										Alerta de texto
 									</Button>
 									<Button
 										variant="outline"
 										onClick={() =>
 											addAlert({
-												variant: "markdown",
+												variant: "text",
 												content:
 													"**Aviso importante:** A partir de 01/03/2026, o suporte à versão 1.x será encerrado.\n\nCertifique-se de migrar para a versão 2.x antes dessa data.",
 											})
 										}
 									>
-										Alerta markdown (sem título)
+										Alerta de texto (sem título)
 									</Button>
 								</div>
 							</div>

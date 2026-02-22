@@ -31,6 +31,13 @@ export function NavigationHeader() {
 						>
 							Formulários
 						</Link>
+						<Link
+							to="/examples/notifications"
+							className="font-medium text-muted-foreground text-sm transition-colors hover:text-primary"
+							activeProps={{ className: "text-primary" }}
+						>
+							Notificações
+						</Link>
 					</nav>
 				</div>
 

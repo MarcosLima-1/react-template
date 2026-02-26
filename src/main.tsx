@@ -4,9 +4,7 @@ import { SplashScreen } from "@/components/splash-screen";
 import { UnavailableContent } from "@/components/unavailable-content";
 import "@/lib/env";
 import { env } from "@/lib/env";
-import "@/lib/sentry-sdk";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import * as Sentry from "@sentry/react";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { FormDevtoolsPanel } from "@tanstack/react-form-devtools";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -24,6 +22,7 @@ import { routeTree } from "@/types/routeTree.generated";
 import "./global.css";
 import { ToastProvider } from "@/modules/notification/components/toast-provider";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
+import { Sentry } from "@/lib/sentry-sdk";
 
 const session = getSession();
 
@@ -59,6 +58,8 @@ if (!rootContainer) {
 	throw new Error("Missing #root container");
 }
 
+
+
 const root = createRoot(rootContainer, {
 	// Callback called when an error is thrown and not caught by an ErrorBoundary.
 	onUncaughtError: Sentry.reactErrorHandler((error, errorInfo) => {
@@ -69,7 +70,10 @@ const root = createRoot(rootContainer, {
 	// Callback called when React automatically recovers from errors.
 	onRecoverableError: Sentry.reactErrorHandler(),
 });
-console.log("Aplicação iniciou");
+
+setupAuthRequestInterceptor();
+setupAuthResponseInterceptor();
+
 root.render(
 	<StrictMode>
 		<QueryClientProvider client={queryClient}>
@@ -102,8 +106,7 @@ root.render(
 	</StrictMode>,
 );
 
-setupAuthRequestInterceptor();
-setupAuthResponseInterceptor();
+
 
 if (env.VITE_DEV_MODE) {
 	import("react-scan").then(({ scan }) => {

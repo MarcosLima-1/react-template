@@ -8,3 +8,5 @@ Sentry.init({
 	sendDefaultPii: true,
 	enableLogs: true,
 });
+
+export { Sentry };

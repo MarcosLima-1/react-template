@@ -17,44 +17,42 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send 'In Progress' notification
-        if: ${{ github.event.action == 'requested' && github.event.workflow_run.name == 'lint' }}
+        if: ${{ github.event.action == 'requested' }}
         uses: appleboy/discord-action@v1.2.0
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#0000FF" # Blue
           message: |
-            ⏳ **Pipeline Iniciada!**
+            ⏳ **Workflow Iniciado!**
             - Repositório: ${{ github.repository }}
             - Branch: ${{ github.event.workflow_run.head_branch }}
-            - Workflow inicial: ${{ github.event.workflow_run.name }}
             - Link: ${{ github.event.workflow_run.html_url }}
 
-      - name: Send 'Pipeline Finished' notification
-        if: ${{ github.event.action == 'completed' && github.event.workflow_run.conclusion == 'success' && (github.event.workflow_run.name == 'registry-push' || (github.event.workflow_run.name == 'image-scan' && !contains(fromJSON('["main","staging","dev"]'), github.event.workflow_run.head_branch))) }}
+      - name: Send 'Success' notification
+        if: ${{ github.event.action == 'completed' && github.event.workflow_run.conclusion == 'success' }}
         uses: appleboy/discord-action@v1.2.0
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#00FF00" # Green
           message: |
-            ✅ **Pipeline Finalizada com Sucesso!**
+            ✅ **Workflow Concluído com Sucesso!**
             - Repositório: ${{ github.repository }}
             - Branch: ${{ github.event.workflow_run.head_branch }}
-            - Workflow final: ${{ github.event.workflow_run.name }}
+            - Workflow: ${{ github.event.workflow_run.name }}
             - Link: ${{ github.event.workflow_run.html_url }}
 
       - name: Send 'Failure' notification
-        if: ${{ github.event.action == 'completed' && contains(fromJSON('["failure","cancelled","timed_out","action_required","startup_failure","stale"]'), github.event.workflow_run.conclusion) }}
+        if: ${{ github.event.action == 'completed' && github.event.workflow_run.conclusion == 'failure' }}
         uses: appleboy/discord-action@v1.2.0
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#FF0000" # Red
           message: |
-            ⚠️ **Erro na Pipeline!**
+            ⚠️ **Workflow Falhou!**
             - Repositório: ${{ github.repository }}
             - Branch: ${{ github.event.workflow_run.head_branch }}
             - Workflow: ${{ github.event.workflow_run.name }}
-            - Conclusão: ${{ github.event.workflow_run.conclusion }}
             - Link: ${{ github.event.workflow_run.html_url }}

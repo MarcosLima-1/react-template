@@ -1,16 +1,23 @@
 import { describe, expect, it, vi } from "vitest";
 import { copyToClipboard } from "@/utils/copy-to-clipboard";
 
-//vi.mock("sonner", () => ({
-//	toast: {
-//		success: vi.fn(),
-//	},
-//}));
+const toastSuccess = vi.fn();
 
-Object.assign(navigator, {
-	clipboard: {
-		writeText: vi.fn(),
+vi.mock("@/modules/notification/components/toasts", () => ({
+	toast: {
+		success: toastSuccess,
 	},
+}));
+
+const writeText = vi.fn();
+
+Object.defineProperty(globalThis, "navigator", {
+	value: {
+		clipboard: {
+			writeText,
+		},
+	},
+	configurable: true,
 });
 
 describe("copyToClipboard", () => {
@@ -20,7 +27,7 @@ describe("copyToClipboard", () => {
 
 		copyToClipboard({ value, message });
 
-		expect(navigator.clipboard.writeText).toHaveBeenCalledWith(value);
-		//expect(toast.success).toHaveBeenCalledWith(message);
+		expect(writeText).toHaveBeenCalledWith(value);
+		expect(toastSuccess).toHaveBeenCalledWith({ title: "Valor Copiado!", description: message });
 	});
 });

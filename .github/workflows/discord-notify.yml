@@ -27,7 +27,6 @@ jobs:
             ⏳ **Workflow Iniciado!**
             - Repositório: ${{ github.repository }}
             - Branch: ${{ github.event.workflow_run.head_branch }}
-            - Workflow: ${{ github.event.workflow_run.name }}
             - Link: ${{ github.event.workflow_run.html_url }}
 
       - name: Send 'Success' notification

@@ -13,7 +13,7 @@ export function queryRetryHandler(retryCount: number, error: unknown): boolean {
 
 	if (error.code === "ERR_NETWORK") {
 		location.replace("/error/server-error");
+    return false;
 	}
-
-	return false; // ? apos 3 tentativas ele para.
+	return false; // ? cancel after 3 tries
 }

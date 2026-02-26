@@ -1,9 +1,7 @@
 import type { MutationMeta, QueryMeta } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
-import { toast } from "@/modules/notification/components/toasts";
 import { NON_RETRYABLE_STATUSES } from "@/lib/tanstack-query/retry";
-
-
+import { toast } from "@/modules/notification/components/toasts";
 
 export function handleToastError(error: Error, meta?: QueryMeta | MutationMeta) {
 	if (meta?.silent) return;

@@ -1,14 +1,16 @@
 import { createRootRouteWithContext, HeadContent, Outlet } from "@tanstack/react-router";
 import { Footer } from "@/components/footer";
 import { NavigationHeader } from "@/components/navegation-header";
-import { Toaster } from "@/components/ui/sonner";
 import type { RouteContext } from "@/types/tanstack-router";
 
 export const Route = createRootRouteWithContext<RouteContext>()({
 	head: () => ({
 		meta: [
 			{ name: "title", content: "React Template" },
-			{ name: "description", content: "Um template moderno para aplicações React." },
+			{
+				name: "description",
+				content: "Um template moderno para aplicações React.",
+			},
 		],
 	}),
 	component: RootComponent,
@@ -25,7 +27,6 @@ function RootComponent() {
 				</main>
 				<Footer />
 			</div>
-			<Toaster className="h-10" position="bottom-left" richColors duration={5000} />
 		</>
 	);
 }

@@ -1,0 +1,52 @@
+name: image-scan
+run-name: Image scan - ${{ github.run_number }}
+
+on:
+  workflow_run:
+    workflows: ["integration-tests"]
+    types:
+      - completed
+
+jobs:
+  image-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Define image tag
+        id: meta
+        run: echo "tag=${{ secrets.DOCKER_USERNAME }}/apps:${{ github.event.repository.name }}-${{ github.event.workflow_run.head_branch }}-latest" >> $GITHUB_OUTPUT
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./docker/prod/dockerfile
+          push: false
+          load: true
+          tags: ${{ steps.meta.outputs.tag }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ steps.meta.outputs.tag }}
+          format: "table"
+          exit-code: 0
+          ignore-unfixed: true
+          vuln-type: "os,library"
+          severity: "CRITICAL,HIGH"
+          output: "trivy_report.txt"
+
+      - name: Send vulnerability report to Discord
+        uses: appleboy/discord-action@v1.2.0
+        with:
+          webhook_id: ${{ secrets.DISCORD_VULNERABILITY_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_VULNERABILITY_WEBHOOK_TOKEN }}
+          message: "Segue o relatório de vulnerabilidades para a imagem `${{ steps.meta.outputs.tag }}`"
+          file: ./trivy_report.txt

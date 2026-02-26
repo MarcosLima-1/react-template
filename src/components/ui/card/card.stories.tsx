@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { BellIcon } from "lucide-react";
 import { useId } from "react";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
 const meta = {
-	component: Card.Container,
+	component: Card.Root,
 	parameters: {
 		layout: "centered",
 	},
 	tags: ["autodocs"],
-} satisfies Meta<typeof Card.Container>;
+} satisfies Meta<typeof Card.Root>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -21,7 +21,7 @@ export const Form: Story = {
 		const inputId = useId();
 
 		return (
-			<Card.Container className="w-[350px]">
+			<Card.Root className="w-87">
 				<Card.Header>
 					<Card.Title>Create project</Card.Title>
 					<Card.Description>Deploy your new project in one-click.</Card.Description>
@@ -40,14 +40,14 @@ export const Form: Story = {
 					<Button variant="outline">Cancel</Button>
 					<Button>Deploy</Button>
 				</Card.Footer>
-			</Card.Container>
+			</Card.Root>
 		);
 	},
 };
 
 export const Simple: Story = {
 	render: () => (
-		<Card.Container className="w-[350px]">
+		<Card.Root className="w-87">
 			<Card.Header>
 				<Card.Title className="flex items-center gap-2">
 					<BellIcon size={16} />
@@ -58,6 +58,6 @@ export const Simple: Story = {
 			<Card.Content>
 				<p className="text-sm">Your team has just requested to join the project.</p>
 			</Card.Content>
-		</Card.Container>
+		</Card.Root>
 	),
 };

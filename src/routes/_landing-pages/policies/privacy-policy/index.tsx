@@ -9,11 +9,9 @@ export const Route = createFileRoute("/_landing-pages/policies/privacy-policy/")
 function RouteComponent() {
 	return (
 		<Landing.Page>
-			<Landing.Section>
-				<Landing.Container className="flex-col">
-					<PrivacyPolicyText />
-				</Landing.Container>
-			</Landing.Section>
+			<Landing.Container className="items-start">
+				<PrivacyPolicyText />
+			</Landing.Container>
 		</Landing.Page>
 	);
 }

@@ -3,9 +3,9 @@ import { z } from "zod/v4";
 import { useMutationChangePassword } from "@/modules/auth/api/change-password";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
 import { signOut } from "@/modules/auth/utils/auth";
-import { useAppForm } from "@/modules/form/app-form";
-import { Field } from "@/modules/form/field";
-import { SendSecurityCodeField } from "@/modules/form/form-fields/send-security-code-field";
+import { Field } from "@/modules/form/components/field";
+import { SendSecurityCodeField } from "@/modules/form/components/form-fields/send-security-code-field";
+import { useAppForm } from "@/modules/form/lib/app-form";
 import { validatePassword } from "@/utils/validators/validate-password";
 
 export const changePasswordSchema = z.object({

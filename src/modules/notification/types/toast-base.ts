@@ -1,12 +1,8 @@
+import type { ToastManagerAddOptions } from "@base-ui/react/toast";
+
 export type variants = "success" | "error" | "warning" | "info";
 
-export interface ToastBaseProps {
-	id: string | number;
-	title: string;
-	description?: string;
-	variants?: variants;
-	button?: {
-		label: string;
-		onClick: () => void;
-	};
-}
+/** @internal Data payload carried inside the Base UI toast object */
+export type ToastData = { variant: "success" | "error" | "warning" | "info" };
+
+export type ToastProps = ToastManagerAddOptions<ToastData>;

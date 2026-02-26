@@ -1,16 +1,13 @@
 import { ImageOffIcon, RotateCwIcon } from "lucide-react";
 import { type ComponentProps, useState } from "react";
+import { cn } from "tailwind-variants";
 import { z } from "zod/v4";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import type { ImageTypes } from "@/types/images-types.generated";
-import { cn } from "@/utils/cn";
 
 interface ImageProps extends ComponentProps<"img"> {
-	alt: string;
 	src: ImageTypes | (string & {});
-	width: number;
-	height: number;
 	priority?: boolean;
 }
 
@@ -27,12 +24,12 @@ export function Image({ alt, height, className, priority = false, src, width, ..
 	if (!isUrl && !isLocalImage) {
 		return (
 			<div className="flex h-full flex-1 items-center justify-center">
-				<Card.Container className="mx-auto w-fit max-w-sm">
+				<Card.Root className="mx-auto w-fit max-w-sm">
 					<Card.Content className="flex items-center gap-3 p-4">
 						<ImageOffIcon className="size-5 text-muted-foreground" />
 						<p className="text-muted-foreground text-sm">Link da imagem inválido</p>
 					</Card.Content>
-				</Card.Container>
+				</Card.Root>
 			</div>
 		);
 	}
@@ -40,7 +37,7 @@ export function Image({ alt, height, className, priority = false, src, width, ..
 	if (error) {
 		return (
 			<div className="flex h-full flex-1 items-center justify-center">
-				<Card.Container className="mx-auto w-fit max-w-sm">
+				<Card.Root className="mx-auto w-fit max-w-sm">
 					<Card.Content className="flex items-center gap-3 p-4">
 						<ImageOffIcon className="size-5 text-destructive" />
 						<p className="text-muted-foreground text-sm">Erro ao carregar a imagem!</p>
@@ -56,7 +53,7 @@ export function Image({ alt, height, className, priority = false, src, width, ..
 							<RotateCwIcon />
 						</Button>
 					</Card.Content>
-				</Card.Container>
+				</Card.Root>
 			</div>
 		);
 	}

@@ -1,15 +1,15 @@
 import { ArrowBigUpIcon, MailCheckIcon } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner";
+import { cn } from "tailwind-variants";
 import z from "zod/v4";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "@/components/ui/button";
 import { type SecurityCodePurpose, useMutationRequestSecurityCode } from "@/modules/auth/api/request-security-code";
 import { useMutationVerifyUserEmail } from "@/modules/auth/api/verify-user-email";
 import { deleteStorageTempMail } from "@/modules/auth/storage/temp-mail";
 import { signIn } from "@/modules/auth/utils/auth";
-import { useAppForm } from "@/modules/form/app-form";
-import { Field } from "@/modules/form/field";
-import { cn } from "@/utils/cn";
+import { Field } from "@/modules/form/components/field";
+import { useAppForm } from "@/modules/form/lib/app-form";
+import { toast } from "@/modules/notification/components/toasts";
 
 const emailVerificationCodeSchema = z.object({
 	code: z
@@ -62,7 +62,7 @@ export function EmailVerificationForm({ email, purpose, className }: EmailVerifi
 		setIsResendInCoolDown(true);
 
 		if (!email) {
-			toast.error("Email não especificado!");
+			toast.error({ title: "Email não especificado!" });
 			return;
 		}
 		setTimeout(() => {

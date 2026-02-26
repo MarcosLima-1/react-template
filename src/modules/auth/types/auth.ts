@@ -1,5 +1,5 @@
 import { z } from "zod/v4";
-import { type User, UserSchema } from "@/schemas/user";
+import { type User, userSchema } from "@/schemas/user";
 
 export interface AuthResponse {
 	accessToken: string;
@@ -12,7 +12,7 @@ export interface SaveSessionDataProps {
 }
 
 export const sessionSchema = z.object({
-	user: UserSchema,
+	user: userSchema,
 });
 
 export type SessionProps = z.infer<typeof sessionSchema>;

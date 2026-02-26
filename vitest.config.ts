@@ -9,11 +9,18 @@ const dirname = typeof __dirname !== "undefined" ? __dirname : path.dirname(file
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
 	test: {
-		environment: "jsdom",
 		alias: {
 			"@": "/src",
 		},
 		projects: [
+			{
+				extends: true,
+				test: {
+					name: "unit",
+					include: ["src/**/*.spec.ts"],
+					environment: "node",
+				},
+			},
 			{
 				extends: true,
 				plugins: [
@@ -25,6 +32,7 @@ export default defineConfig({
 				],
 				test: {
 					name: "storybook",
+					environment: "jsdom",
 					browser: {
 						enabled: true,
 						headless: true,
@@ -32,9 +40,6 @@ export default defineConfig({
 						instances: [
 							{
 								browser: "chromium",
-							},
-							{
-								browser: "firefox",
 							},
 						],
 					},

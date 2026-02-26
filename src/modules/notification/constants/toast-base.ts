@@ -29,3 +29,12 @@ export const toastMeta: Record<variants, ToastMetaProps> = {
 		icon: CircleAlertIcon,
 	},
 };
+
+export function getToastMeta(variant?: variants): ToastMetaProps {
+	if (!variant || !toastMeta[variant]) {
+		console.warn(`Unknown toast variant: ${variant}. Falling back to 'info'.`);
+		return toastMeta.info;
+	}
+
+	return toastMeta[variant];
+}

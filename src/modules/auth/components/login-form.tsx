@@ -1,13 +1,13 @@
 import { isAxiosError } from "axios";
 import { useEffect } from "react";
-import { toast } from "sonner";
 import { z } from "zod/v4";
 import { useMutationLogin } from "@/modules/auth/api/login";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
 import { saveTempMailInStorage } from "@/modules/auth/storage/temp-mail";
 import { signIn } from "@/modules/auth/utils/auth";
-import { useAppForm } from "@/modules/form/app-form";
-import { Field } from "@/modules/form/field";
+import { Field } from "@/modules/form/components/field";
+import { useAppForm } from "@/modules/form/lib/app-form";
+import { toast } from "@/modules/notification/components/toasts";
 
 export const loginSchema = z.object({
 	email: z.email(),
@@ -24,7 +24,7 @@ export function LoginForm() {
 		if (!isAxiosError(error)) return;
 
 		if (isError && error.response?.status !== 500) {
-			toast.error("Credenciais inválidas!");
+			toast.error({ title: "Credenciais inválidas!" });
 		}
 	}, [error, isError]);
 
@@ -52,7 +52,7 @@ export function LoginForm() {
 		}
 
 		if (user.status === "INACTIVE") {
-			toast.error("Conta banida!");
+			toast.error({ title: "Conta banida!" });
 			return;
 		}
 

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { TrashIcon } from "lucide-react";
 import { expect, fn, userEvent, within } from "storybook/test";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "@/components/ui/button";
 
 const meta = {
 	component: Button,

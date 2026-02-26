@@ -9,11 +9,9 @@ export const Route = createFileRoute("/_landing-pages/policies/terms-of-use/")({
 function RouteComponent() {
 	return (
 		<Landing.Page>
-			<Landing.Section>
-				<Landing.Container className="flex-col">
-					<TermosOfUseText />
-				</Landing.Container>
-			</Landing.Section>
+			<Landing.Container className="items-start">
+				<TermosOfUseText />
+			</Landing.Container>
 		</Landing.Page>
 	);
 }

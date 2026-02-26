@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button/button";
+import { Button } from "@/components/ui/button";
 import { EmailVerificationForm } from "@/modules/auth/components/email-verification-form";
 import { OauthProviders } from "@/modules/auth/components/oauth-providers";
 import { RegisterForm } from "@/modules/auth/components/register-form";
@@ -20,7 +20,7 @@ function RouteComponent() {
 				<h1 className="font-bold text-2xl">Crie usa conta!</h1>
 				{currentStep === 1 && <RegisterForm />}
 				{currentStep === 2 && <EmailVerificationForm email={tempMail} purpose="EMAIL_VERIFICATION" />}
-				<Button variant="link" className="text-xs" asChild>
+				<Button variant="link" className="text-xs">
 					<Link to="/auth/login">
 						Já tem uma conta?<span className="text-primary">Entre agora!</span>
 					</Link>

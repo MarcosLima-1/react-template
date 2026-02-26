@@ -7,17 +7,19 @@ include:
   - ../services/docker-compose.yml
 
 services:
-  react-template:
+  app:
     ports:
       - 5173:5173
     build:
       context: ../../
       dockerfile: docker/dev/dockerfile
-      args:
-        VITE_BUILD_MODE: dev
     volumes:
       - ../../:/app
       - home-data:/home/node
+      - /app/node_modules
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.zshrc:/home/node/.zshrc
+      - ~/.config/gh/hosts.yml:/home/node/.config/gh/hosts.yml
     deploy:
       resources:
         limits:

@@ -41,8 +41,8 @@ export function getExistingSession(): SessionProps {
 	const session = getStorageSession();
 
 	if (!session) {
-		 signOut();
-     return;
+		signOut();
+    throw new Error("Sessão expirada ou inexistente. Redirecionando para login.");
 	}
 
 	return session;

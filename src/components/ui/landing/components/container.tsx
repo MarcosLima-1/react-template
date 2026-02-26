@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
+import { cn } from "tailwind-variants";
 
-import { cn } from "@/utils/cn";
 
 interface LandingContainerProps extends ComponentProps<"div"> {
 	className?: string;

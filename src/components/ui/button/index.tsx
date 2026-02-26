@@ -65,7 +65,7 @@ const buttonVariants = tv({
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 type ShadowVariants = VariantProps<typeof shadowVariants>;
 
-interface ButtonProps extends BaseUiButtonProps, ButtonVariants, ShadowVariants {
+export interface ButtonProps extends BaseUiButtonProps, ButtonVariants, ShadowVariants {
 	className?: string;
 }
 

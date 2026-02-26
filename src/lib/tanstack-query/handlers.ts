@@ -15,7 +15,7 @@ export const globalErrorHandler = (error: Error, item: Query | Mutation) => {
 		user: userName,
 	};
 
-	// console.error(context);
+	console.error(context);
 
 	if (meta?.redirectToOnError) {
 		location.replace(meta.redirectToOnError);

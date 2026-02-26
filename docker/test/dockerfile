@@ -1,5 +1,5 @@
 FROM node:22-bookworm AS base
-RUN npm install -g bun@1.3.8
+RUN npm install -g bun@1.3.10
 
 RUN bunx playwright install-deps chromium
 
@@ -15,7 +15,7 @@ RUN bunx playwright install chromium
 
 COPY --chown=node:node . .
 
-FROM base AS runner
+FROM builder AS runner
 USER node
 WORKDIR /app
 

@@ -50,9 +50,7 @@ const meta = {
 		const button = canvas.getByTitle("dialog-trigger");
 
 		await userEvent.click(button);
-		await new Promise((resolve) => setTimeout(resolve, 200));
-
-		const title = canvas.getByText(/Título do Dialog/i);
+		const title = await canvas.findByText(/Título do Dialog/i);
 		await expect(title).toBeInTheDocument();
 	},
 } satisfies Meta<typeof Dialog.Root>;
@@ -102,9 +100,7 @@ export const WithFooter: Story = {
 					<Dialog.Description>Tem certeza que deseja continuar? Esta ação não pode ser desfeita.</Dialog.Description>
 				</Dialog.Header>
 				<Dialog.Footer>
-					<Dialog.Close>
-						<Button variant="outline">Cancelar</Button>
-					</Dialog.Close>
+					<Dialog.Close render={<Button variant="outline">Cancelar</Button>} />
 					<Button variant="primary">Confirmar</Button>
 				</Dialog.Footer>
 			</Dialog.Content>
@@ -157,9 +153,7 @@ export const WithoutCloseButton: Story = {
 					<Dialog.Description>Você deve completar esta ação antes de continuar.</Dialog.Description>
 				</Dialog.Header>
 				<Dialog.Footer>
-					<Dialog.Close>
-						<Button variant="primary">Completar</Button>
-					</Dialog.Close>
+					<Dialog.Close render={<Button variant="primary">Completar</Button>} />
 				</Dialog.Footer>
 			</Dialog.Content>
 		</Dialog.Root>
@@ -197,9 +191,7 @@ export const WithForm: Story = {
 						</div>
 					</div>
 					<Dialog.Footer>
-						<Dialog.Close>
-							<Button variant="outline">Cancelar</Button>
-						</Dialog.Close>
+						<Dialog.Close render={<Button variant="outline">Cancelar</Button>} />
 						<Button variant="primary">Salvar alterações</Button>
 					</Dialog.Footer>
 				</Dialog.Content>
@@ -227,9 +219,7 @@ export const DeleteConfirmation: Story = {
 					<Dialog.Description>Tem certeza que deseja excluir este item? Esta ação é permanente e não pode ser desfeita.</Dialog.Description>
 				</Dialog.Header>
 				<Dialog.Footer>
-					<Dialog.Close>
-						<Button variant="outline">Cancelar</Button>
-					</Dialog.Close>
+					<Dialog.Close render={<Button variant="outline">Cancelar</Button>} />
 					<Button variant="destructive">Excluir</Button>
 				</Dialog.Footer>
 			</Dialog.Content>

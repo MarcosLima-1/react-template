@@ -1,15 +1,16 @@
 import { describe, expect, it, vi } from "vitest";
 import { copyToClipboard } from "@/utils/copy-to-clipboard";
 
-const toastSuccess = vi.fn();
+const { toastSuccess, writeText } = vi.hoisted(() => ({
+	toastSuccess: vi.fn(),
+	writeText: vi.fn(),
+}));
 
 vi.mock("@/modules/notification/components/toasts", () => ({
 	toast: {
 		success: toastSuccess,
 	},
 }));
-
-const writeText = vi.fn();
 
 Object.defineProperty(globalThis, "navigator", {
 	value: {

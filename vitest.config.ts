@@ -23,6 +23,24 @@ export default defineConfig({
 			},
 			{
 				extends: true,
+				optimizeDeps: {
+					include: [
+						"@react-oauth/google",
+						"@tanstack/react-devtools",
+						"@tanstack/react-form-devtools",
+						"@tanstack/react-query",
+						"@tanstack/react-query-devtools",
+						"@tanstack/react-router",
+						"@tanstack/react-router-devtools",
+						"@sentry/react",
+						"@base-ui/react/toast",
+						"axios",
+						"react-dom/client",
+						"react-markdown",
+						"react-scan",
+						"zod",
+					],
+				},
 				plugins: [
 					// The plugin will run tests for the stories defined in your Storybook config
 					// See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest

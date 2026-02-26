@@ -21,7 +21,7 @@
     "docker:test": "docker compose -f ./docker/test/docker-compose.yml up --wait --wait-timeout 480 --build --remove-orphans && bun run docker:test-down",
     "docker:test-down": "docker compose -f ./docker/test/docker-compose.yml down -v",
     "docker:build": "docker compose -f ./docker/prod/docker-compose.yml up -d --build --remove-orphans",
-    "docker:scan": "docker compose -f ./docker/prod/docker-compose.yml build && trivy image --format template --template '@contrib/html.tpl' production-react-template-app > ./build/trivy/scan-result.html"
+    "docker:scan": "docker compose -f ./docker/prod/docker-compose.yml build && trivy image --format table --output ./build/trivy/scan-result.txt production-react-template-app"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",

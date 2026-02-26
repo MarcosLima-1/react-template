@@ -165,7 +165,7 @@ As variáveis de ambiente são validadas e tipadas com **Zod** para garantir seg
 // Exemplo de acesso à variável de ambiente
 import { env } from "@/lib/env";
 
-const apiUrl = env.VITE_URL_API;
+const apiUrl = env.VITE_API_URL;
 ```
 
 ---

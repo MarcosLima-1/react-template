@@ -41,7 +41,8 @@ export function getExistingSession(): SessionProps {
 	const session = getStorageSession();
 
 	if (!session) {
-		throw signOut();
+		 signOut();
+     return;
 	}
 
 	return session;

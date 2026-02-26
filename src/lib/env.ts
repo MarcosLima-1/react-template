@@ -1,13 +1,13 @@
 import { z } from "zod/v4";
 
 const envSchema = z.object({
+  // ? Alternar a visibilidade das ferramentas de desenvolvimento
 	VITE_ENVIRONMENT: z.enum(["development", "production"]).default("production"),
-	// ? Alternar a visibilidade das ferramentas de desenvolvimento
 	VITE_DEV_MODE: z
 		.string()
 		.transform((val) => val === "true")
 		.default(false),
-	VITE_URL_API: z.url(),
+	VITE_API_URL: z.url(),
 	VITE_WEB_VERSION: z.string().min(5),
 	VITE_GOOGLE_CLIENT_ID: z.string(),
 

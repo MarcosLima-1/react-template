@@ -2,7 +2,11 @@ import type { ComponentPropsWithRef } from "react";
 import { cn } from "tailwind-variants";
 import { useFieldContext } from "@/modules/form/context/app-form-context";
 
-function FieldLabel({ children, className, ...props }: ComponentPropsWithRef<"label">) {
+interface FieldLabelProps extends ComponentPropsWithRef<"label"> {
+	required?: boolean;
+}
+
+function FieldLabel({ children, className, required, ...props }: FieldLabelProps) {
 	const field = useFieldContext();
 
 	return (
@@ -15,6 +19,7 @@ function FieldLabel({ children, className, ...props }: ComponentPropsWithRef<"la
 			{...props}
 		>
 			{children}
+			{required && <span className="text-destructive">*</span>}
 		</label>
 	);
 }

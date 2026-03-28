@@ -1,9 +1,8 @@
-import { GenericError } from "@/components/generic-error";
-import { PageNotFound } from "@/components/page-not-found";
-import { SplashScreen } from "@/components/splash-screen";
-import { UnavailableContent } from "@/components/unavailable-content";
+import { GenericError } from "@/components/status/generic-error";
+import { PageNotFound } from "@/components/status/page-not-found";
+import { SplashScreen } from "@/components/status/splash-screen";
+import { UnavailableContent } from "@/components/status/unavailable-content";
 import "@/lib/env";
-import { env } from "@/lib/env";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { FormDevtoolsPanel } from "@tanstack/react-form-devtools";
@@ -15,14 +14,15 @@ import { isAxiosError } from "axios";
 import { LockKeyholeIcon, SearchXIcon } from "lucide-react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { env } from "@/lib/env";
 import { queryClient } from "@/lib/tanstack-query/client";
 import { setupAuthRequestInterceptor, setupAuthResponseInterceptor } from "@/modules/auth/middlewares/auth-interceptors";
 import { getSession } from "@/modules/auth/utils/auth";
 import { routeTree } from "@/types/routeTree.generated";
 import "./global.css";
+import { Sentry } from "@/lib/sentry-sdk";
 import { ToastProvider } from "@/modules/notification/components/toast-provider";
 import { ThemeProvider } from "./modules/theme/context/theme-provider";
-import { Sentry } from "@/lib/sentry-sdk";
 
 const session = getSession();
 
@@ -57,8 +57,6 @@ const rootContainer = document.getElementById("root");
 if (!rootContainer) {
 	throw new Error("Missing #root container");
 }
-
-
 
 const root = createRoot(rootContainer, {
 	// Callback called when an error is thrown and not caught by an ErrorBoundary.
@@ -105,8 +103,6 @@ root.render(
 		</QueryClientProvider>
 	</StrictMode>,
 );
-
-
 
 if (env.VITE_DEV_MODE) {
 	import("react-scan").then(({ scan }) => {

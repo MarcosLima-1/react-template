@@ -92,8 +92,8 @@ export function NavigationHeader() {
 							</Dialog.presets.basic>
 						</Dialog.provider>
 					)} */}
-					<ThemeToggle />
 				</div>
+				<ThemeToggle />
 			</div>
 		</header>
 	);

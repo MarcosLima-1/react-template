@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Landing } from "@/components/ui/landing";
@@ -33,7 +33,6 @@ function RouteComponent() {
 					</Link>
 					<a target="_blank" rel="noopener noreferrer" href="https://github.com/MarcosLima-1/react-template">
 						<Button variant="outline" size="lg" className="gap-2">
-							<Github className="h-4 w-4" />
 							GitHub
 						</Button>
 					</a>

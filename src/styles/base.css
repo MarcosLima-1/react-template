@@ -1,0 +1,29 @@
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	body {
+		@apply bg-background text-foreground relative;
+	}
+
+	::-webkit-scrollbar {
+		@apply w-1;
+	}
+
+	::-webkit-scrollbar-track {
+		@apply bg-background;
+	}
+
+	::-webkit-scrollbar-thumb {
+		@apply bg-accent rounded-md;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		@apply bg-accent-foreground;
+	}
+
+	img {
+		@apply pointer-events-none select-none;
+	}
+}

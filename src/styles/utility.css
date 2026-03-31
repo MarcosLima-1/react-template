@@ -1,0 +1,7 @@
+@utility scroll-hidden {
+	@apply [&::-webkit-scrollbar]:hidden;
+}
+
+@utility scroll-visible {
+	@apply [&::-webkit-scrollbar]:block;
+}

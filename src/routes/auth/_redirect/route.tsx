@@ -5,6 +5,8 @@ import { getSession } from "@/modules/auth/utils/auth";
 export const Route = createFileRoute("/auth/_redirect")({
 	component: RouteComponent,
 	loader: () => {
+		if (typeof window === "undefined") return;
+
 		const session = getSession();
 		if (session) {
 			redirect({

@@ -1,24 +1,25 @@
 import { type SessionProps, sessionSchema } from "@/modules/auth/types/auth";
 import { toast } from "@/modules/notification/components/toasts";
-import { STORAGE_KEYS } from "../core/storage";
+import { canUseStorage } from "@/utils/can-use-storage";
 
 export function saveSessionInStorage(data: SessionProps) {
-	const { data: session, success } = sessionSchema.safeParse(data);
+	if (!canUseStorage()) return;
 
+	const { data: session, success } = sessionSchema.safeParse(data);
 	if (!success || !session) {
 		toast.error({ title: "Session inválida!", description: "Faça login novamente." });
 		throw new Error("Invalid session");
 	}
-
-	localStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(session));
+	localStorage.setItem("session", JSON.stringify(session));
 }
 
-export function getStorageSession(): SessionProps | null {
-	const data = localStorage.getItem(STORAGE_KEYS.SESSION);
+export function getStorageSession() {
+	if (!canUseStorage()) return null;
+
+	const data = localStorage.getItem("session");
 	if (!data) return null;
 
 	const { data: session, success } = sessionSchema.safeParse(JSON.parse(data));
-
 	if (!success || !session) {
 		toast.error({ title: "Session inválida!", description: "Faça login novamente." });
 		return null;
@@ -28,5 +29,7 @@ export function getStorageSession(): SessionProps | null {
 }
 
 export function deleteStorageSession() {
-	localStorage.removeItem(STORAGE_KEYS.SESSION);
+	if (!canUseStorage()) return;
+
+	localStorage.removeItem("session");
 }

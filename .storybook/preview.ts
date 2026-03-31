@@ -1,9 +1,5 @@
-import { withThemeByClassName } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react-vite";
-
-import "../src/modules/theme/components/themes/light.css";
-import "../src/global.css";
-import type { Renderer } from "storybook/internal/types";
+import "../src/styles/global.css";
 
 const preview: Preview = {
 	parameters: {
@@ -13,6 +9,7 @@ const preview: Preview = {
 				date: /Date$/i,
 			},
 		},
+
 		a11y: {
 			// 'todo' - show a11y violations in the test UI only
 			// 'error' - fail CI on a11y violations
@@ -20,15 +17,6 @@ const preview: Preview = {
 			test: "todo",
 		},
 	},
-	decorators: [
-		withThemeByClassName<Renderer>({
-			themes: {
-				light: "light",
-				dark: "dark",
-			},
-			defaultTheme: "dark",
-		}),
-	],
 };
 
 export default preview;

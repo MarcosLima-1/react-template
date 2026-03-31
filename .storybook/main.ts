@@ -11,9 +11,12 @@ const config: StorybookConfig = {
 		"storybook-addon-tag-badges",
 		"@storybook/addon-themes",
 	],
-	framework: {
-		name: "@storybook/react-vite",
-		options: {},
+	framework: "@storybook/react-vite",
+	viteFinal: async (config) => {
+		const { default: tailwindcss } = await import("@tailwindcss/vite");
+		config.plugins = config.plugins || [];
+		config.plugins.push(tailwindcss());
+		return config;
 	},
 };
 export default config;

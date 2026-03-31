@@ -1,54 +1,47 @@
-import { sentryVitePlugin } from "@sentry/vite-plugin";
+import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
-import { tanstackRouter } from "@tanstack/router-plugin/vite";
-import viteReact from "@vitejs/plugin-react";
-import { visualizer } from "rollup-plugin-visualizer";
-import { defineConfig, loadEnv } from "vite";
-import viteTsConfigPaths from "vite-tsconfig-paths";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
+import { nitro } from "nitro/vite";
+import { defineConfig } from "vite";
+
+// TODO: Add sentry plugin back when we have the Sentry project set up
 
 export default defineConfig(({ mode }) => {
-	const env = loadEnv(mode, process.cwd(), "");
+	// const env = loadEnv(mode, process.cwd(), "");
 
 	const plugins = [
-		tanstackRouter({
-			target: "react",
-			autoCodeSplitting: true,
-			quoteStyle: "double",
-			generatedRouteTree: "./src/types/routeTree.generated.ts",
-		}),
-		viteTsConfigPaths({
-			projects: ["./tsconfig.json"],
-		}),
 		devtools({
 			removeDevtoolsOnBuild: true,
 		}),
+		tanstackStart({
+			router: { generatedRouteTree: "./types/routeTree.generated.ts", quoteStyle: "double" },
+		}),
+		nitro({ output: { dir: "./build/frontend" }, preset: "bun" }),
 		tailwindcss(),
-		viteReact({
-			babel: {
-				plugins: [["babel-plugin-react-compiler"]],
-			},
-		}),
-		sentryVitePlugin({
-			url: env.VITE_SENTRY_URL,
-			authToken: env.VITE_SENTRY_AUTH_TOKEN,
-			org: env.VITE_SENTRY_ORG,
-			project: env.VITE_SENTRY_PROJECT,
-			telemetry: false,
-		}),
+		viteReact(),
+		babel({ presets: [reactCompilerPreset()] }),
+		// sentryVitePlugin({
+		// 	url: env.VITE_SENTRY_URL,
+		// 	authToken: env.VITE_SENTRY_AUTH_TOKEN,
+		// 	org: env.VITE_SENTRY_ORG,
+		// 	project: env.VITE_SENTRY_PROJECT,
+		// 	telemetry: false,
+		// }),
 	];
 
-	if (env.VITE_DEV_MODE === "true") {
-		plugins.push(
-			visualizer({
-				open: true,
-				filename: "./build/bundle-analysis.html",
-				sourcemap: true,
-				gzipSize: true,
-				brotliSize: true,
-			}),
-		);
-	}
+	// if (env.VITE_DEV_MODE === "true") {
+	// 	plugins.push(
+	// 		visualizer({
+	// 			open: true,
+	// 			filename: "./build/bundle-analysis.html",
+	// 			sourcemap: true,
+	// 			gzipSize: true,
+	// 			brotliSize: true,
+	// 		}),
+	// 	);
+	// }
 
 	return {
 		plugins,
@@ -56,9 +49,9 @@ export default defineConfig(({ mode }) => {
 			sourcemap: "hidden",
 			outDir: "./build/frontend",
 			reportCompressedSize: true,
-			rollupOptions: {
-				external: ["react-scan"],
-			},
+		},
+		resolve: {
+			tsconfigPaths: true,
 		},
 		server: {
 			host: true,

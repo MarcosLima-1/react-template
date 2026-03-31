@@ -9,9 +9,10 @@ import { route } from "@/core/routes";
 const loginSearchParams = z.object({
 	redirect: z.string().optional(),
 });
+
 export const Route = createFileRoute("/error/server-error/")({
-	component: ServerError,
 	validateSearch: loginSearchParams,
+	component: ServerError,
 });
 
 export default function ServerError() {

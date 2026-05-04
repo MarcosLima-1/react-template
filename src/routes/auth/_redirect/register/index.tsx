@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { EmailVerificationForm } from "@/modules/auth/components/email-verification-form";
-import { OauthProviders } from "@/modules/auth/components/oauth-providers";
 import { RegisterForm } from "@/modules/auth/components/register-form";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
 import { getStorageTempMail } from "@/modules/auth/storage/temp-mail";
@@ -26,7 +25,6 @@ function RouteComponent() {
 					</Link>
 				</Button>
 				<div className="h-0.5 w-[90%] bg-accent" />
-				<OauthProviders />
 			</div>
 			<div className="max-sm:hidden" />
 		</div>

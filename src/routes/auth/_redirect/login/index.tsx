@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { EmailVerificationForm } from "@/modules/auth/components/email-verification-form";
 import { LoginForm } from "@/modules/auth/components/login-form";
-import { OauthProviders } from "@/modules/auth/components/oauth-providers";
 import { useFormStepContext } from "@/modules/auth/context/step-form-context";
 import { getStorageTempMail } from "@/modules/auth/storage/temp-mail";
 
@@ -26,7 +25,6 @@ function RouteComponent() {
 					</Link>
 				</Button>
 				<div className="h-0.5 w-[90%] bg-accent" />
-				<OauthProviders />
 				<Button variant="link" className="text-xs">
 					<Link to="/auth/change-password">
 						Esqueceu sua senha? <span className="text-primary">clique aqui</span>

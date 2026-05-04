@@ -1,6 +1,6 @@
 import type { QueryClient } from "@tanstack/react-query";
-import type { router } from "@/main";
 import type { SessionProps } from "@/modules/auth/types/auth";
+import type { getRouter } from "@/router";
 
 export interface RouteContext {
 	queryClient: QueryClient;
@@ -9,6 +9,6 @@ export interface RouteContext {
 
 declare module "@tanstack/react-router" {
 	interface Register {
-		router: typeof router;
+		router: ReturnType<typeof getRouter>;
 	}
 }

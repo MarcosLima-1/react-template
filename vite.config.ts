@@ -6,11 +6,7 @@ import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 
-// TODO: Add sentry plugin back when we have the Sentry project set up
-
-export default defineConfig(({ mode }) => {
-	// const env = loadEnv(mode, process.cwd(), "");
-
+export default defineConfig(() => {
 	const plugins = [
 		devtools({
 			removeDevtoolsOnBuild: true,
@@ -22,33 +18,17 @@ export default defineConfig(({ mode }) => {
 		tailwindcss(),
 		viteReact(),
 		babel({ presets: [reactCompilerPreset()] }),
-		// sentryVitePlugin({
-		// 	url: env.VITE_SENTRY_URL,
-		// 	authToken: env.VITE_SENTRY_AUTH_TOKEN,
-		// 	org: env.VITE_SENTRY_ORG,
-		// 	project: env.VITE_SENTRY_PROJECT,
-		// 	telemetry: false,
-		// }),
 	];
-
-	// if (env.VITE_DEV_MODE === "true") {
-	// 	plugins.push(
-	// 		visualizer({
-	// 			open: true,
-	// 			filename: "./build/bundle-analysis.html",
-	// 			sourcemap: true,
-	// 			gzipSize: true,
-	// 			brotliSize: true,
-	// 		}),
-	// 	);
-	// }
 
 	return {
 		plugins,
 		build: {
-			sourcemap: "hidden",
+			sourcemap: true,
 			outDir: "./build/frontend",
 			reportCompressedSize: true,
+			rollupOptions: {
+				external: ["zlib-sync"],
+			},
 		},
 		resolve: {
 			tsconfigPaths: true,

@@ -5,6 +5,8 @@ include:
 
 services:
   app:
+    env_file:
+      - ../../.env
     ports:
       - 5174:5173
     build:

@@ -41,18 +41,19 @@ export function NavigationHeader() {
 					</nav>
 				</div>
 
-				<div className="flex items-center gap-3">
-					{!session && (
-						<>
-							<Button variant="ghost" size="sm">
-								<Link to="/auth/login">Entrar</Link>
-							</Button>
-							<Button size="sm">
-								<Link to="/auth/register">Cadastro</Link>
-							</Button>
-						</>
-					)}
-					{/* {session?.user && (
+				<div className="flex gap-2">
+					<div className="flex items-center gap-3">
+						{!session && (
+							<>
+								<Button variant="ghost" size="sm">
+									<Link to="/auth/login">Entrar</Link>
+								</Button>
+								<Button size="sm">
+									<Link to="/auth/register">Cadastro</Link>
+								</Button>
+							</>
+						)}
+						{/* {session?.user && (
 						<Dialog.provider>
 							<DropdownMenu>
 								<DropdownMenuTrigger  >
@@ -92,8 +93,9 @@ export function NavigationHeader() {
 							</Dialog.presets.basic>
 						</Dialog.provider>
 					)} */}
+					</div>
+					<ThemeToggle />
 				</div>
-				<ThemeToggle />
 			</div>
 		</header>
 	);

@@ -222,11 +222,14 @@ export const WithManyOptions: Story = {
 				<Select.Value placeholder="Selecione um número" />
 			</Select.Trigger>
 			<Select.Content>
-				{Array.from({ length: 20 }, (_, i) => (
-					<Select.Item key={`option-${i + 1}`} value={`${i + 1}`}>
-						Opção {i + 1}
-					</Select.Item>
-				))}
+				{Array.from({ length: 20 }, (_, i) => {
+					const value = `${i + 1}`;
+					return (
+						<Select.Item key={`option-${value}`} value={value}>
+							Opção {i + 1}
+						</Select.Item>
+					);
+				})}
 			</Select.Content>
 		</Select.Root>
 	),

@@ -5,5 +5,10 @@
 		"source.removeUnusedImports": "always",
 		"source.organizeImports.biome": "always",
 		"source.fixAll.biome": "always"
-	}
+	},
+	"github.copilot.chat.commitMessageGeneration.instructions": [
+		{
+			"file": "COMMIT.md"
+		}
+	]
 }

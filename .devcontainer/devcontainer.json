@@ -28,7 +28,6 @@
 		"vscode": {
 			"extensions": [
 				"biomejs.biome",
-				"shd101wyy.markdown-preview-enhanced",
 				"csstools.postcss",
 				"hangxingliu.vscode-nginx-conf-hint",
 				"aaron-bond.better-comments",

@@ -23,28 +23,6 @@ export default defineConfig({
 			},
 			{
 				extends: true,
-				optimizeDeps: {
-					include: [
-						"@tanstack/react-devtools",
-						"@tanstack/react-form-devtools",
-						"@tanstack/react-query",
-						"@tanstack/react-query-devtools",
-						"@tanstack/react-router",
-						"@tanstack/react-router-devtools",
-						"@base-ui/react/toast",
-						"axios",
-						"react-dom/client",
-						"react-markdown",
-						"zod",
-					],
-				},
-				plugins: [
-					// The plugin will run tests for the stories defined in your Storybook config
-					// See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
-					storybookTest({
-						configDir: path.join(dirname, ".storybook"),
-					}),
-				],
 				test: {
 					name: "storybook",
 					environment: "jsdom",
@@ -59,6 +37,29 @@ export default defineConfig({
 						],
 					},
 					setupFiles: [".storybook/vitest.setup.ts"],
+				},
+
+				plugins: [
+					// The plugin will run tests for the stories defined in your Storybook config
+					// See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
+					storybookTest({
+						configDir: path.join(dirname, ".storybook"),
+					}),
+				],
+				optimizeDeps: {
+					include: [
+						"@tanstack/react-devtools",
+						"@tanstack/react-form-devtools",
+						"@tanstack/react-query",
+						"@tanstack/react-query-devtools",
+						"@tanstack/react-router",
+						"@tanstack/react-router-devtools",
+						"@base-ui/react/toast",
+						"axios",
+						"react-dom/client",
+						"react-markdown",
+						"zod",
+					],
 				},
 			},
 		],

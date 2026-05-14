@@ -1,16 +1,16 @@
 import type { ThemeKeys } from "@/modules/theme/constants/themes";
-import { canUseStorage } from "@/utils/can-use-storage";
+import { isClientSide } from "@/utils/is-client-side";
 
 const THEME_KEY = "theme";
 
 export function saveThemeInStorage(theme: ThemeKeys) {
-	if (!canUseStorage()) return;
+	if (!isClientSide()) return;
 
 	localStorage.setItem(THEME_KEY, theme);
 }
 
 export function getStorageTheme(): ThemeKeys {
-	if (!canUseStorage()) return "dark";
+	if (!isClientSide()) return "dark";
 	const storedTheme = localStorage.getItem(THEME_KEY) as ThemeKeys | undefined;
 
 	if (storedTheme) {
@@ -25,7 +25,7 @@ export function getStorageTheme(): ThemeKeys {
 }
 
 export function deleteStorageTheme() {
-	if (!canUseStorage()) return;
+	if (!isClientSide()) return;
 
 	localStorage.removeItem(THEME_KEY);
 }

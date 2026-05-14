@@ -1,9 +1,9 @@
 import { type SessionProps, sessionSchema } from "@/modules/auth/types/auth";
 import { toast } from "@/modules/notification/components/toasts";
-import { canUseStorage } from "@/utils/can-use-storage";
+import { isClientSide } from "@/utils/is-client-side";
 
 export function saveSessionInStorage(data: SessionProps) {
-	if (!canUseStorage()) return;
+	if (!isClientSide()) return;
 
 	const { data: session, success } = sessionSchema.safeParse(data);
 	if (!success || !session) {
@@ -14,7 +14,7 @@ export function saveSessionInStorage(data: SessionProps) {
 }
 
 export function getStorageSession() {
-	if (!canUseStorage()) return null;
+	if (!isClientSide()) return null;
 
 	const data = localStorage.getItem("session");
 	if (!data) return null;
@@ -29,7 +29,7 @@ export function getStorageSession() {
 }
 
 export function deleteStorageSession() {
-	if (!canUseStorage()) return;
+	if (!isClientSide()) return;
 
 	localStorage.removeItem("session");
 }
